@@ -26,15 +26,22 @@ inline.
 
 ## codebase-memory-mcp usage policy
 
-`codebase-memory-mcp` is installed globally (indexes this repo already —
-9 files, mostly docs). Its `SessionStart` and `PreToolUse` hooks stay
-enabled, but its query tools (`search_graph`, `trace_path`,
-`get_architecture`, etc.) are token overhead with little payoff on a
-docs-only repo. Don't call them proactively — only reach for them once
-this repo has enough real source code that a call graph would actually
-save more tokens than a few targeted Grep/Read calls. Re-run
-`index_repository` after substantial code additions so the graph doesn't
-go stale.
+`codebase-memory-mcp` is installed globally and indexes this repo. Once a
+branch carries real source (the FastAPI `backend/` and Next.js
+`frontend/`), the graph covers it — not just docs — so a call graph can
+pay off. Reach for its query tools (`search_graph`, `trace_path`,
+`get_architecture`, etc.) when a structural question would cost more in
+Grep/Read than a single graph call; still prefer Grep/Read for text,
+configs, non-code files, and branches that are docs-only.
+
+Freshness is automated: a project `SessionStart` hook
+(`.claude/hooks/cbm-autoindex.sh`, wired in `.claude/settings.json`)
+re-indexes in `fast` mode whenever the git tree changed since the last
+index, and no-ops otherwise. Its state lives in the git-ignored
+`.codebase-memory/`. You normally don't need to re-index by hand — do a
+manual `index_repository` (full mode) only after a large refactor, or if
+you suspect drift mid-session (the hook fires at session start, not
+per-edit).
 
 ## Source of truth
 

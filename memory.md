@@ -191,6 +191,40 @@ Entry template:
   own, never reused across environments.
 
 ---
+## 2026-07-01 — codebase-memory graph auto-re-index hook
+
+**What changed:**
+- Re-indexed the codebase-memory-mcp graph now that real source exists:
+  84 nodes / 83 edges (docs era) → 284 nodes / 534 edges (`backend/` +
+  `frontend/`).
+- Added a project `SessionStart` hook `.claude/hooks/cbm-autoindex.sh`
+  (wired in a new tracked `.claude/settings.json`) that re-indexes in
+  `fast` mode only when the git tree changed since the last index.
+  Change signature = `HEAD` + `git diff HEAD` + untracked file list,
+  cached in `.codebase-memory/.autoindex-sig`. No-ops otherwise; any
+  failure exits 0 so it never blocks a session.
+- `.gitignore` rewritten so the hook can be shared: `\.claude` (ignored
+  the whole dir) → `.claude/*` with `!.claude/settings.json` and
+  `!.claude/hooks/`, keeping `.claude/settings.local.json` local. Added
+  `.codebase-memory/`.
+- Updated CLAUDE.md's "codebase-memory-mcp usage policy" to match (graph
+  now covers code; freshness automated instead of a manual re-index).
+
+**Why:**
+- The old policy relied on a human remembering to re-run
+  `index_repository` after code lands — which is exactly how a graph goes
+  stale. Substantial code had landed, so the graph was already out of
+  date and the query tools had become worth using. A guarded hook keeps
+  it fresh automatically, with no per-edit cost and no blocking risk.
+- Sharing the hook via the repo (loosening the blanket `.claude` ignore)
+  means anyone who clones gets the same freshness behavior.
+
+**Open questions / what's next:**
+- Hook fires at session boundaries, not per file edit, so a long session
+  that edits code won't refresh mid-session. Add a debounced
+  `Stop`/`PostToolUse` trigger later if that becomes a pain.
+- A brand-new `.claude/settings.json` isn't picked up by the settings
+  watcher until `/hooks` is opened once or Claude Code restarts.
 
 ## 2026-07-01 — codebase-memory-mcp installed and indexed, usage scoped down
 

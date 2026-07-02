@@ -1,4 +1,12 @@
-\.claude
+# Claude Code config: share team-wide settings + hooks, keep local overrides out
+.claude/*
+!.claude/settings.json
+!.claude/hooks/
+.claude/settings.local.json
+
+# codebase-memory-mcp local graph artifacts + auto-index state
+.codebase-memory/
+
 .env
 
 # Python
