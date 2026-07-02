@@ -4,5 +4,5 @@ sqlalchemy==2.0.51
 alembic==1.18.5
 psycopg[binary]==3.3.4
 pydantic-settings==2.14.2
-passlib[argon2]==1.7.4
+argon2-cffi==25.1.0
 cryptography==48.0.1

@@ -7,7 +7,6 @@ from sqlalchemy import (
     BigInteger,
     CheckConstraint,
     DateTime,
-    Enum,
     ForeignKey,
     Integer,
     Numeric,
@@ -19,18 +18,19 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
 from app.models.agent import LlmProvider
-from app.models.mixins import TimestampMixin
+from app.models.mixins import db_enum
 
 if TYPE_CHECKING:
     from app.models.account import Account
     from app.models.agent import Agent
 
 
-class ApiUsageLog(TimestampMixin, Base):
+class ApiUsageLog(Base):
     """Per-call token/cost ledger for every LLM request an agent makes.
 
     High-volume, append-only — uses a bigint identity PK instead of the
-    UUID PK mixin the other tables use.
+    UUID PK mixin the other tables use, and carries only created_at
+    (rows are never updated, so no updated_at; dropped in migration 0002).
 
     linked_proposal_id has no FK yet: the proposals table doesn't exist
     until Phase 1 (plan §5). Column is kept nullable and unconstrained so
@@ -52,7 +52,7 @@ class ApiUsageLog(TimestampMixin, Base):
         UUID(as_uuid=True), ForeignKey("accounts.id", ondelete="SET NULL"), index=True
     )
     provider: Mapped[LlmProvider] = mapped_column(
-        Enum(LlmProvider, name="llm_provider"), nullable=False
+        db_enum(LlmProvider, name="llm_provider"), nullable=False
     )
     model: Mapped[str] = mapped_column(String(100), nullable=False)
     tokens_in: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
@@ -61,6 +61,9 @@ class ApiUsageLog(TimestampMixin, Base):
     linked_proposal_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
     request_timestamp: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False, index=True
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
     agent: Mapped["Agent"] = relationship(back_populates="usage_logs")
