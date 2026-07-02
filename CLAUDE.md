@@ -19,6 +19,18 @@ no-decision edits (typos, formatting) don't need an entry. `memory.md`
 entries are append-only; never rewrite past entries, only add corrections
 inline.
 
+## codebase-memory-mcp usage policy
+
+`codebase-memory-mcp` is installed globally (indexes this repo already —
+9 files, mostly docs). Its `SessionStart` and `PreToolUse` hooks stay
+enabled, but its query tools (`search_graph`, `trace_path`,
+`get_architecture`, etc.) are token overhead with little payoff on a
+docs-only repo. Don't call them proactively — only reach for them once
+this repo has enough real source code that a call graph would actually
+save more tokens than a few targeted Grep/Read calls. Re-run
+`index_repository` after substantial code additions so the graph doesn't
+go stale.
+
 ## Source of truth
 
 - `Documents/swarm-trading-system-plan.md` — Sections 1–7 are the

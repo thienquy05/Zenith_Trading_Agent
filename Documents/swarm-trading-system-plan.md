@@ -180,6 +180,8 @@ Finance and Investment Banking are treated as **one combined plugin** for now, p
 ### 9.2 Engineering
 Scope: the org doing engineering work on itself — infrastructure, CI, code quality, repo hygiene. Not yet detailed at the Member-Agent level (no build phases defined yet, unlike Finance/IB's Phases 0–5 in Section 5). Connector: Github.
 
+Note: `Security-Agent/` and `Test-Agent/` at the repo root are *not* Member Agents of this plugin — they're engineering-support co-worker agents (code/security review, test-case authoring) that assist with building this project, sitting outside the org's own multi-agent architecture. See their own `CLAUDE.md` files.
+
 ### 9.3 Design
 Scope: diagramming, UX, notes. Connectors: Excalidraw, Goodnotes.
 
