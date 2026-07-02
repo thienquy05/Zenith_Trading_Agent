@@ -6,9 +6,7 @@ here, see [`memory.md`](memory.md).
 
 ## Status
 
-Planning-only, same as the rest of this repo. No CI pipeline or test
-harness exists yet — this folder currently defines the agent's charter
-and skills, not an implementation.
+Actively reviewing code and system design for testability and correctness.
 
 ## What this agent is
 
@@ -26,7 +24,7 @@ Whenever a new function, module, or behavior change is introduced, and
 before it merges to `master`, Test-Agent writes the test cases that
 verify it — covering the intended behavior, realistic edge cases, and
 regressions in code paths it touches — so CI/CD has something concrete to
-run.
+run. Make sure to split the test cases parallelly if the test files increase in size, so that the test suite runs quickly and doesn't time out.
 
 ## Non-negotiable constraints
 

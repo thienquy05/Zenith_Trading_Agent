@@ -1,6 +1,6 @@
 # Multi-Agent Swarm Trading System — Project Plan (v1 Draft)
 
-**Status:** Planning phase — nothing built yet. This document is for review and iteration.
+**Status:** Phase 0 — Docker Compose skeleton + Postgres schema (users/agents/accounts/api_credentials/api_usage_log) in place. See `memory.md` for details.
 
 ---
 
@@ -102,9 +102,15 @@ Two-layer decision process — this is the key design correction from our earlie
 
 ## 5. Build Phases
 
+### Tool, Framework and Language for this system
+- Backend: Python
+- LLMs: OpenAI (ChatGPT, GPT-4), Gemini, Claude
+- Agent Orchestration: CrewAI
+- Frontend: React (for dashboard/override control plane) - use Next.js for server-side rendering and API routes and /mcp UI-UX Pro Max
+
 ### Phase 0 — Foundations (current)
 - Finalize this architecture doc
-- Decide on framework (LangGraph vs CrewAI bake-off)
+- CrewAI 
 - Set up Docker Compose skeleton with empty services + Redis + Postgres
 
 ### Phase 1 — Technical-only agents, backtested

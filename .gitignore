@@ -1,2 +1,15 @@
 \.claude
 .env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.venv_check/
+
+# Node / Next.js
+node_modules/
+.next/
+
+# Docker
+postgres_data/

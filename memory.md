@@ -35,6 +35,163 @@ Entry template:
 
 ---
 
+## 2026-07-01 — Security-Agent + Test-Agent review pass, first CI/CD pipeline
+
+**What changed:**
+- User asked to run Security-Agent's and Test-Agent's charters against
+  the Phase 0 code from the previous entry, and stand up a first CI/CD
+  pipeline in the same commit. Full findings/reasoning live in each
+  agent's own `memory.md` (`.Security-Agent/memory.md`,
+  `.Test-Agent/memory.md`) per their own logging convention — this entry
+  is the root-level summary.
+- **Security-Agent review** of `backend/` and `docker-compose.yml`:
+  fixed weak `Mapped[Numeric]` typing on money columns (now
+  `Mapped[Decimal]`), added DB-level `CHECK` constraints (non-negative
+  capital/tokens/cost), rebound all Docker Compose published ports to
+  `127.0.0.1` instead of `0.0.0.0`, added non-root users to both
+  Dockerfiles. Left DB-role separation (single Postgres role for both
+  migrations and app runtime) as an open, non-blocking finding — real,
+  but no live sensitive data exists yet to make it urgent.
+- **Critical finding, fixed:** `frontend/package.json` pinned
+  `next@15.1.3`, which has a known critical CVE (CVE-2025-66478) plus
+  ~20 other advisories. Bumped to `next@16.2.10` and added a
+  `postcss` version override to close a secondary moderate finding
+  without downgrading Next.js. Verified: `npm audit` clean, build and
+  dev server both still work.
+- **Dependency audit, fixed:** `pip-audit` found 11 known
+  vulnerabilities in the original `backend/requirements.txt` pins, most
+  notably `cryptography==44.0.0` — the exact package backing
+  `security.py`'s credential encryption. Bumped every pin to current
+  stable releases; re-verified `pip-audit` clean and all previously
+  passing checks (model imports, migration SQL generation, ruff, tests)
+  still pass against the new versions.
+- **Test-Agent**: added `backend/tests/` (`test_security.py`,
+  `test_main.py` — both run standalone, no DB, 6/6 passing locally;
+  `test_models.py` — needs live Postgres, written but unverified locally
+  since Docker Desktop's daemon wasn't running this session, will get
+  its first real run in CI). Added `ruff` lint (found and fixed 10
+  pre-existing `F821` findings from SQLAlchemy 2.0's string-based
+  forward-reference relationships not being visible to static analysis —
+  fixed with `TYPE_CHECKING`-guarded imports, the standard pattern).
+- **First CI/CD pipeline**: `.github/workflows/ci.yml` — backend job
+  (ruff, pip-audit, Alembic upgrade/downgrade/upgrade round-trip against
+  a Postgres service container, pytest) and frontend job (npm audit,
+  npm run build), triggered on push/PR to `master`.
+- Added `backend/requirements-dev.txt`, `backend/pytest.ini`,
+  `backend/ruff.toml`.
+
+**Why:**
+- User wants every real code change checked by both co-worker agents
+  before it's treated as done, and wanted the first CI pipeline bundled
+  into the same commit as the Phase 0 code itself rather than as a
+  follow-up.
+- Fixed rather than just reported everything with a clear-cut, no-tradeoff
+  fix (typing bugs, DB constraints, port binding, non-root containers,
+  both dependency CVEs) — consistent with Security-Agent's and
+  Test-Agent's charters, which both frame "reviews and recommends" as not
+  requiring a separate sign-off round when there's no real tradeoff to
+  weigh. Left the one finding with a real tradeoff (DB role separation)
+  open and explicitly flagged rather than shipping a rushed partial fix.
+- Unrelated to this session's work but discovered mid-session: this
+  repo's local `master` branch now has a merged PR and is the branch
+  actually being worked from (origin's default branch pointer still
+  shows `docs/initial_documents`) — CI triggers on `master` to match
+  where work is actually happening.
+
+**Open questions / what's next:**
+- Run `test_models.py` for real against a live Postgres (local Docker or
+  the next CI run) — reasoning through the logic is not the same as
+  verifying it.
+- Close the DB-role-separation finding (Security-Agent memory.md) before
+  Phase 1 writes any real credential or capital row.
+- Re-review CORS the moment the frontend makes a real cross-origin call
+  to the backend; add the JWT/session/CSRF/audit-log-tamper-evidence
+  checks the moment that code exists — all explicitly deferred as
+  not-yet-applicable, not resolved.
+
+---
+
+## 2026-07-01 — Phase 0: Postgres schema, FastAPI backend, Next.js frontend skeleton, Docker Compose
+
+**What changed:**
+- Added `backend/` — first real source code in the repo:
+  - FastAPI app (`app/main.py`, `/health` endpoint), SQLAlchemy 2.0 models
+    (`app/models/`), Pydantic-settings config (`app/config.py`), password
+    hashing + Fernet credential encryption (`app/security.py`).
+  - Five tables via Alembic migration `0001_initial_schema.py`: `users`
+    (login credentials, `role` enum for admin/kill-switch access),
+    `agents` (reusable name/type/strategy/llm_provider/llm_model/task
+    definitions — decoupled from capital so one agent definition can back
+    multiple funded accounts), `accounts` (per-agent capital allocation:
+    `allocated_capital`, `current_balance`, `status` enum incl. `killed`
+    for the manual-override kill switch), `api_credentials` (broker/LLM
+    secrets, `encrypted_value` as Fernet ciphertext — never plaintext),
+    `api_usage_log` (per-call token/cost ledger keyed to agent + optional
+    account, bigint PK since high-volume, `linked_proposal_id` column
+    present but unconstrained — no FK yet since the proposals table
+    doesn't exist until Phase 1).
+  - Verified: models import cleanly, `alembic upgrade head --sql`
+    generates correct offline SQL (postgresql+psycopg driver). Could not
+    verify against a live Postgres — Docker Desktop's daemon wasn't
+    running in this session.
+- Added `frontend/` — minimal Next.js 15 app-router skeleton (placeholder
+  home page only) so docker-compose has something real to build on port
+  3000; no dashboard/control-plane UI yet.
+- Added `docker-compose.yml` at repo root: `postgres` (16-alpine, healthcheck),
+  `redis` (7-alpine, per Phase 0 plan even though nothing consumes it
+  yet), `migrate` (one-shot `alembic upgrade head`, backend `depends_on`
+  it with `service_completed_successfully`), `backend` (port 5000),
+  `frontend` (port 3000). Verified with `docker compose config` (daemon
+  wasn't running, so no live `up` test).
+- Added `start.sh` / `stop.sh` (docker compose up -d --build / down),
+  `.env` (real local Fernet key generated, gitignored) and `.env.example`
+  (committed, no secrets) at repo root.
+- Extended `.gitignore`: `__pycache__/`, `.venv/`, `node_modules/`,
+  `.next/`, `postgres_data/`.
+- Updated `swarm-trading-system-plan.md`'s status line and `CLAUDE.md`'s
+  "Status" section to reflect that this is no longer a planning-only repo.
+
+**Why:**
+- User asked to start Phase 0 for real: a Postgres schema for
+  users/accounts (funds, capital, agent name/model/tasks, API) plus a
+  docker-compose wiring frontend (3000) + backend (5000) + migrations,
+  and start/stop scripts.
+- Confirmed via question round before building (since this is the first
+  code in a greenfield repo — wrong defaults here are expensive to
+  unwind): FastAPI (not Flask) as the actual framework; Alembic for
+  migrations; Redis included now per the Phase 0 plan text even though
+  today's ask only mentioned Postgres; schema split into 4 separate
+  tables (not one wide Account table) plus a 5th `api_usage_log` table
+  for per-agent LLM token/cost tracking, which the user flagged as a
+  near-term need while answering.
+- `agents` kept separate from `accounts` (not folded together) so the
+  same agent definition (e.g. "Momentum-Claude") can be reused across
+  multiple funded accounts rather than being 1:1 with a capital
+  allocation — matches plan §3.1's "each member agent holds its own
+  allocated capital" without forcing a 1:1 identity between "agent" and
+  "capital pool."
+- `api_credentials.encrypted_value` is Fernet-encrypted (reversible, app
+  needs the plaintext to call broker/LLM APIs) rather than hashed —
+  different requirement from `users.password_hash` (one-way, argon2),
+  which is often conflated but isn't the same problem. Matches
+  Security-Agent's "credentials encrypted at rest" charter constraint.
+
+**Open questions / what's next:**
+- Live-DB verification of the migration (`docker compose up` end-to-end,
+  confirm tables actually create/drop cleanly) still needs to happen next
+  session once Docker Desktop's daemon is running.
+- No auth endpoints (login/register/JWT) exist yet — schema only, no API
+  surface for `users`/`accounts` beyond `/health`.
+- `api_usage_log.linked_proposal_id` has no FK constraint yet — revisit
+  once the Phase 1 proposals table exists (plan §5, §3.1).
+- Frontend is a placeholder page only — no dashboard, no manual-override
+  control plane UI yet (plan §3.3).
+- `CREDENTIAL_ENCRYPTION_KEY` in the committed-nowhere `.env` is a
+  locally-generated dev-only key; production/staging must each get their
+  own, never reused across environments.
+
+---
+
 ## 2026-07-01 — codebase-memory-mcp installed and indexed, usage scoped down
 
 **What changed:**
