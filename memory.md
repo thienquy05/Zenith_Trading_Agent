@@ -35,6 +35,66 @@ Entry template:
 
 ---
 
+## 2026-07-02 — ORM delete-semantics fix (first real test_models.py run), security test hardening, plan §9.1/§11 reconciliation
+
+**What changed:**
+- Logged retroactively: the previous session's commit (`39f7bc0`, pushed
+  to `claude/plan-code-improvements-xezruv` without a memory entry —
+  logging-rule miss, corrected here) introduced `mixins.db_enum` so all
+  enum columns persist member *values* ('user') instead of names
+  ('USER'), matching migration 0001's Postgres types; dropped
+  `api_usage_log.updated_at` (migration 0002 — append-only ledger);
+  replaced unmaintained `passlib` with `argon2-cffi` in `security.py`.
+- **First real run of `test_models.py` against live Postgres** (apt-
+  installed PG16 in the session sandbox; Docker image pulls are blocked
+  by this environment's network policy). It immediately caught a real
+  bug: `session.delete(user)` raised `NotNullViolation` because the ORM
+  relationships didn't know about the DB's `ON DELETE` behavior and
+  tried to null child FKs first. Fixed by aligning every relationship
+  with migration 0001's FK semantics: `User.accounts` /
+  `User.api_credentials` / `Agent.usage_logs` get
+  `cascade="all, delete-orphan", passive_deletes=True` (DB CASCADE owns
+  the delete), `Agent.accounts` gets `passive_deletes="all"` (DB
+  RESTRICT must be the one to reject deleting a funded agent),
+  `Account.usage_logs` gets `passive_deletes=True` (DB SET NULL, don't
+  load the high-volume ledger).
+- Security/Test-Agent hardening pass on the argon2 + enum changes: new
+  tests for fail-closed `verify_password` on malformed hashes, a frozen
+  passlib-era hash verifying the back-compat claim, a security cascade
+  test (deleted user leaves no encrypted credential rows), and a new
+  standalone `tests/test_schema.py` guarding two schema invariants
+  (every enum column goes through `db_enum`; every FK declares explicit
+  `ondelete`). Full suite: 19/19 passing against live Postgres, Alembic
+  upgrade→downgrade→upgrade round-trip clean, ruff clean.
+- Plan doc reconciled: §9.1 now states provider-vs-strategy are
+  orthogonal per-agent configuration (backed by the existing
+  `agents.llm_provider` / `agents.strategy` columns), resolving §11
+  open question 4; added §11 question 5 noting the §4/§6
+  (LangGraph-vs-CrewAI open) vs §5/diagram (CrewAI named) tension, with
+  CrewAI as working default until the Phase 1 Manager is built.
+- Diagram checked against §§8–10: all plugins, connectors, and
+  Finance/IB internals present, no dangling element refs — no diagram
+  change needed this session.
+
+**Why:**
+- User asked to continue the code-improvement branch, then narrowed the
+  session to: verify the plan/tools/map/system design are sound, and
+  enhance security via the co-worker test agents. The relationship fix
+  wasn't optional polish — it made user deletion impossible at runtime,
+  and only surfaced because the DB-backed tests finally ran for real
+  (closing the standing "run test_models.py against live Postgres" open
+  item).
+
+**Open questions / what's next:**
+- DB-role separation (single Postgres role for migrations + runtime)
+  remains the standing pre-Phase-1 security item.
+- §11 question 5: confirm or drop CrewAI when the Phase 1 Manager gets
+  built.
+- CI has not yet run these changes (branch push pending at time of
+  writing) — the 19/19 result is from the session sandbox.
+
+---
+
 ## 2026-07-01 — Security-Agent + Test-Agent review pass, first CI/CD pipeline
 
 **What changed:**

@@ -179,7 +179,9 @@ A top-level **Orchestrator** sits above all plugin Managers. It routes incoming 
 ## 9. Plugin Catalog
 
 ### 9.1 Finance / Investment Banking
-This is Sections 1–7 of this document, in full — no re-derivation here. The Manager Agent is the "Manager Agent - CrewAI" box in `system.excalidraw`; the Member Agents are the ChatGPT / Gemini / Claude ellipses in that diagram, each intended to run a distinct strategy per Section 3.1 (Momentum / Mean-Reversion / Sentiment-style). The mapping between provider name (in the diagram) and strategy name (in this doc) is not yet stated explicitly anywhere — flagged in `memory.md`, not resolved here.
+This is Sections 1–7 of this document, in full — no re-derivation here. The Manager Agent is the "Manager Agent - CrewAI" box in `system.excalidraw`; the Member Agents are the ChatGPT / Gemini / Claude ellipses in that diagram, each intended to run a distinct strategy per Section 3.1 (Momentum / Mean-Reversion / Sentiment-style).
+
+**Provider vs. strategy (resolves org-level open question 4, Section 11):** there is no fixed pairing between an LLM provider and a strategy. The Phase 0 schema already encodes this — `agents.llm_provider` and `agents.strategy` are independent columns, so "which model backs an agent" and "which strategy it runs" are per-agent configuration, set when each Member Agent is created in Phase 1. The diagram's ChatGPT / Gemini / Claude ellipses are illustrative LLM backends (one possible configuration), not strategy names.
 
 Finance and Investment Banking are treated as **one combined plugin** for now, per current scope. Splitting them into two separate plugins later is an open question (Section 11).
 
@@ -210,4 +212,5 @@ Scope: diagramming, UX, notes. Connectors: Excalidraw, Goodnotes.
 1. Does every plugin need the full two-layer hard-rules + soft-judgment Manager, or is that specific to Finance/IB's real-capital risk profile?
 2. Should Investment Banking split out from Finance into its own plugin later, or stay merged as it is now?
 3. What does a Member Agent look like in Engineering or Design, where there's no "capital" or "trade proposal" concept the way Finance/IB has?
-4. Resolve the LLM-provider-vs-strategy naming mismatch on the Finance/IB ellipses in `system.excalidraw` (ChatGPT/Gemini/Claude vs. Momentum/Mean-Reversion/Sentiment) — either annotate the diagram with the strategy each provider runs, or state the mapping explicitly in Section 9.1.
+4. ~~Resolve the LLM-provider-vs-strategy naming mismatch on the Finance/IB ellipses in `system.excalidraw`~~ — **Resolved in Section 9.1:** provider and strategy are orthogonal per-agent configuration (`agents.llm_provider` / `agents.strategy` in the Phase 0 schema); the diagram ellipses are illustrative LLM backends, not strategy names.
+5. Section 4 recommends a LangGraph-vs-CrewAI bake-off (and question 1 in Section 6 keeps it open), while Section 5 and the diagram already name CrewAI as the orchestration choice. Treat CrewAI as the working default; the bake-off question stays open until the Phase 1 Manager is actually built.
