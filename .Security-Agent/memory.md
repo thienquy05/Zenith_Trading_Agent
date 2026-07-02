@@ -289,3 +289,49 @@ Entry template:
   headers — determines whether the CSRF constraint is live or moot.
 - No implementation exists yet to review against any of these three
   constraints.
+
+---
+
+## 2026-07-02 — Review pass: argon2 migration hardening, ORM delete semantics, credential cleanup
+
+**What was reviewed:**
+- `backend/app/security.py` (the passlib → argon2-cffi migration from
+  commit `39f7bc0`) and the ORM relationship / FK delete semantics in
+  `backend/app/models/`, prompted by the first real Postgres run of the
+  DB-backed test suite this session.
+
+**Findings:**
+- **Fixed:** ORM relationships ignored the DB's declared `ON DELETE`
+  behavior — `session.delete(user)` crashed with `NotNullViolation`
+  instead of cascading. Beyond the crash, the security-relevant risk was
+  drift between ORM-level and DB-level delete semantics for
+  `api_credentials`: a deleted user must reliably take their encrypted
+  credential rows with them. Fixed with
+  `cascade="all, delete-orphan", passive_deletes=True` on the CASCADE
+  relationships, `passive_deletes="all"` where the DB is RESTRICT
+  (deleting a funded agent must be rejected by the DB, not silently
+  reshaped by the ORM), and a regression test proving credential rows
+  are gone after user deletion.
+- **Verified, now test-enforced:** `verify_password` fails closed
+  (returns `False`, no exception) on empty/malformed/truncated hashes,
+  and still verifies a frozen passlib-era `$argon2id$` hash
+  (m=102400,t=2,p=8) — the back-compat claim in the code comment is now
+  pinned by a test instead of asserted in prose.
+- **New guard:** `tests/test_schema.py` asserts every FK declares an
+  explicit `ondelete` (no silent Postgres NO ACTION defaults in a
+  schema holding capital and credentials) and every enum column
+  persists values, not names.
+
+**Why (severity / reasoning):**
+- The cascade bug was High (user deletion impossible at runtime; and if
+  the NOT NULL had ever been relaxed, the same ORM behavior would have
+  *orphaned* credential rows instead of deleting them). The rest is
+  hardening: converting previously implicit security properties
+  (fail-closed verify, credential cleanup, explicit delete semantics)
+  into executable checks.
+
+**Open questions / what's next:**
+- DB-role separation (migrations vs runtime) still open — unchanged,
+  still pre-Phase-1.
+- JWT/session/CSRF/rate-limit constraints remain not-yet-applicable (no
+  auth routes exist yet).

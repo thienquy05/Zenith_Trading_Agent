@@ -215,3 +215,41 @@ Entry template:
 **Open questions / what's next:**
 - No auth code or trading/broker code exists yet to write these tests
   against — applies once that code exists.
+
+---
+
+## 2026-07-02 — First live-Postgres run of test_models.py; 5 tests added, 1 real bug caught
+
+**What changed (function/module under test):**
+- `backend/app/security.py` (argon2-cffi migration) and
+  `backend/app/models/` relationship delete semantics.
+
+**Test cases added/updated:**
+- `test_security.py`: `test_verify_password_returns_false_on_malformed_hash`
+  (empty / garbage / truncated hash all fail closed),
+  `test_verify_password_accepts_passlib_era_hash` (frozen
+  `$argon2id$` hash with passlib 1.7.4 cost parameters).
+- `test_models.py`: `test_deleting_user_cascades_to_their_api_credentials`
+  (credential rows gone after user delete); existing cascade test now
+  expires the session identity map after flush — with `passive_deletes`
+  the DB removes rows behind the ORM's back, so `Session.get` must
+  re-query instead of trusting the cache.
+- New `test_schema.py` (standalone, no DB): all enum columns persist
+  values not names (guards the `db_enum` regression class), all FKs
+  declare explicit `ondelete`.
+
+**Result (pass/fail, coverage gaps):**
+- The standing open item "run test_models.py against a real Postgres"
+  is closed: apt-installed Postgres 16 in the session sandbox (Docker
+  pulls blocked by network policy). First run immediately failed —
+  `test_deleting_user_cascades_to_their_accounts` surfaced a real bug
+  (ORM nulled child FKs on user delete instead of letting the DB
+  CASCADE). After the model fix: 19/19 passing, Alembic
+  upgrade→downgrade→upgrade round-trip clean, ruff clean.
+- Coverage gap: CI hasn't run these yet at time of writing; the
+  frontend suite is still build-only (no component tests).
+
+**Open questions / what's next:**
+- Auth test suite constraint still pending actual auth code.
+- Consider a constraint test for `accounts` UniqueConstraint
+  (user_id, agent_id, account_name) next time models are touched.
