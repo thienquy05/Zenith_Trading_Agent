@@ -6,8 +6,13 @@ every session — for the dated log of *why* things changed, see
 
 ## Status
 
-Planning-only project (no source code, no commits yet). Everything below
-is architecture/process, not implementation.
+Phase 0 in progress. First real code landed: `backend/` (FastAPI +
+SQLAlchemy + Alembic, Postgres schema for users/agents/accounts/
+api_credentials/api_usage_log), a minimal `frontend/` (Next.js
+placeholder), `docker-compose.yml` (postgres + redis + backend + frontend
++ one-shot `migrate` service), and `start.sh` / `stop.sh`. No live agent
+logic yet — Phases 1+ (member agents, hard-rules layer, etc.) are still
+ahead. See `memory.md` for the full rationale.
 
 ## The logging rule
 

@@ -6,9 +6,7 @@ here, see [`memory.md`](memory.md).
 
 ## Status
 
-Planning-only, same as the rest of this repo. No source code or scanning
-pipeline exists yet — this folder currently defines the agent's charter
-and skills, not an implementation.
+Actively reviewing code and system design for security vulnerabilities. 
 
 ## What this agent is
 
