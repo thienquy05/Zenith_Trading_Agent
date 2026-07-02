@@ -3,8 +3,9 @@ name: CI
 on:
   push:
     branches: [master]
+  # No branch filter: PRs must get CI regardless of their base branch
+  # (review PRs here often target non-master branches).
   pull_request:
-    branches: [master]
 
 env:
   POSTGRES_USER: trading_app
