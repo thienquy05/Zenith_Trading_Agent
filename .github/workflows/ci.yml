@@ -10,6 +10,8 @@ on:
 env:
   POSTGRES_USER: trading_app
   POSTGRES_PASSWORD: ci_test_password
+  POSTGRES_APP_USER: trading_runtime
+  POSTGRES_APP_PASSWORD: ci_test_app_password
   POSTGRES_DB: trading_test
   POSTGRES_HOST: localhost
   POSTGRES_PORT: 5432

@@ -31,10 +31,6 @@ class ApiUsageLog(Base):
     High-volume, append-only — uses a bigint identity PK instead of the
     UUID PK mixin the other tables use, and carries only created_at
     (rows are never updated, so no updated_at; dropped in migration 0002).
-
-    linked_proposal_id has no FK yet: the proposals table doesn't exist
-    until Phase 1 (plan §5). Column is kept nullable and unconstrained so
-    it can be backfilled/constrained once that table lands.
     """
 
     __tablename__ = "api_usage_log"
@@ -58,7 +54,9 @@ class ApiUsageLog(Base):
     tokens_in: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     tokens_out: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     cost_usd: Mapped[Decimal] = mapped_column(Numeric(12, 6), nullable=False, default=0)
-    linked_proposal_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
+    linked_proposal_id: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("proposals.id", ondelete="SET NULL"), index=True
+    )
     request_timestamp: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False, index=True
     )

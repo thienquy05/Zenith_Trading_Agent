@@ -26,7 +26,10 @@ def test_all_enum_columns_persist_values_not_names():
                 "declare it with mixins.db_enum()"
             )
             checked += 1
-    assert checked >= 5  # user_role, agent_type, llm_provider (x2), account_status, credential_provider
+    # agent_type, llm_provider (x2), account_status, credential_provider,
+    # proposal_action, proposal_status, decision_stage, decision_outcome,
+    # control_action, order_broker, order_side, order_status
+    assert checked >= 13
 
 
 def test_every_foreign_key_declares_ondelete():
@@ -38,3 +41,14 @@ def test_every_foreign_key_declares_ondelete():
             assert fk.ondelete is not None, (
                 f"{table.name}.{fk.parent.name} FK has no explicit ondelete"
             )
+
+
+def test_append_only_tables_have_no_updated_at():
+    # decisions, control_events and api_usage_log are append-only ledgers
+    # (§7): rows are never edited, so an updated_at column would be a lie
+    # waiting to happen. The DB role layer (migration 0004) enforces the
+    # no-UPDATE side; this guards the schema side.
+    for name in ("decisions", "control_events", "api_usage_log"):
+        table = Base.metadata.tables[name]
+        assert "updated_at" not in table.columns, f"{name} must not carry updated_at"
+        assert "created_at" in table.columns

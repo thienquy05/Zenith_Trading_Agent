@@ -1,4 +1,3 @@
-import enum
 from datetime import datetime
 from typing import TYPE_CHECKING
 
@@ -6,27 +5,23 @@ from sqlalchemy import Boolean, DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
-from app.models.mixins import TimestampMixin, UUIDPKMixin, db_enum
+from app.models.mixins import TimestampMixin, UUIDPKMixin
 
 if TYPE_CHECKING:
     from app.models.account import Account
     from app.models.api_credential import ApiCredential
 
 
-class UserRole(str, enum.Enum):
-    USER = "user"
-    ADMIN = "admin"  # required for manual override / kill-switch control plane (plan §3.3)
-
-
 class User(UUIDPKMixin, TimestampMixin, Base):
+    """The operator. Local single-operator project (decision 2026-07-02):
+    no email/full_name/role — username is the login identifier, and one
+    auth dependency ("logged-in operator") guards every mutating endpoint.
+    """
+
     __tablename__ = "users"
 
-    email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
+    username: Mapped[str] = mapped_column(String(50), unique=True, index=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
-    full_name: Mapped[str | None] = mapped_column(String(255))
-    role: Mapped[UserRole] = mapped_column(
-        db_enum(UserRole, name="user_role"), nullable=False, default=UserRole.USER
-    )
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
@@ -41,4 +36,4 @@ class User(UUIDPKMixin, TimestampMixin, Base):
     )
 
     def __repr__(self) -> str:  # pragma: no cover
-        return f"<User {self.email}>"
+        return f"<User {self.username}>"

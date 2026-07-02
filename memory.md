@@ -35,6 +35,89 @@ Entry template:
 
 ---
 
+## 2026-07-02 — Diagram: schema cluster expanded to column-level detail
+
+**What changed:**
+- Rebuilt the "Postgres schema (general picture)" cluster in
+  `Documents/system.excalidraw` (user request, same branch/PR as the
+  schema itself): each of the 12 table boxes now lists its columns with
+  types and markers (`PK`, `UQ`, `-> table (ondelete)` for FKs, `?` for
+  nullable), monospace, laid out on a 3×4 grid with regenerated FK
+  arrows (child → parent) and the revise-and-resubmit self-loop on
+  `proposals`. Legend now explains the notation and the DB-enforced
+  append-only ledgers. Script-verified: valid JSON, unique ids, no
+  dangling `boundElements`/binding refs, no line overflowing its box.
+
+**Why:**
+- The name-only boxes stopped earning their keep once the real columns
+  existed in migrations 0003/0004 — the diagram is the plan doc's visual
+  counterpart and should answer "what's in this table?" at a glance.
+
+**Open questions / what's next:**
+- None — regenerate via script (kept in session scratchpad, trivially
+  rewritable) if columns change in later branches.
+
+## 2026-07-02 — Branch 1 `features/db-trading-core` built and verified: trading-domain schema + DB-role separation
+
+**What changed:**
+- Migrations 0003 + 0004 and matching ORM models — the full trading-core
+  schema from roadmap §1: `proposals` (structured §3.1 object; reasoning
+  TEXT NOT NULL; revise-and-resubmit via `parent_proposal_id` self-FK),
+  `decisions` (append-only §7 audit ledger, bigint PK, created_at only),
+  `hard_rule_params` (versioned snapshots; 0003 seeds §6.1 defaults —
+  conservative end of each stated range — as version 1, `created_by`
+  NULL = system seed), `system_controls` (single row, CHECK id=1, seeded)
+  + `control_events` (append-only), `orders` (proposal_id NOT NULL,
+  UNIQUE `idempotency_key`) + `positions` (UNIQUE account+ticker).
+- `users` simplified per the 2026-07-02 single-operator decision: email /
+  full_name / role (+ `user_role` enum) dropped, `username` UNIQUE NOT
+  NULL added — done in 0003, with backfill both directions so the
+  round-trip survives data; migrations 0001/0002 untouched.
+- `api_usage_log.linked_proposal_id` got its deferred FK → proposals
+  (SET NULL) + index.
+- DB-role separation (closes the standing `.Security-Agent/memory.md`
+  pre-Phase-1 finding): migration 0004 creates `POSTGRES_APP_USER`
+  (default `trading_runtime`) with DML-only grants and **no
+  UPDATE/DELETE on decisions / control_events / api_usage_log** —
+  append-only is now a database property, not a convention. Runtime
+  engine (`app/database.py`) connects as this role; the schema-owning
+  `POSTGRES_USER` is reserved for Alembic + test fixtures.
+  `alembic_version` fully revoked from the runtime role.
+- Tests 19 → 40: trading-core constraint/FK-semantics tests, schema
+  invariants extended (append-only tables must not carry `updated_at`),
+  and `test_db_roles.py` proving the runtime role's denials *and* that
+  its INSERT/SELECT grants work (so denials aren't just "no access").
+- Diagram: the dashed "planned" tables in the Postgres-schema cluster
+  flipped to solid; legend rewritten (all live; users username-only;
+  append-only tables noted). `.env.example` + CI env gained
+  `POSTGRES_APP_USER` / `POSTGRES_APP_PASSWORD`.
+
+**Why:**
+- Roadmap §1: land every table the pipeline needs first, so later
+  branches add code, not schema churn; FK topology (proposals → accounts
+  RESTRICT, decisions → proposals RESTRICT) makes audit history
+  undeletable transitively — deleting a user whose account has proposal
+  history is rejected by the DB itself.
+- Role separation done *in a migration* (not a compose initdb hack —
+  the approach the security review warned against) so CI and every
+  environment get it identically, and the round-trip gate covers it.
+- Learned: psycopg's `exec_driver_sql` rejects any `%` in SQL (reads it
+  as a placeholder) — Postgres `format('%I')` can't be used inside
+  migration DDL strings; validated-and-inlined identifiers instead.
+
+**Verification (gate from the roadmap):**
+- ruff clean; alembic upgrade → downgrade → upgrade round-trip clean;
+  40/40 pytest against live Postgres 15 (local Homebrew cluster — Docker
+  daemon wasn't running; CI remains the second gate). A user-side
+  `docker compose up` smoke is still wanted before merge.
+
+**Open questions / what's next:**
+- PR to master pending network (github.com unresolvable from the session
+  at build time); after merge, branch 2 `features/auth-api`.
+- `positions.quantity` CHECK >= 0 assumes long-only (matches §6.1
+  blacklist of derivatives/leverage) — revisit if shorting is ever gated
+  in.
+
 ## 2026-07-02 — Scaffold roadmap: feature-branch build plan + DB schema picture in the diagram
 
 **What changed:**

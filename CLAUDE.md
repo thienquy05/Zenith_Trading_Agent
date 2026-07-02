@@ -6,13 +6,18 @@ every session — for the dated log of *why* things changed, see
 
 ## Status
 
-Phase 0 in progress. First real code landed: `backend/` (FastAPI +
-SQLAlchemy + Alembic, Postgres schema for users/agents/accounts/
-api_credentials/api_usage_log), a minimal `frontend/` (Next.js
-placeholder), `docker-compose.yml` (postgres + redis + backend + frontend
-+ one-shot `migrate` service), and `start.sh` / `stop.sh`. No live agent
-logic yet — Phases 1+ (member agents, hard-rules layer, etc.) are still
-ahead. See `memory.md` for the full rationale.
+Phase 1 scaffolding underway (per `Documents/scaffold-roadmap.md`: one
+feature branch per section, built in order). Landed so far: `backend/`
+(FastAPI + SQLAlchemy + Alembic) with the full trading-domain schema —
+Phase 0's users/agents/accounts/api_credentials/api_usage_log plus
+`features/db-trading-core`'s proposals/decisions/hard_rule_params/
+system_controls/control_events/orders/positions, with DB-enforced
+append-only ledgers via a least-privilege runtime role — a minimal
+`frontend/` (Next.js placeholder), `docker-compose.yml` (postgres + redis
++ backend + frontend + one-shot `migrate` service), and `start.sh` /
+`stop.sh`. No live agent logic yet — roadmap branches 2+ (auth,
+hard-rules engine, proposal pipeline, …) are next. See `memory.md` for
+the full rationale.
 
 ## The logging rule
 

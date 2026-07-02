@@ -13,6 +13,8 @@ from app.models.mixins import TimestampMixin, UUIDPKMixin, db_enum
 if TYPE_CHECKING:
     from app.models.agent import Agent
     from app.models.api_usage_log import ApiUsageLog
+    from app.models.position import Position
+    from app.models.proposal import Proposal
     from app.models.user import User
 
 
@@ -54,6 +56,15 @@ class Account(UUIDPKMixin, TimestampMixin, Base):
     # NULL); don't load the high-volume ledger just to null FKs in Python.
     usage_logs: Mapped[list["ApiUsageLog"]] = relationship(
         back_populates="account", passive_deletes=True
+    )
+    # "all": never touch child rows on account delete — both FKs are
+    # ON DELETE RESTRICT, the DB itself must reject deleting an account
+    # that has proposal history or open positions (audit integrity).
+    proposals: Mapped[list["Proposal"]] = relationship(
+        back_populates="account", passive_deletes="all"
+    )
+    positions: Mapped[list["Position"]] = relationship(
+        back_populates="account", passive_deletes="all"
     )
 
     def __repr__(self) -> str:  # pragma: no cover
