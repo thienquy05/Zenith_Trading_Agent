@@ -35,6 +35,55 @@ Entry template:
 
 ---
 
+## 2026-07-02 — Plan §6: hard-rule risk limits and Member Agent success metric, starting defaults
+
+**What changed:**
+- `swarm-trading-system-plan.md` §6 questions 2 and 5 marked resolved with
+  concrete starting defaults, added as new subsections 6.1 (hard-rule
+  parameters) and 6.2 (success metric / capital-reallocation model).
+  Question 3 (capital allocation model) noted as partially addressed by
+  6.2's probation model, but the *initial* fixed-budget split across
+  agents is still open.
+- **6.1 (hard-rules layer, §3.2 layer 1):** per-agent max position size
+  (20–25% of that agent's own capital), portfolio-wide max position size
+  (10% of total portfolio per ticker), max sector exposure (30–40%),
+  daily loss circuit breaker (−3% → auto-pause all agents), weekly loss
+  circuit breaker (−5% → mandatory human review), per-position stop-loss
+  (−8% to −10%), trade frequency cap (≤5 trades/agent/day), a blacklist
+  (leveraged/inverse ETFs, sub-$5 stocks, options/derivatives) and an
+  early-phase whitelist (S&P 500 constituents only).
+- **6.2 (success metric):** rolling Sortino ratio vs. SPY benchmark
+  (30–90 day window) as the primary metric, max drawdown as an
+  independent guardrail, a minimum sample size (~20 trades or 30 days)
+  before acting, and a probation model — underperform 2 windows → capital
+  cut 50%, 3 windows → paused pending human review; outperform 2+
+  windows → capital increased in fixed steps, capped per-agent.
+  Retirement stays a human decision, not automatic.
+
+**Why:**
+- User asked directly for the answers to §6 questions 2 and 5, wanted
+  every term explained in plain language first (financial/trading
+  jargon — position, ticker, circuit breaker, Sharpe/Sortino ratio,
+  alpha, drawdown, slippage, etc. — this project's own stated learning
+  goal, §1), then asked to commit the defaults into the plan doc as-is,
+  explicitly deferring further tuning until there's real backtesting/
+  paper-trading experience to tune against rather than guessing further
+  now.
+- These are explicitly starting defaults, not final risk limits — framed
+  that way in the doc itself (6.1/6.2 headers) so they don't get
+  mistaken for validated numbers later.
+
+**Open questions / what's next:**
+- Question 3's initial fixed-budget split across agents (before any
+  performance history exists to base the probation model on) is still
+  unresolved.
+- Question 4 (rejected proposal: discarded vs. revise-and-resubmit) is
+  untouched — not part of this session's scope.
+- Revisit every number in 6.1/6.2 once Phase 1 backtesting produces
+  real evidence — these were reasoned defaults, not fitted to data.
+
+---
+
 ## 2026-07-02 — ORM delete-semantics fix (first real test_models.py run), security test hardening, plan §9.1/§11 reconciliation
 
 **What changed:**

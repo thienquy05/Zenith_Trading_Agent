@@ -145,10 +145,37 @@ Two-layer decision process — this is the key design correction from our earlie
 ## 6. Open Design Questions (to resolve before Phase 1 build starts)
 
 1. Framework choice: LangGraph vs CrewAI vs OpenAI Agents SDK — needs a short hands-on comparison.
-2. Exact hard-rule parameters: what are your actual risk limits (max % per position, max daily loss, etc.)?
-3. Capital allocation model: fixed budget per agent, or dynamic reallocation based on performance over time?
+2. ~~Exact hard-rule parameters: what are your actual risk limits (max % per position, max daily loss, etc.)?~~ — **Resolved (starting defaults, see 6.1 below)** — set as a working baseline to build Phase 1's hard-rules layer against; expected to be tuned once backtesting/paper trading produce real evidence, not treated as final.
+3. Capital allocation model: fixed budget per agent, or dynamic reallocation based on performance over time? — **Partially addressed by the probation model in 6.2** (capital cut/increased in steps based on rolling performance), but the *initial* fixed-budget split across agents is still undecided.
 4. What happens to a rejected proposal — discarded, or does the member agent get to revise and resubmit?
-5. How is "success" measured for each member agent (to eventually adjust its capital or retire it)?
+5. ~~How is "success" measured for each member agent (to eventually adjust its capital or retire it)?~~ — **Resolved (starting defaults, see 6.2 below)** — same caveat as above: a baseline to start Phase 1/2 with, to be revisited once agents have a real track record.
+
+### 6.1 Hard-rule parameters (starting defaults)
+
+Deterministic checks for the Manager's hard-rules layer (§3.2, layer 1) — no LLM judgment involved in any of these:
+
+| Rule | Default | Why |
+|---|---|---|
+| Max position size, per-agent | 20–25% of that agent's own allocated capital in one ticker | Forces diversification within each agent's own sub-budget |
+| Max position size, portfolio-wide | 10% of total portfolio in one ticker, across all agents combined | Stops every agent independently piling into the same name |
+| Max sector exposure | 30–40% of total portfolio in one GICS sector | Correlation control without needing pairwise correlation math yet |
+| Daily loss circuit breaker | −3% of total portfolio in a day → auto-pause all agents | Ties into the kill-switch requirement (§3.3/§7) |
+| Weekly loss circuit breaker | −5% in a week → mandatory human review before resuming | Catches slow bleeds a daily breaker alone would miss |
+| Per-position stop-loss | −8% to −10% on any single position | Hard stop, not LLM-adjudicated |
+| Trade frequency | ≤5 trades/agent/day | Anti-overtrading — fees/slippage erode edge at higher frequency |
+| Blacklist | Leveraged/inverse ETFs, sub-$5 stocks, options/derivatives | Phase 4 is stocks-only; these carry risk the system can't gate yet |
+| Whitelist (early phases) | S&P 500 constituents only | Avoids low-liquidity name risk while the system is unproven |
+
+### 6.2 Member Agent success metric (starting model)
+
+- **Primary metric:** rolling Sortino ratio (downside-deviation-focused — doesn't penalize upside swings, only drawdowns) over a 30–90 day rolling window, measured as alpha over a benchmark (SPY) rather than raw return.
+- **Guardrail metric:** max drawdown over the same window, checked independently of Sortino — an agent can look good on a blended score and still be one bad week from breaching the capital-preservation constraint.
+- **Minimum sample size before judging:** ~20 closed trades or 30 days, whichever is later — avoids reacting to one lucky/unlucky trade.
+- **Action model (probation, not instant retirement):**
+  - Underperforms benchmark *and* breaches its own drawdown limit for 2 consecutive evaluation windows → capital cut 50%.
+  - Same failure a 3rd consecutive window → paused (not deleted), pending human review.
+  - Outperforms benchmark with drawdown inside limits for 2+ windows → capital increased by a fixed step (e.g., +20%), capped at a per-agent ceiling so no single strategy dominates the portfolio.
+  - Retirement (permanent removal) stays a human decision — matches the manual-override philosophy in §3.3, not an automatic action.
 
 ---
 
