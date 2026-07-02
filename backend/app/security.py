@@ -1,17 +1,24 @@
+from argon2 import PasswordHasher
+from argon2 import exceptions as argon2_exceptions
 from cryptography.fernet import Fernet
-from passlib.context import CryptContext
 
 from app.config import get_settings
 
-_pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
+# argon2-cffi replaces passlib (unmaintained since 2020; imports the stdlib
+# `crypt` module, removed in Python 3.13). Both produce standard $argon2id$
+# encoded hashes, so hashes written under passlib still verify.
+_hasher = PasswordHasher()
 
 
 def hash_password(plain_password: str) -> str:
-    return _pwd_context.hash(plain_password)
+    return _hasher.hash(plain_password)
 
 
 def verify_password(plain_password: str, password_hash: str) -> bool:
-    return _pwd_context.verify(plain_password, password_hash)
+    try:
+        return _hasher.verify(password_hash, plain_password)
+    except (argon2_exceptions.VerificationError, argon2_exceptions.InvalidHashError):
+        return False
 
 
 def _fernet() -> Fernet:

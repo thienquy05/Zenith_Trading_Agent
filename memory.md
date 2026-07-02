@@ -35,6 +35,115 @@ Entry template:
 
 ---
 
+## 2026-07-02 — Plan §6: hard-rule risk limits and Member Agent success metric, starting defaults
+
+**What changed:**
+- `swarm-trading-system-plan.md` §6 questions 2 and 5 marked resolved with
+  concrete starting defaults, added as new subsections 6.1 (hard-rule
+  parameters) and 6.2 (success metric / capital-reallocation model).
+  Question 3 (capital allocation model) noted as partially addressed by
+  6.2's probation model, but the *initial* fixed-budget split across
+  agents is still open.
+- **6.1 (hard-rules layer, §3.2 layer 1):** per-agent max position size
+  (20–25% of that agent's own capital), portfolio-wide max position size
+  (10% of total portfolio per ticker), max sector exposure (30–40%),
+  daily loss circuit breaker (−3% → auto-pause all agents), weekly loss
+  circuit breaker (−5% → mandatory human review), per-position stop-loss
+  (−8% to −10%), trade frequency cap (≤5 trades/agent/day), a blacklist
+  (leveraged/inverse ETFs, sub-$5 stocks, options/derivatives) and an
+  early-phase whitelist (S&P 500 constituents only).
+- **6.2 (success metric):** rolling Sortino ratio vs. SPY benchmark
+  (30–90 day window) as the primary metric, max drawdown as an
+  independent guardrail, a minimum sample size (~20 trades or 30 days)
+  before acting, and a probation model — underperform 2 windows → capital
+  cut 50%, 3 windows → paused pending human review; outperform 2+
+  windows → capital increased in fixed steps, capped per-agent.
+  Retirement stays a human decision, not automatic.
+
+**Why:**
+- User asked directly for the answers to §6 questions 2 and 5, wanted
+  every term explained in plain language first (financial/trading
+  jargon — position, ticker, circuit breaker, Sharpe/Sortino ratio,
+  alpha, drawdown, slippage, etc. — this project's own stated learning
+  goal, §1), then asked to commit the defaults into the plan doc as-is,
+  explicitly deferring further tuning until there's real backtesting/
+  paper-trading experience to tune against rather than guessing further
+  now.
+- These are explicitly starting defaults, not final risk limits — framed
+  that way in the doc itself (6.1/6.2 headers) so they don't get
+  mistaken for validated numbers later.
+
+**Open questions / what's next:**
+- Question 3's initial fixed-budget split across agents (before any
+  performance history exists to base the probation model on) is still
+  unresolved.
+- Question 4 (rejected proposal: discarded vs. revise-and-resubmit) is
+  untouched — not part of this session's scope.
+- Revisit every number in 6.1/6.2 once Phase 1 backtesting produces
+  real evidence — these were reasoned defaults, not fitted to data.
+
+---
+
+## 2026-07-02 — ORM delete-semantics fix (first real test_models.py run), security test hardening, plan §9.1/§11 reconciliation
+
+**What changed:**
+- Logged retroactively: the previous session's commit (`39f7bc0`, pushed
+  to `claude/plan-code-improvements-xezruv` without a memory entry —
+  logging-rule miss, corrected here) introduced `mixins.db_enum` so all
+  enum columns persist member *values* ('user') instead of names
+  ('USER'), matching migration 0001's Postgres types; dropped
+  `api_usage_log.updated_at` (migration 0002 — append-only ledger);
+  replaced unmaintained `passlib` with `argon2-cffi` in `security.py`.
+- **First real run of `test_models.py` against live Postgres** (apt-
+  installed PG16 in the session sandbox; Docker image pulls are blocked
+  by this environment's network policy). It immediately caught a real
+  bug: `session.delete(user)` raised `NotNullViolation` because the ORM
+  relationships didn't know about the DB's `ON DELETE` behavior and
+  tried to null child FKs first. Fixed by aligning every relationship
+  with migration 0001's FK semantics: `User.accounts` /
+  `User.api_credentials` / `Agent.usage_logs` get
+  `cascade="all, delete-orphan", passive_deletes=True` (DB CASCADE owns
+  the delete), `Agent.accounts` gets `passive_deletes="all"` (DB
+  RESTRICT must be the one to reject deleting a funded agent),
+  `Account.usage_logs` gets `passive_deletes=True` (DB SET NULL, don't
+  load the high-volume ledger).
+- Security/Test-Agent hardening pass on the argon2 + enum changes: new
+  tests for fail-closed `verify_password` on malformed hashes, a frozen
+  passlib-era hash verifying the back-compat claim, a security cascade
+  test (deleted user leaves no encrypted credential rows), and a new
+  standalone `tests/test_schema.py` guarding two schema invariants
+  (every enum column goes through `db_enum`; every FK declares explicit
+  `ondelete`). Full suite: 19/19 passing against live Postgres, Alembic
+  upgrade→downgrade→upgrade round-trip clean, ruff clean.
+- Plan doc reconciled: §9.1 now states provider-vs-strategy are
+  orthogonal per-agent configuration (backed by the existing
+  `agents.llm_provider` / `agents.strategy` columns), resolving §11
+  open question 4; added §11 question 5 noting the §4/§6
+  (LangGraph-vs-CrewAI open) vs §5/diagram (CrewAI named) tension, with
+  CrewAI as working default until the Phase 1 Manager is built.
+- Diagram checked against §§8–10: all plugins, connectors, and
+  Finance/IB internals present, no dangling element refs — no diagram
+  change needed this session.
+
+**Why:**
+- User asked to continue the code-improvement branch, then narrowed the
+  session to: verify the plan/tools/map/system design are sound, and
+  enhance security via the co-worker test agents. The relationship fix
+  wasn't optional polish — it made user deletion impossible at runtime,
+  and only surfaced because the DB-backed tests finally ran for real
+  (closing the standing "run test_models.py against live Postgres" open
+  item).
+
+**Open questions / what's next:**
+- DB-role separation (single Postgres role for migrations + runtime)
+  remains the standing pre-Phase-1 security item.
+- §11 question 5: confirm or drop CrewAI when the Phase 1 Manager gets
+  built.
+- CI has not yet run these changes (branch push pending at time of
+  writing) — the 19/19 result is from the session sandbox.
+
+---
+
 ## 2026-07-01 — Security-Agent + Test-Agent review pass, first CI/CD pipeline
 
 **What changed:**

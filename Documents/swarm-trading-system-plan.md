@@ -71,7 +71,7 @@ Two-layer decision process — this is the key design correction from our earlie
    - Can approve, reject, or **request modification** (e.g., "reduce size by 30%") rather than a flat binary
 
 ### 3.3 Manual Override
-- A human-accessible control plane (dashboard or CLI) that can:
+- A human-accessible control plane dashboard that can:
   - Pause any individual agent
   - Pause the entire system (kill switch)
   - Force-reject a pending proposal regardless of Manager approval
@@ -90,7 +90,7 @@ Two-layer decision process — this is the key design correction from our earlie
 |---|---|---|
 | Containerization | Docker Compose | You already want this; clean service isolation per agent |
 | Inter-agent messaging | Redis pub/sub (or lightweight queue) | Simple, fast, good fit for proposal/approval flow |
-| Manager framework | LangGraph (or CrewAI) | Both handle stateful, branching approval workflows better than plain OpenAI Agents SDK for this specific manager/worker pattern — worth a short bake-off before committing |
+| Manager framework | CrewAI | Both handle stateful, branching approval workflows better than plain OpenAI Agents SDK for this specific manager/worker pattern — worth a short bake-off before committing |
 | Member agent framework | Lightweight — can be simple Python services, don't need heavy agent frameworks for straightforward strategies | Keeps early agents easy to debug |
 | Stocks execution | **Robinhood Agentic Trading (MCP)** | Official, beta, built-in trade preview/override — matches your manual-override requirement natively |
 | Crypto execution | **Robinhood Crypto Trading API** (key-pair auth) | Official, documented, separate from the agentic product |
@@ -144,11 +144,38 @@ Two-layer decision process — this is the key design correction from our earlie
 
 ## 6. Open Design Questions (to resolve before Phase 1 build starts)
 
-1. Framework choice: LangGraph vs CrewAI vs OpenAI Agents SDK — needs a short hands-on comparison.
-2. Exact hard-rule parameters: what are your actual risk limits (max % per position, max daily loss, etc.)?
-3. Capital allocation model: fixed budget per agent, or dynamic reallocation based on performance over time?
-4. What happens to a rejected proposal — discarded, or does the member agent get to revise and resubmit?
-5. How is "success" measured for each member agent (to eventually adjust its capital or retire it)?
+1. Framework choice: CrewAI.
+2. **Resolved (starting defaults, see 6.1 below)** — set as a working baseline to build Phase 1's hard-rules layer against; expected to be tuned once backtesting/paper trading produce real evidence, not treated as final.
+3. Capital allocation model: fixed budget per agent, or dynamic reallocation based on performance over time? — **Partially addressed by the probation model in 6.2** (capital cut/increased in steps based on rolling performance), but the *initial* fixed-budget split across agents is still undecided.
+4. What happens to a rejected proposal — discarded, or does the member agent get to revise and resubmit? - They would get revise and resubmit after resolve the issue - will need manual override in this phrase (potentially)
+5. **Resolved (starting defaults, see 6.2 below)** — same caveat as above: a baseline to start Phase 1/2 with, to be revisited once agents have a real track record.
+
+### 6.1 Hard-rule parameters (starting defaults)
+
+Deterministic checks for the Manager's hard-rules layer (§3.2, layer 1) — no LLM judgment involved in any of these:
+
+| Rule | Default | Why |
+|---|---|---|
+| Max position size, per-agent | 20–25% of that agent's own allocated capital in one ticker | Forces diversification within each agent's own sub-budget |
+| Max position size, portfolio-wide | 10% of total portfolio in one ticker, across all agents combined | Stops every agent independently piling into the same name |
+| Max sector exposure | 30–40% of total portfolio in one GICS sector | Correlation control without needing pairwise correlation math yet |
+| Daily loss circuit breaker | −3% of total portfolio in a day → auto-pause all agents | Ties into the kill-switch requirement (§3.3/§7) |
+| Weekly loss circuit breaker | −5% in a week → mandatory human review before resuming | Catches slow bleeds a daily breaker alone would miss |
+| Per-position stop-loss | −8% to −10% on any single position | Hard stop, not LLM-adjudicated |
+| Trade frequency | ≤5 trades/agent/day | Anti-overtrading — fees/slippage erode edge at higher frequency |
+| Blacklist | Leveraged/inverse ETFs, sub-$5 stocks, options/derivatives | Phase 4 is stocks-only; these carry risk the system can't gate yet |
+| Whitelist (early phases) | S&P 500 constituents only | Avoids low-liquidity name risk while the system is unproven |
+
+### 6.2 Member Agent success metric (starting model)
+
+- **Primary metric:** rolling Sortino ratio (downside-deviation-focused — doesn't penalize upside swings, only drawdowns) over a 30–90 day rolling window, measured as alpha over a benchmark (SPY) rather than raw return.
+- **Guardrail metric:** max drawdown over the same window, checked independently of Sortino — an agent can look good on a blended score and still be one bad week from breaching the capital-preservation constraint.
+- **Minimum sample size before judging:** ~20 closed trades or 30 days, whichever is later — avoids reacting to one lucky/unlucky trade.
+- **Action model (probation, not instant retirement):**
+  - Underperforms benchmark *and* breaches its own drawdown limit for 2 consecutive evaluation windows → capital cut 50%.
+  - Same failure a 3rd consecutive window → paused (not deleted), pending human review.
+  - Outperforms benchmark with drawdown inside limits for 2+ windows → capital increased by a fixed step (e.g., +20%), capped at a per-agent ceiling so no single strategy dominates the portfolio.
+  - Retirement (permanent removal) stays a human decision — matches the manual-override philosophy in §3.3, not an automatic action.
 
 ---
 
@@ -179,14 +206,16 @@ A top-level **Orchestrator** sits above all plugin Managers. It routes incoming 
 ## 9. Plugin Catalog
 
 ### 9.1 Finance / Investment Banking
-This is Sections 1–7 of this document, in full — no re-derivation here. The Manager Agent is the "Manager Agent - CrewAI" box in `system.excalidraw`; the Member Agents are the ChatGPT / Gemini / Claude ellipses in that diagram, each intended to run a distinct strategy per Section 3.1 (Momentum / Mean-Reversion / Sentiment-style). The mapping between provider name (in the diagram) and strategy name (in this doc) is not yet stated explicitly anywhere — flagged in `memory.md`, not resolved here.
+This is Sections 1–7 of this document, in full — no re-derivation here. The Manager Agent is the "Manager Agent - CrewAI" box in `system.excalidraw`; the Member Agents are the ChatGPT / Gemini / Claude ellipses in that diagram, each intended to run a distinct strategy per Section 3.1 (Momentum / Mean-Reversion / Sentiment-style).
+
+**Provider vs. strategy (resolves org-level open question 4, Section 11):** there is no fixed pairing between an LLM provider and a strategy. The Phase 0 schema already encodes this — `agents.llm_provider` and `agents.strategy` are independent columns, so "which model backs an agent" and "which strategy it runs" are per-agent configuration, set when each Member Agent is created in Phase 1. The diagram's ChatGPT / Gemini / Claude ellipses are illustrative LLM backends (one possible configuration), not strategy names.
 
 Finance and Investment Banking are treated as **one combined plugin** for now, per current scope. Splitting them into two separate plugins later is an open question (Section 11).
 
 ### 9.2 Engineering
 Scope: the org doing engineering work on itself — infrastructure, CI, code quality, repo hygiene. Not yet detailed at the Member-Agent level (no build phases defined yet, unlike Finance/IB's Phases 0–5 in Section 5). Connector: Github.
 
-Note: `Security-Agent/` and `Test-Agent/` at the repo root are *not* Member Agents of this plugin — they're engineering-support co-worker agents (code/security review, test-case authoring) that assist with building this project, sitting outside the org's own multi-agent architecture. See their own `CLAUDE.md` files.
+Note: `Security-Agent/` and `Test-Agent/` at the repo root are engineering-support co-worker agents (code/security review, test-case authoring) that assist with building this project, sitting outside the org's own multi-agent architecture. See their own `CLAUDE.md` files.
 
 ### 9.3 Design
 Scope: diagramming, UX, notes. Connectors: Excalidraw, Goodnotes.
@@ -210,4 +239,5 @@ Scope: diagramming, UX, notes. Connectors: Excalidraw, Goodnotes.
 1. Does every plugin need the full two-layer hard-rules + soft-judgment Manager, or is that specific to Finance/IB's real-capital risk profile?
 2. Should Investment Banking split out from Finance into its own plugin later, or stay merged as it is now?
 3. What does a Member Agent look like in Engineering or Design, where there's no "capital" or "trade proposal" concept the way Finance/IB has?
-4. Resolve the LLM-provider-vs-strategy naming mismatch on the Finance/IB ellipses in `system.excalidraw` (ChatGPT/Gemini/Claude vs. Momentum/Mean-Reversion/Sentiment) — either annotate the diagram with the strategy each provider runs, or state the mapping explicitly in Section 9.1.
+4. **Resolved in Section 9.1:** provider and strategy are orthogonal per-agent configuration (`agents.llm_provider` / `agents.strategy` in the Phase 0 schema); the diagram ellipses are illustrative LLM backends, not strategy names.
+5. Section 4 recommends a LangGraph-vs-CrewAI bake-off (and question 1 in Section 6 keeps it open), while Section 5 and the diagram already name CrewAI as the orchestration choice. Treat CrewAI as the working default; the bake-off question stays open until the Phase 1 Manager is actually built.

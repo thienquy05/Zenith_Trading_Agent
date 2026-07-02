@@ -4,12 +4,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from sqlalchemy import CheckConstraint, ForeignKey, Numeric, String, UniqueConstraint
-from sqlalchemy import Enum as SqlEnum
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
-from app.models.mixins import TimestampMixin, UUIDPKMixin
+from app.models.mixins import TimestampMixin, UUIDPKMixin, db_enum
 
 if TYPE_CHECKING:
     from app.models.agent import Agent
@@ -44,12 +43,18 @@ class Account(UUIDPKMixin, TimestampMixin, Base):
     current_balance: Mapped[Decimal] = mapped_column(Numeric(18, 2), nullable=False, default=0)
     currency: Mapped[str] = mapped_column(String(3), nullable=False, default="USD")
     status: Mapped[AccountStatus] = mapped_column(
-        SqlEnum(AccountStatus, name="account_status"), nullable=False, default=AccountStatus.ACTIVE
+        db_enum(AccountStatus, name="account_status"),
+        nullable=False,
+        default=AccountStatus.ACTIVE,
     )
 
     user: Mapped["User"] = relationship(back_populates="accounts")
     agent: Mapped["Agent"] = relationship(back_populates="accounts")
-    usage_logs: Mapped[list["ApiUsageLog"]] = relationship(back_populates="account")
+    # DB sets usage_logs.account_id NULL on account delete (ON DELETE SET
+    # NULL); don't load the high-volume ledger just to null FKs in Python.
+    usage_logs: Mapped[list["ApiUsageLog"]] = relationship(
+        back_populates="account", passive_deletes=True
+    )
 
     def __repr__(self) -> str:  # pragma: no cover
         return f"<Account {self.account_name} agent={self.agent_id}>"

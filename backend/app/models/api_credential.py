@@ -4,12 +4,11 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, DateTime, ForeignKey, LargeBinary, String, UniqueConstraint
-from sqlalchemy import Enum as SqlEnum
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
-from app.models.mixins import TimestampMixin, UUIDPKMixin
+from app.models.mixins import TimestampMixin, UUIDPKMixin, db_enum
 
 if TYPE_CHECKING:
     from app.models.user import User
@@ -39,7 +38,7 @@ class ApiCredential(UUIDPKMixin, TimestampMixin, Base):
         UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
     provider: Mapped[CredentialProvider] = mapped_column(
-        SqlEnum(CredentialProvider, name="credential_provider"), nullable=False
+        db_enum(CredentialProvider, name="credential_provider"), nullable=False
     )
     credential_name: Mapped[str] = mapped_column(String(255), nullable=False)
     encrypted_value: Mapped[bytes] = mapped_column(LargeBinary, nullable=False)
