@@ -51,7 +51,13 @@ per-edit).
   org-wide multi-domain plugin/connector architecture.
 - `Documents/system.excalidraw` — the visual counterpart. Keep it and the
   plan doc in sync: if you add/change a plugin or connector in the doc,
-  reflect it in the diagram too (and log it in `memory.md`).
+  reflect it in the diagram too (and log it in `memory.md`). It also
+  carries the "Postgres schema (general picture)" cluster — update it
+  when tables are added/changed.
+- `Documents/scaffold-roadmap.md` — the feature-branch build breakdown of
+  plan §3/§5 Phases 1–2 (one `features/*` branch per section, built in
+  order, each verified before the next starts). Read it before starting
+  any implementation branch.
 
 ## Non-negotiable constraints (Finance/Investment Banking plugin)
 

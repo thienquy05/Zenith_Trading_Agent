@@ -35,6 +35,63 @@ Entry template:
 
 ---
 
+## 2026-07-02 — Scaffold roadmap: feature-branch build plan + DB schema picture in the diagram
+
+**What changed:**
+- Added `Documents/scaffold-roadmap.md` — the approved build breakdown
+  ("the bone") of plan §3/§5 Phases 1–2 into ordered feature branches,
+  each with scope, design decisions + rationale, and a verification
+  gate: `features/db-trading-core` (proposals / decisions /
+  hard_rule_params / system_controls + control_events / orders +
+  positions, users simplification, api_usage_log proposal FK, DB-role
+  separation), `features/auth-api`, `features/hard-rules-engine`,
+  `features/proposal-pipeline`, `features/control-plane-api`,
+  `features/frontend-dashboard`, `features/market-data`,
+  `features/agents-runtime`, `features/backtesting`.
+- Updated `Documents/system.excalidraw` (add-only, 52 → 93 elements):
+  new dashed "Postgres schema (general picture)" cluster below the
+  trading-system frame — one node per table (solid = live Phase 0
+  tables, dashed = planned db-trading-core tables), FK arrows, a
+  revise-and-resubmit self-reference note on `proposals`, and a dashed
+  arrow from the existing Postgres diamond down to the cluster (its
+  `boundElements` updated accordingly). Script-verified: valid JSON,
+  no dangling `boundElements`/`containerId`/binding refs.
+- Added the roadmap doc to `CLAUDE.md`'s "Source of truth" section.
+
+**Why:**
+- User asked for the system scaffold (frontend/backend/docker) to be
+  *designed first* — "build the bone, then work through everything" —
+  with one feature branch per task, each feature verified working
+  before the next starts, given the money risk. Chosen in a question
+  round: roadmap document only this session (implementation starts next
+  session), `features/*` branch per task (permission granted), auth
+  early as feature 2 so control-plane endpoints are never built
+  unauthenticated.
+- User decision recorded in the roadmap: `users` gets simplified
+  (drop `email`, `full_name`, `role`/`user_role`; add `username`) —
+  this is a local single-operator project, so no roles: a single
+  "logged-in operator" auth dependency guards all mutating endpoints.
+  Change lands as a new migration in `features/db-trading-core`
+  (migration 0001 is merged history, stays untouched).
+- Money-safety enhancements baked into the design rather than the doc's
+  literal text: append-only audit enforced by DB grants (no
+  UPDATE/DELETE for the runtime role on `decisions` / `control_events`
+  / `api_usage_log`), `orders.proposal_id` NOT NULL + idempotency key,
+  hard rules re-checked at execution time, kill switch checked
+  synchronously in the order path, agents restricted to the backend API
+  (never direct DB) so the hard-rules gate can't be bypassed
+  structurally (§7).
+
+**Open questions / what's next:**
+- Start `features/db-trading-core` per the roadmap (first
+  implementation branch).
+- §6 Q3's initial fixed-budget split across agents remains open —
+  config data, not schema, so it doesn't block the scaffold.
+- CrewAI-vs-plain bake-off (§11 Q5) deliberately deferred to
+  `features/agents-runtime`.
+
+---
+
 ## 2026-07-02 — Plan §6: hard-rule risk limits and Member Agent success metric, starting defaults
 
 **What changed:**
