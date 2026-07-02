@@ -45,8 +45,14 @@ class Agent(UUIDPKMixin, TimestampMixin, Base):
     task_description: Mapped[str | None] = mapped_column(Text)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
-    accounts: Mapped[list["Account"]] = relationship(back_populates="agent")
-    usage_logs: Mapped[list["ApiUsageLog"]] = relationship(back_populates="agent")
+    # "all": never touch child rows on agent delete — accounts.agent_id is
+    # ON DELETE RESTRICT, the DB itself must reject deleting a funded agent.
+    accounts: Mapped[list["Account"]] = relationship(
+        back_populates="agent", passive_deletes="all"
+    )
+    usage_logs: Mapped[list["ApiUsageLog"]] = relationship(
+        back_populates="agent", cascade="all, delete-orphan", passive_deletes=True
+    )
 
     def __repr__(self) -> str:  # pragma: no cover
         return f"<Agent {self.name}>"

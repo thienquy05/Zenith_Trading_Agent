@@ -30,8 +30,15 @@ class User(UUIDPKMixin, TimestampMixin, Base):
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
-    accounts: Mapped[list["Account"]] = relationship(back_populates="user")
-    api_credentials: Mapped[list["ApiCredential"]] = relationship(back_populates="user")
+    # passive_deletes: the DB's ON DELETE CASCADE (migration 0001) removes
+    # children; without it the ORM nulls child FKs first, which violates
+    # their NOT NULL constraints.
+    accounts: Mapped[list["Account"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan", passive_deletes=True
+    )
+    api_credentials: Mapped[list["ApiCredential"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan", passive_deletes=True
+    )
 
     def __repr__(self) -> str:  # pragma: no cover
         return f"<User {self.email}>"

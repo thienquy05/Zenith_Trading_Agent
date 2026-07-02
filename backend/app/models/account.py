@@ -50,7 +50,11 @@ class Account(UUIDPKMixin, TimestampMixin, Base):
 
     user: Mapped["User"] = relationship(back_populates="accounts")
     agent: Mapped["Agent"] = relationship(back_populates="accounts")
-    usage_logs: Mapped[list["ApiUsageLog"]] = relationship(back_populates="account")
+    # DB sets usage_logs.account_id NULL on account delete (ON DELETE SET
+    # NULL); don't load the high-volume ledger just to null FKs in Python.
+    usage_logs: Mapped[list["ApiUsageLog"]] = relationship(
+        back_populates="account", passive_deletes=True
+    )
 
     def __repr__(self) -> str:  # pragma: no cover
         return f"<Account {self.account_name} agent={self.agent_id}>"

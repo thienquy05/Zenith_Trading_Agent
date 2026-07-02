@@ -96,8 +96,33 @@ def test_deleting_user_cascades_to_their_accounts(db_session):
 
     db_session.delete(user)
     db_session.flush()
+    # The DB's ON DELETE CASCADE removed the row behind the ORM's back
+    # (passive_deletes) — expire the identity map so get() re-queries.
+    db_session.expire_all()
 
     assert db_session.get(Account, account_id) is None
+
+
+def test_deleting_user_cascades_to_their_api_credentials(db_session, clear_settings_cache, monkeypatch):
+    # Security-relevant cleanup: a deleted user must not leave encrypted
+    # credential rows behind (ON DELETE CASCADE on api_credentials.user_id).
+    monkeypatch.setenv("CREDENTIAL_ENCRYPTION_KEY", Fernet.generate_key().decode())
+    user = make_user(db_session, email="cascade-creds@example.com")
+    credential = ApiCredential(
+        user_id=user.id,
+        provider=CredentialProvider.OPENAI,
+        credential_name="default",
+        encrypted_value=security.encrypt_secret("sk-live-1234567890"),
+    )
+    db_session.add(credential)
+    db_session.flush()
+    credential_id = credential.id
+
+    db_session.delete(user)
+    db_session.flush()
+    db_session.expire_all()
+
+    assert db_session.get(ApiCredential, credential_id) is None
 
 
 def test_deleting_agent_with_open_accounts_is_restricted(db_session):
