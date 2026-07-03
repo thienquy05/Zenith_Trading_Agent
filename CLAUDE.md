@@ -15,9 +15,12 @@ system_controls/control_events/orders/positions, with DB-enforced
 append-only ledgers via a least-privilege runtime role — a minimal
 `frontend/` (Next.js placeholder), `docker-compose.yml` (postgres + redis
 + backend + frontend + one-shot `migrate` service), and `start.sh` /
-`stop.sh`. No live agent logic yet — roadmap branches 2+ (auth,
-hard-rules engine, proposal pipeline, …) are next. See `memory.md` for
-the full rationale.
+`stop.sh`. Branch 3's hard-rules engine (`backend/app/rules/` — pure
+functions, one per §6.1 rule, every violation reported in one pass) is
+built and verified; branch 2 (`features/auth-api`) is pushed and awaiting
+its PR/merge. No live agent logic yet — roadmap branches 4+ (proposal
+pipeline, control plane, …) are next. See `memory.md` for the full
+rationale.
 
 ## The logging rule
 

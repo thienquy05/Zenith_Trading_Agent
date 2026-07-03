@@ -35,6 +35,72 @@ Entry template:
 
 ---
 
+## 2026-07-03 — Branch 3 `hard-rules-engine` built and verified: the deterministic money gate (§3.2 layer 1)
+
+**What changed:**
+- New `backend/app/rules/` package — pure functions only, per roadmap §3:
+  `types.py` (frozen dataclasses: `ProposalRequest`, `InstrumentSnapshot`,
+  `PortfolioState`, `Violation`, `HardRuleResult` — all self-validating,
+  ValueError on nonsensical input), `params.py` (`HardRuleParams
+  .from_snapshot()` strictly parses a `hard_rule_params.params` JSONB
+  snapshot; missing/out-of-range keys raise instead of defaulting),
+  `engine.py` (one `check_*` function per §6.1 rule + `evaluate_proposal()`
+  running all nine with no short-circuit, returning **every** violation).
+- No DB, no network, no LLM inside rule functions — the caller (branch 4's
+  proposal pipeline) fetches state and persists the result. The one shared
+  import is `ProposalAction`, so the proposals-table enum stays the single
+  source of truth.
+- Semantics decided and documented in `engine.py`'s module docstring:
+  caps (position/sector) are inclusive — exactly at the limit passes, one
+  cent over fails; breakers and the stop-loss are triggers — exactly at
+  the stated loss level fires. Buy-only rules: both position caps, sector
+  exposure, stop-loss (blocks averaging down into a stopped-out name;
+  the sell that remedies it always passes), blacklist and whitelist
+  (exiting a blacklisted/de-whitelisted name is allowed). Buys *and*
+  sells: circuit breakers, trade frequency. Holds move no money and pass
+  everything. Fail-closed choices: unknown GICS sector rejects a buy;
+  mismatched proposal/instrument tickers raise; params snapshots must
+  carry every key (whitelist opt-out is an explicit `null`, never an
+  absent key).
+- `Violation.to_details()` / `HardRuleResult.to_details()` emit the
+  JSONB shape the `decisions.details` ledger expects (rule key, limit,
+  observed, message; Decimals as exact strings, never floats).
+- 58 new tests in `backend/tests/test_rules.py` (DB-free): per-rule
+  boundary matrix, action applicability, all-nine-violations aggregation,
+  seeded-defaults parse, fail-closed parsing/validation.
+
+**Why:**
+- Roadmap branch 3: the gate is built before any agent code exists — the
+  §7 constraint "no component bypasses the hard rules" starts as a
+  property of the module's shape (pure, caller-agnostic, exhaustively
+  tested), not something retrofitted around agents later.
+- Returning all violations in one pass serves both the audit ledger and
+  §6 Q4 revise-and-resubmit — the agent learns everything wrong at once.
+
+**Verification (gate passed):**
+- ruff clean; full pytest suite 98 passed (58 new + 40 existing) against
+  live apt-installed Postgres 16; Alembic upgrade→downgrade→upgrade
+  round-trip clean (no schema change in this branch, run as regression);
+  smoke run: parsed the *actual* migration-0003-seeded params row from
+  Postgres, a clean AAPL buy passed, an oversized TQQQ buy tripped
+  per-agent cap + portfolio cap + blacklist + whitelist with structured
+  details. CI remains the second gate.
+
+**Open questions / what's next:**
+- Built on session branch `claude/branch-3-kickoff-bavg6u` (harness-
+  designated) rather than a literal `features/hard-rules-engine` branch —
+  same one-branch-one-PR flow, only the name differs.
+- Branch 2 (`features/auth-api`) is pushed but had no PR open when this
+  branch started; the rules module doesn't depend on it (pure functions,
+  no endpoints), so order is preserved in substance. Its PR/merge is
+  still pending user action.
+- Sector granularity: portfolio state carries one pre-aggregated
+  `sector_exposure_value` for the proposal's sector — branch 4 decides
+  how that aggregate is computed (positions × current prices).
+- The stop-loss rule here only *gates proposals* (no averaging down);
+  the monitor that force-exits an open position at −8% belongs to the
+  execution/control-plane work (branches 4–5), not the pure engine.
+
 ## 2026-07-02 — Diagram: schema cluster expanded to column-level detail
 
 **What changed:**
