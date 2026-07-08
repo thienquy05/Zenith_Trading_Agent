@@ -56,13 +56,19 @@ timeframe at once. Implemented by `scripts/scan_tjl.py` (live check) and
   nothing new near the close).
 - **Exits (3R/1R, same as Strategy 1)**: stop = signal bar low (1R),
   target = +3R, force-flat 15:55 ET, one trade per ticker per day.
-- **Candidate flow**: the 6:00 AM premarket gappers scan
-  (`scripts/scan_gappers.py`) builds the day's watchlist; TJL then gates
-  which of those (plus the core AMD/NVDA/MU test universe) are entries.
-- Backtest (2026-01-09 → 2026-07-08, AMD/NVDA/MU, 5-min bars): 83
+- **Candidate flow — no fixed universe**: the 6:00 AM premarket run picks
+  2–3 actionable ideas and writes their tickers to
+  `scans/watchlist_<date>.json`; `scan_tjl.py` and `backtest_tjl.py` both
+  resolve their universe from that file first, falling back to the
+  latest gappers scan top-10 if no watchlist exists yet, then failing
+  cleanly (no trade-worthy candidates) rather than defaulting to any
+  hardcoded tickers.
+- Backtest baseline (2026-01-09 → 2026-07-08, AMD/NVDA/MU as a fixed
+  test set, 5-min bars, run before the dynamic-universe change): 83
   trades, 32.5% win rate, +8.04R, profit factor 1.15. Positive
   expectancy but concentrated in MU — treat as validation of the
-  mechanics, not proof of edge.
+  mechanics, not proof of edge. Re-run periodically against the
+  dynamic watchlist to see if the edge holds on live candidates.
 
 ## 3. Risk & portfolio rules
 
@@ -103,3 +109,7 @@ A candidate needs ALL of:
 - 2026-07-08: v1 drafted by Claude (initial 3R/1R gap rulebook).
 - 2026-07-08: added Strategy 2 (Trend Join Long) + scanners/backtest
   per Quy's spec; backtest baseline recorded.
+- 2026-07-08: removed the fixed AMD/NVDA/MU universe from `scan_tjl.py`
+  and `backtest_tjl.py` — both now resolve tickers from the day's
+  research watchlist, then the gappers scan, per Quy's feedback that a
+  hardcoded list isn't a flexible/realistic practice.

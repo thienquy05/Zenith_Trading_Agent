@@ -27,6 +27,10 @@ Files needed: `TRADING-STRATEGY.md`, `RESEARCH-LOG.md` (append only).
    (gap setups preferred; the gappers scan is the candidate pool). For
    each: ticker, thesis, entry zone, stop, 3R target, catalyst, risk.
 5. Append findings to `RESEARCH-LOG.md` (template at top of that file).
+   Also write their tickers to `scans/watchlist_<date>.json` —
+   `{"date": "YYYY-MM-DD", "symbols": [...], "source": "premarket research"}`
+   — this is what `scan_tjl.py`/`backtest_tjl.py` check all day (see
+   Scanners section; there is no fixed ticker universe anymore).
 6. Update dashboard, commit + push (including the scan JSON). **Silent
    on Telegram beyond the gappers message unless something urgent**
    (e.g., overnight position gapped past its stop).
@@ -109,8 +113,14 @@ and satisfies the "stop on every position" rule atomically.
 | Script | What / when |
 |---|---|
 | `scan_gappers.py [--no-telegram]` | Premarket gappers: Alpaca screener ∪ most-actives → real premarket gap% + volume filters (>5%, >$3, >50k) → top 10 with Benzinga headlines via Alpaca news. Runs in the 6:00 AM workflow. Saves `scans/premarket_gappers_<date>.json`. |
-| `scan_tjl.py [--force] [--no-telegram] [TICKERS…]` | Trend Join Long entry check (defaults AMD NVDA MU + judgement from the day's gappers). Time-gated 10:00–15:30 ET (`--force` bypass for testing). Saves `scans/tjl_watchlist_<date>_<HHMM>ET.json`. Telegram auto-gated: first run of day, changed hits, or error. |
-| `backtest_tjl.py [--tickers A,B,C] [--months N]` | TJL backtest on 5-min bars; universe defaults to the latest gappers scan top-10 (selection-bias caveat in its header). On demand only. |
+| `scan_tjl.py [--force] [--no-telegram] [TICKERS…]` | Trend Join Long entry check. Universe: explicit args override, else `scans/watchlist_<date>.json` (today's research picks), else latest gappers scan top-10, else exits cleanly with "no candidates." Time-gated 10:00–15:30 ET (`--force` bypass for testing). Saves `scans/tjl_watchlist_<date>_<HHMM>ET.json`. Telegram auto-gated: first run of day, changed hits, or error. |
+| `backtest_tjl.py [--tickers A,B,C] [--months N]` | TJL backtest on 5-min bars; same universe resolution as `scan_tjl.py` (selection-bias caveat in its header). On demand only. |
+
+**No fixed ticker universe.** Neither scanner defaults to a hardcoded
+list (e.g. AMD/NVDA/MU) — that was a bug in the original build. The
+universe is always today's watchlist or the gappers scan, so it moves
+with what's actually happening in the market. Pass explicit tickers
+only for manual testing.
 
 Agent duties around the scripts:
 - **Catalyst rewrite**: `catalyst` in the gappers JSON is just the top

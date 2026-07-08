@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """TJL strategy backtest on Alpaca historical 5-min bars (incl. premarket).
 
-Universe: top-10 symbols from the latest scans/premarket_gappers_*.json,
-falling back to AMD/NVDA/MU when no scan exists; --tickers A,B,C overrides.
-NOTE: backtesting *today's* gappers over a past window carries selection
+Universe (no fixed ticker list): today's research watchlist
+(scans/watchlist_<date>.json) if present, else the top-10 symbols from the
+latest scans/premarket_gappers_*.json; --tickers A,B,C overrides both.
+NOTE: backtesting *today's* candidates over a past window carries selection
 bias — it answers "how does TJL behave on names like these," not "could
 I have picked them then."
 
@@ -18,12 +19,11 @@ Rules (mirror scan_tjl.py + the 3R/1R rulebook):
 Usage: backtest_tjl.py [--tickers AMD,NVDA,MU] [--months 6]
 Output: scans/backtest_tjl_<start>_<end>.json + printed stats table
 """
-import json
 import sys
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-from alpaca_common import ET, SCANS, get_bars, load_env, save_json
+from alpaca_common import ET, SCANS, get_bars, load_env, resolve_universe, save_json
 
 LOOKBACK_MONTHS = 6
 TF = "5Min"
@@ -38,17 +38,13 @@ def arg(name, default=None):
 
 def universe():
     override = arg("--tickers")
-    if override:
-        return [t.strip().upper() for t in override.split(",")]
-    scans = sorted(SCANS.glob("premarket_gappers_*.json"))
-    if scans:
-        g = json.loads(scans[-1].read_text()).get("gappers", [])
-        syms = [r["symbol"] for r in g][:10]
-        if syms:
-            print(f"universe from {scans[-1].name}: {', '.join(syms)}")
-            return syms
-    print("universe fallback: AMD, NVDA, MU")
-    return ["AMD", "NVDA", "MU"]
+    cli = [t.strip().upper() for t in override.split(",")] if override else None
+    syms, source = resolve_universe(cli)
+    if not syms:
+        sys.exit(f"no universe available ({source}) — run scan_gappers.py "
+                 f"first, write a watchlist, or pass --tickers A,B,C")
+    print(f"universe: {', '.join(syms)} ({source})")
+    return syms
 
 
 def backtest(sym, bars5, daily):

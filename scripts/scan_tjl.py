@@ -19,9 +19,7 @@ from datetime import datetime, timedelta
 import json
 
 from alpaca_common import (ET, SCANS, get_bars, latest_trades, load_env,
-                           save_json, send_telegram)
-
-DEFAULT_UNIVERSE = ["AMD", "NVDA", "MU"]
+                           resolve_universe, save_json, send_telegram)
 
 
 def prior_files(today_tag, current):
@@ -33,13 +31,20 @@ def main():
     load_env()
     force = "--force" in sys.argv
     quiet = "--no-telegram" in sys.argv
-    tickers = [a.upper() for a in sys.argv[1:] if not a.startswith("-")] \
-        or DEFAULT_UNIVERSE
+    cli_tickers = [a.upper() for a in sys.argv[1:] if not a.startswith("-")]
+    tickers, source = resolve_universe(cli_tickers or None)
 
     now = datetime.now(ET)
     today = now.date()
     tag = f"{today}_{now:%H%M}ET"
     outfile = SCANS / f"tjl_watchlist_{tag}.json"
+
+    if not tickers:
+        save_json(outfile, {"scanned_at": now.isoformat(),
+                            "error": f"no candidates — {source}"})
+        print(f"no candidates — {source}; run premarket research/scan first")
+        return
+    print(f"universe: {', '.join(tickers)} ({source})")
 
     gate_lo = now.replace(hour=10, minute=0, second=0, microsecond=0)
     gate_hi = now.replace(hour=15, minute=30, second=0, microsecond=0)

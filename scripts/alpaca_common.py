@@ -98,3 +98,28 @@ def save_json(path, obj):
     SCANS.mkdir(exist_ok=True)
     path.write_text(json.dumps(obj, indent=2) + "\n")
     print(f"saved {path.relative_to(REPO)}")
+
+
+def resolve_universe(cli_tickers=None):
+    """Universe resolution — no fixed ticker list anywhere:
+      1. explicit CLI override (manual testing)
+      2. today's research watchlist (scans/watchlist_<date>.json), written
+         by the premarket workflow from that morning's picked trade ideas
+      3. latest premarket gappers scan, top 10 by gap %
+      4. empty — caller must handle "no candidates today" cleanly
+    Returns (symbols, source_label)."""
+    if cli_tickers:
+        return cli_tickers, "cli override"
+    today = datetime.now(ET).date()
+    wl = SCANS / f"watchlist_{today}.json"
+    if wl.exists():
+        syms = json.loads(wl.read_text()).get("symbols", [])
+        if syms:
+            return syms, f"today's research watchlist ({wl.name})"
+    gapper_files = sorted(SCANS.glob("premarket_gappers_*.json"))
+    if gapper_files:
+        g = json.loads(gapper_files[-1].read_text()).get("gappers", [])
+        syms = [r["symbol"] for r in g][:10]
+        if syms:
+            return syms, f"latest gappers scan ({gapper_files[-1].name})"
+    return [], "no watchlist or gappers scan available"
