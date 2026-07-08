@@ -4,6 +4,11 @@
 #   bars SYM [timeframe] [limit] | buy SYM QTY [limit] | sell SYM QTY [limit] |
 #   bracket SYM QTY LIMIT STOP TARGET | stop SYM QTY STOP_PRICE |
 #   cancel ORDER_ID | raw METHOD /path ['json']
+# Crypto (symbols like BTC/USD; 24/7, gtc, NO bracket support):
+#   cquote SYM | cbars SYM [timeframe] [limit] |
+#   cbuy SYM QTY [limit] | csell SYM QTY [limit] |
+#   cstop SYM QTY STOP_PRICE [limit_price]  (stop_limit sell; limit
+#     defaults to 0.5% below stop — place immediately after every entry)
 set -euo pipefail
 cd "$(dirname "$0")/.."
 # .env when present (interactive sessions); otherwise env vars from the
@@ -44,6 +49,19 @@ case "$cmd" in
   stop)
     sym=${2:?symbol} qty=${3:?qty} stp=${4:?stop_price}
     req POST "$BASE/orders" "{\"symbol\":\"$sym\",\"qty\":\"$qty\",\"side\":\"sell\",\"type\":\"stop\",\"stop_price\":\"$stp\",\"time_in_force\":\"gtc\"}" ;;
+  cquote)    req GET "${ALPACA_DATA_URL:-https://data.alpaca.markets}/v1beta3/crypto/us/latest/quotes?symbols=${2:?symbol}" ;;
+  cbars)     req GET "${ALPACA_DATA_URL:-https://data.alpaca.markets}/v1beta3/crypto/us/bars?symbols=${2:?symbol}&timeframe=${3:-4Hour}&limit=${4:-40}" ;;
+  cbuy|csell)
+    side=${cmd#c} sym=${2:?symbol} qty=${3:?qty} lim=${4:-}
+    if [ -n "$lim" ]; then
+      req POST "$BASE/orders" "{\"symbol\":\"$sym\",\"qty\":\"$qty\",\"side\":\"$side\",\"type\":\"limit\",\"limit_price\":\"$lim\",\"time_in_force\":\"gtc\"}"
+    else
+      req POST "$BASE/orders" "{\"symbol\":\"$sym\",\"qty\":\"$qty\",\"side\":\"$side\",\"type\":\"market\",\"time_in_force\":\"gtc\"}"
+    fi ;;
+  cstop)
+    sym=${2:?symbol} qty=${3:?qty} stp=${4:?stop_price} lim=${5:-}
+    [ -z "$lim" ] && lim=$(awk "BEGIN{printf \"%.6g\", $stp*0.995}")
+    req POST "$BASE/orders" "{\"symbol\":\"$sym\",\"qty\":\"$qty\",\"side\":\"sell\",\"type\":\"stop_limit\",\"stop_price\":\"$stp\",\"limit_price\":\"$lim\",\"time_in_force\":\"gtc\"}" ;;
   cancel)    req DELETE "$BASE/orders/${2:?order_id}" ;;
   raw)       req "${2:?method}" "$BASE${3:?/path}" "${4:-}" ;;
   *) echo "unknown command: $cmd" >&2; exit 2 ;;

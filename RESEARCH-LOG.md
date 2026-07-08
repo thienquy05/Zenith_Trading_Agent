@@ -41,3 +41,30 @@ Append at the BOTTOM, one entry per pre-market run.
      to new highs intraday.
   2. FOMC minutes at 2 PM ET — could move the whole tape; no new
      entries planned into the release, re-assess at the noon scan.
+
+## 2026-07-08 — crypto strategy build & validation (on-demand session)
+- Task: build a crypto-specific strategy and validate it on paper first.
+- Built §2c "C-TJL" (Crypto Trend Join Long): daily-bar Donchian-55
+  breakout + per-symbol daily SMA200 filter + master regime gate
+  (BTC prev daily close > BTC daily SMA200), stop = 2×ATR(14) (1R),
+  target +3R, max hold 30d, 3d cooldown, fixed liquid-majors universe
+  (BTC, ETH, SOL, XRP, DOGE, LINK, AVAX, LTC /USD).
+- Validation (all with 0.6%/round-trip cost haircut):
+  - 4H breakout: REJECTED — all 18 grid cells net negative over 12m AND
+    48m (gross edge exists; Alpaca costs ≈0.3R/trade eat it).
+  - 4H mean-reversion dip-buy: REJECTED — all 8 variants negative.
+  - Daily-bar C-TJL, 48 months: PASSED — 77 trades, 39% win, +23.34R
+    net, PF 1.50, max DD 8.45R; every neighboring parameter cell also
+    positive (PF 1.07–1.51); edge spread across 5/8 pairs.
+    Record: scans/backtest_crypto_2022-07-29_2026-07-08.json
+- Market context: crypto majors −31% to −64% over 12m — deep bear.
+  Regime gate is BEAR today (BTC $63.3k < SMA200 $74.5k), so the sleeve
+  is live but flat; scan_crypto.py now runs in the 6 AM + 12 PM
+  workflows and stands down until BTC reclaims its daily SMA200.
+- Order mechanics verified on paper: crypto limit GTC accepted +
+  cancelled cleanly; bracket rejected (422 otoco) as documented; $10
+  min notional discovered (403) and noted in gotchas. No position taken
+  (none should be — bear regime).
+- Sizing: 0.25% equity risk/trade during the live paper gate (≥15
+  trades or 8 open-gate weeks, expectancy ≥0R), then 0.5%. Caps: 2
+  concurrent crypto positions, 20% sleeve notional, 10% per position.

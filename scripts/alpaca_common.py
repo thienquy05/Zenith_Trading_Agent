@@ -6,6 +6,7 @@ and quotes can lag SIP slightly. Fine for scanning; noted in reports.
 import json
 import os
 import subprocess
+import time
 import urllib.parse
 import urllib.request
 from datetime import datetime
@@ -32,15 +33,21 @@ def load_env():
             raise SystemExit(f"{k} not set (in .env or environment)")
 
 
-def get(url, params=None):
+def get(url, params=None, retries=3):
     if params:
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers={
         "APCA-API-KEY-ID": os.environ["ALPACA_API_KEY"],
         "APCA-API-SECRET-KEY": os.environ["ALPACA_SECRET_KEY"],
     })
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
+            if attempt == retries:
+                raise
+            time.sleep(2 ** attempt)  # transient resets on long paged pulls
 
 
 DATA = "https://data.alpaca.markets"
@@ -61,6 +68,27 @@ def get_bars(symbols, timeframe, start, end=None, feed="iex"):
             for b in bars:
                 b["t"] = datetime.fromisoformat(
                     b["t"].replace("Z", "+00:00")).astimezone(ET)
+            out.setdefault(sym, []).extend(bars)
+        token = resp.get("next_page_token")
+        if not token:
+            return out
+        params["page_token"] = token
+
+
+def get_crypto_bars(symbols, timeframe, start, end=None):
+    """Multi-symbol crypto bars (v1beta3, free, consolidated), paged.
+    Symbols like 'BTC/USD'. Returns {sym: [bar, ...]} with bar['t'] as
+    UTC-aware datetimes (crypto trades 24/7 — ET sessions don't apply)."""
+    out = {s: [] for s in symbols}
+    params = {"symbols": ",".join(symbols), "timeframe": timeframe,
+              "start": start.isoformat(), "limit": 10000}
+    if end:
+        params["end"] = end.isoformat()
+    while True:
+        resp = get(f"{DATA}/v1beta3/crypto/us/bars", params)
+        for sym, bars in (resp.get("bars") or {}).items():
+            for b in bars:
+                b["t"] = datetime.fromisoformat(b["t"].replace("Z", "+00:00"))
             out.setdefault(sym, []).extend(bars)
         token = resp.get("next_page_token")
         if not token:

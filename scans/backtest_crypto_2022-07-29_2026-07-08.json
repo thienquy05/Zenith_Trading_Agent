@@ -1,0 +1,852 @@
+{
+  "scanned_at": "2026-07-08T15:36:41.877802+00:00",
+  "params": {
+    "tickers": [
+      "BTC/USD",
+      "ETH/USD",
+      "SOL/USD",
+      "XRP/USD",
+      "DOGE/USD",
+      "LINK/USD",
+      "AVAX/USD",
+      "LTC/USD"
+    ],
+    "months": 48,
+    "timeframe": "1Day",
+    "donchian": 55,
+    "atr_len": 14,
+    "atr_mult": 2.0,
+    "r_target": 3.0,
+    "sma_filter": 200,
+    "max_hold_bars": 30,
+    "cooldown_bars": 3,
+    "regime_gate": "BTC daily close > SMA200",
+    "regime_bull_days": "854/1550",
+    "round_trip_cost_pct": 0.6
+  },
+  "stats": {
+    "max_drawdown_r": 8.45,
+    "net": {
+      "trades": 77,
+      "win_rate_pct": 39.0,
+      "total_r": 23.34,
+      "profit_factor": 1.5,
+      "avg_win_r": 2.33,
+      "avg_loss_r": -0.99
+    },
+    "gross": {
+      "trades": 77,
+      "win_rate_pct": 40.3,
+      "total_r": 28.0,
+      "profit_factor": 1.64,
+      "avg_win_r": 2.32,
+      "avg_loss_r": -0.96
+    },
+    "per_symbol": {
+      "BTC/USD": {
+        "trades": 14,
+        "net_r": 1.89
+      },
+      "ETH/USD": {
+        "trades": 13,
+        "net_r": 8.39
+      },
+      "SOL/USD": {
+        "trades": 7,
+        "net_r": -2.77
+      },
+      "XRP/USD": {
+        "trades": 4,
+        "net_r": 7.78
+      },
+      "DOGE/USD": {
+        "trades": 13,
+        "net_r": -1.6
+      },
+      "LINK/USD": {
+        "trades": 9,
+        "net_r": 5.31
+      },
+      "AVAX/USD": {
+        "trades": 8,
+        "net_r": -0.34
+      },
+      "LTC/USD": {
+        "trades": 9,
+        "net_r": 4.68
+      }
+    }
+  },
+  "trades": [
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2023-01-14T00:00:00+00:00",
+      "exit_time": "2023-01-16T00:00:00+00:00",
+      "entry": 20946.55,
+      "exit": 19925.787718,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.12
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2023-01-14T00:00:00+00:00",
+      "exit_time": "2023-02-13T00:00:00+00:00",
+      "entry": 1549.02,
+      "exit": 1506.63,
+      "reason": "time",
+      "gross_r": -0.43,
+      "net_r": -0.53
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2023-01-20T00:00:00+00:00",
+      "exit_time": "2023-02-06T00:00:00+00:00",
+      "entry": 22664.78,
+      "exit": 21212.500015,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.09
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2023-01-27T00:00:00+00:00",
+      "exit_time": "2023-02-09T00:00:00+00:00",
+      "entry": 21.19,
+      "exit": 18.275662,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2023-01-29T00:00:00+00:00",
+      "exit_time": "2023-02-28T00:00:00+00:00",
+      "entry": 94.9,
+      "exit": 93.71,
+      "reason": "time",
+      "gross_r": -0.13,
+      "net_r": -0.19
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2023-03-17T00:00:00+00:00",
+      "exit_time": "2023-03-18T00:00:00+00:00",
+      "entry": 1792.98,
+      "exit": 2315.685248,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.94
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2023-03-17T00:00:00+00:00",
+      "exit_time": "2023-04-16T00:00:00+00:00",
+      "entry": 27450,
+      "exit": 30330.24,
+      "reason": "time",
+      "gross_r": 0.96,
+      "net_r": 0.9
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2023-04-03T00:00:00+00:00",
+      "exit_time": "2023-04-07T00:00:00+00:00",
+      "entry": 0.096065,
+      "exit": 0.082102,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2023-04-16T00:00:00+00:00",
+      "exit_time": "2023-04-21T00:00:00+00:00",
+      "entry": 100.124582,
+      "exit": 87.050672,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2023-04-18T00:00:00+00:00",
+      "exit_time": "2023-04-21T00:00:00+00:00",
+      "entry": 8.581393,
+      "exit": 7.422688,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2023-07-13T00:00:00+00:00",
+      "exit_time": "2023-07-17T00:00:00+00:00",
+      "entry": 2005.870353,
+      "exit": 1876.246394,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.09
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2023-07-20T00:00:00+00:00",
+      "exit_time": "2023-08-03T00:00:00+00:00",
+      "entry": 8.346485,
+      "exit": 7.168384,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2023-07-25T00:00:00+00:00",
+      "exit_time": "2023-08-15T00:00:00+00:00",
+      "entry": 0.081651,
+      "exit": 0.070224,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2023-10-21T00:00:00+00:00",
+      "exit_time": "2023-10-31T00:00:00+00:00",
+      "entry": 8.9148,
+      "exit": 12.020805,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.95
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2023-10-23T00:00:00+00:00",
+      "exit_time": "2023-11-22T00:00:00+00:00",
+      "entry": 33073.56,
+      "exit": 37429.453,
+      "reason": "time",
+      "gross_r": 1.12,
+      "net_r": 1.06
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2023-10-26T00:00:00+00:00",
+      "exit_time": "2023-10-27T00:00:00+00:00",
+      "entry": 0.07182,
+      "exit": 0.063876,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2023-11-05T00:00:00+00:00",
+      "exit_time": "2023-12-04T00:00:00+00:00",
+      "entry": 1894.36,
+      "exit": 2292.991928,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.91
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2023-11-05T00:00:00+00:00",
+      "exit_time": "2023-12-05T00:00:00+00:00",
+      "entry": 12.234,
+      "exit": 15.7345,
+      "reason": "time",
+      "gross_r": 2.08,
+      "net_r": 2.04
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2023-11-06T00:00:00+00:00",
+      "exit_time": "2023-11-09T00:00:00+00:00",
+      "entry": 0.076427,
+      "exit": 0.068085,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2023-11-06T00:00:00+00:00",
+      "exit_time": "2023-11-11T00:00:00+00:00",
+      "entry": 13.075314,
+      "exit": 11.424276,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2023-11-15T00:00:00+00:00",
+      "exit_time": "2023-12-09T00:00:00+00:00",
+      "entry": 20.7112,
+      "exit": 32.499469,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.97
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2023-11-17T00:00:00+00:00",
+      "exit_time": "2023-11-21T00:00:00+00:00",
+      "entry": 0.086535,
+      "exit": 0.075135,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2023-12-04T00:00:00+00:00",
+      "exit_time": "2024-01-03T00:00:00+00:00",
+      "entry": 0.091831,
+      "exit": 0.081039,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2023-12-21T00:00:00+00:00",
+      "exit_time": "2023-12-31T00:00:00+00:00",
+      "entry": 45.95655,
+      "exit": 37.652161,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.03
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-01-02T00:00:00+00:00",
+      "exit_time": "2024-01-03T00:00:00+00:00",
+      "entry": 44948.455,
+      "exit": 40409.841319,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-01-08T00:00:00+00:00",
+      "exit_time": "2024-01-10T00:00:00+00:00",
+      "entry": 46991.435,
+      "exit": 42092.366189,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2024-02-02T00:00:00+00:00",
+      "exit_time": "2024-03-03T00:00:00+00:00",
+      "entry": 17.8188,
+      "exit": 20.5135,
+      "reason": "time",
+      "gross_r": 1.22,
+      "net_r": 1.17
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-02-12T00:00:00+00:00",
+      "exit_time": "2024-02-28T00:00:00+00:00",
+      "entry": 49972.929,
+      "exit": 61764.627293,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.92
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2024-02-14T00:00:00+00:00",
+      "exit_time": "2024-02-28T00:00:00+00:00",
+      "entry": 2778.2805,
+      "exit": 3356.975865,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.91
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2024-02-27T00:00:00+00:00",
+      "exit_time": "2024-02-29T00:00:00+00:00",
+      "entry": 0.097669,
+      "exit": 0.123771,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.93
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2024-02-29T00:00:00+00:00",
+      "exit_time": "2024-03-29T00:00:00+00:00",
+      "entry": 79.965,
+      "exit": 105.865316,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.94
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-03-04T00:00:00+00:00",
+      "exit_time": "2024-03-05T00:00:00+00:00",
+      "entry": 68344.36,
+      "exit": 62798.201155,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.07
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2024-03-04T00:00:00+00:00",
+      "exit_time": "2024-03-05T00:00:00+00:00",
+      "entry": 3632.35,
+      "exit": 3355.473139,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.08
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2024-03-04T00:00:00+00:00",
+      "exit_time": "2024-03-05T00:00:00+00:00",
+      "entry": 0.182093,
+      "exit": 0.148139,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.03
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-03-11T00:00:00+00:00",
+      "exit_time": "2024-03-16T00:00:00+00:00",
+      "entry": 72138.737,
+      "exit": 65535.257604,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.07
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2024-03-11T00:00:00+00:00",
+      "exit_time": "2024-03-20T00:00:00+00:00",
+      "entry": 49.09795,
+      "exit": 41.405858,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2024-03-28T00:00:00+00:00",
+      "exit_time": "2024-04-03T00:00:00+00:00",
+      "entry": 0.22005,
+      "exit": 0.175864,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.03
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2024-05-21T00:00:00+00:00",
+      "exit_time": "2024-06-11T00:00:00+00:00",
+      "entry": 3791.5575,
+      "exit": 3443.679175,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.07
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2024-08-26T00:00:00+00:00",
+      "exit_time": "2024-08-30T00:00:00+00:00",
+      "entry": 157.25,
+      "exit": 134.119098,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-10-15T00:00:00+00:00",
+      "exit_time": "2024-11-10T00:00:00+00:00",
+      "entry": 67043.812,
+      "exit": 80278.986116,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.91
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2024-10-18T00:00:00+00:00",
+      "exit_time": "2024-11-06T00:00:00+00:00",
+      "entry": 0.137133,
+      "exit": 0.182392,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.95
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2024-10-19T00:00:00+00:00",
+      "exit_time": "2024-10-23T00:00:00+00:00",
+      "entry": 74.87685,
+      "exit": 69.17528,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.08
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2024-10-20T00:00:00+00:00",
+      "exit_time": "2024-11-10T00:00:00+00:00",
+      "entry": 167.203,
+      "exit": 211.87067,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.93
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2024-11-08T00:00:00+00:00",
+      "exit_time": "2024-11-25T00:00:00+00:00",
+      "entry": 13.7135,
+      "exit": 18.489261,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.95
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2024-11-08T00:00:00+00:00",
+      "exit_time": "2024-11-30T00:00:00+00:00",
+      "entry": 2964.4615,
+      "exit": 3727.742219,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.93
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2024-11-10T00:00:00+00:00",
+      "exit_time": "2024-11-12T00:00:00+00:00",
+      "entry": 0.278019,
+      "exit": 0.401696,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.96
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2024-11-10T00:00:00+00:00",
+      "exit_time": "2024-11-16T00:00:00+00:00",
+      "entry": 76.5885,
+      "exit": 95.717391,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.93
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2024-11-10T00:00:00+00:00",
+      "exit_time": "2024-11-22T00:00:00+00:00",
+      "entry": 31.94065,
+      "exit": 42.834575,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.95
+    },
+    {
+      "symbol": "XRP/USD",
+      "entry_time": "2024-11-12T00:00:00+00:00",
+      "exit_time": "2024-11-15T00:00:00+00:00",
+      "entry": 0.7036,
+      "exit": 0.905237,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.94
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2024-11-17T00:00:00+00:00",
+      "exit_time": "2024-11-21T00:00:00+00:00",
+      "entry": 237.54,
+      "exit": 202.859781,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2024-11-20T00:00:00+00:00",
+      "exit_time": "2024-12-20T00:00:00+00:00",
+      "entry": 94330.585,
+      "exit": 97724.145,
+      "reason": "time",
+      "gross_r": 0.49,
+      "net_r": 0.41
+    },
+    {
+      "symbol": "XRP/USD",
+      "entry_time": "2024-11-22T00:00:00+00:00",
+      "exit_time": "2024-12-01T00:00:00+00:00",
+      "entry": 1.4714,
+      "exit": 2.13638,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.96
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2024-11-23T00:00:00+00:00",
+      "exit_time": "2024-12-05T00:00:00+00:00",
+      "entry": 99.609,
+      "exit": 145.772235,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.96
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2024-12-02T00:00:00+00:00",
+      "exit_time": "2024-12-09T00:00:00+00:00",
+      "entry": 25.2285,
+      "exit": 21.283902,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2024-12-02T00:00:00+00:00",
+      "exit_time": "2024-12-09T00:00:00+00:00",
+      "entry": 52.335,
+      "exit": 44.984331,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.04
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2024-12-04T00:00:00+00:00",
+      "exit_time": "2024-12-19T00:00:00+00:00",
+      "entry": 3843.0245,
+      "exit": 3477.003795,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "XRP/USD",
+      "entry_time": "2025-01-15T00:00:00+00:00",
+      "exit_time": "2025-01-27T00:00:00+00:00",
+      "entry": 3.145,
+      "exit": 2.741649,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2025-01-18T00:00:00+00:00",
+      "exit_time": "2025-01-20T00:00:00+00:00",
+      "entry": 261.6,
+      "exit": 227.919778,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2025-05-01T00:00:00+00:00",
+      "exit_time": "2025-05-31T00:00:00+00:00",
+      "entry": 96488.828,
+      "exit": 104667.0285,
+      "reason": "time",
+      "gross_r": 1.41,
+      "net_r": 1.31
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2025-05-09T00:00:00+00:00",
+      "exit_time": "2025-05-30T00:00:00+00:00",
+      "entry": 100.6,
+      "exit": 89.773752,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2025-05-13T00:00:00+00:00",
+      "exit_time": "2025-05-17T00:00:00+00:00",
+      "entry": 183.725,
+      "exit": 164.121752,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2025-06-10T00:00:00+00:00",
+      "exit_time": "2025-06-13T00:00:00+00:00",
+      "entry": 2816.051,
+      "exit": 2538.854019,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "XRP/USD",
+      "entry_time": "2025-07-10T00:00:00+00:00",
+      "exit_time": "2025-07-17T00:00:00+00:00",
+      "entry": 2.54665,
+      "exit": 3.171047,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.93
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2025-07-10T00:00:00+00:00",
+      "exit_time": "2025-07-20T00:00:00+00:00",
+      "entry": 2950.82,
+      "exit": 3750.004588,
+      "reason": "target",
+      "gross_r": 3.0,
+      "net_r": 2.93
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2025-07-10T00:00:00+00:00",
+      "exit_time": "2025-08-09T00:00:00+00:00",
+      "entry": 115932.065,
+      "exit": 116511.8,
+      "reason": "time",
+      "gross_r": 0.1,
+      "net_r": -0.02
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2025-07-17T00:00:00+00:00",
+      "exit_time": "2025-08-01T00:00:00+00:00",
+      "entry": 18.01,
+      "exit": 15.980413,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2025-07-18T00:00:00+00:00",
+      "exit_time": "2025-08-01T00:00:00+00:00",
+      "entry": 0.235907,
+      "exit": 0.205298,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2025-07-19T00:00:00+00:00",
+      "exit_time": "2025-08-18T00:00:00+00:00",
+      "entry": 113.2,
+      "exit": 117.771,
+      "reason": "time",
+      "gross_r": 0.36,
+      "net_r": 0.3
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2025-07-21T00:00:00+00:00",
+      "exit_time": "2025-07-25T00:00:00+00:00",
+      "entry": 195.7095,
+      "exit": 177.128938,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2025-07-27T00:00:00+00:00",
+      "exit_time": "2025-08-01T00:00:00+00:00",
+      "entry": 3874.23,
+      "exit": 3547.056087,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.07
+    },
+    {
+      "symbol": "ETH/USD",
+      "entry_time": "2025-08-08T00:00:00+00:00",
+      "exit_time": "2025-09-07T00:00:00+00:00",
+      "entry": 4009.872,
+      "exit": 4304.642,
+      "reason": "time",
+      "gross_r": 0.8,
+      "net_r": 0.73
+    },
+    {
+      "symbol": "LINK/USD",
+      "entry_time": "2025-08-09T00:00:00+00:00",
+      "exit_time": "2025-09-08T00:00:00+00:00",
+      "entry": 21.9489,
+      "exit": 23.0435,
+      "reason": "time",
+      "gross_r": 0.42,
+      "net_r": 0.37
+    },
+    {
+      "symbol": "BTC/USD",
+      "entry_time": "2025-08-13T00:00:00+00:00",
+      "exit_time": "2025-08-14T00:00:00+00:00",
+      "entry": 123345.813,
+      "exit": 117699.171229,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.13
+    },
+    {
+      "symbol": "SOL/USD",
+      "entry_time": "2025-08-28T00:00:00+00:00",
+      "exit_time": "2025-09-27T00:00:00+00:00",
+      "entry": 214.43,
+      "exit": 203.56,
+      "reason": "time",
+      "gross_r": -0.4,
+      "net_r": -0.45
+    },
+    {
+      "symbol": "AVAX/USD",
+      "entry_time": "2025-09-10T00:00:00+00:00",
+      "exit_time": "2025-10-10T00:00:00+00:00",
+      "entry": 29.475,
+      "exit": 26.313973,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.06
+    },
+    {
+      "symbol": "DOGE/USD",
+      "entry_time": "2025-09-13T00:00:00+00:00",
+      "exit_time": "2025-09-16T00:00:00+00:00",
+      "entry": 0.289442,
+      "exit": 0.257484,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.05
+    },
+    {
+      "symbol": "LTC/USD",
+      "entry_time": "2025-10-09T00:00:00+00:00",
+      "exit_time": "2025-10-10T00:00:00+00:00",
+      "entry": 125.9325,
+      "exit": 114.367645,
+      "reason": "stop",
+      "gross_r": -1.0,
+      "net_r": -1.07
+    }
+  ]
+}
