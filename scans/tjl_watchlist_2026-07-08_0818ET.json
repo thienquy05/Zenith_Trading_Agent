@@ -1,0 +1,19 @@
+{
+  "scanned_at": "2026-07-08T08:18:15.831287-04:00",
+  "candidates_checked": 3,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "AMD",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "NVDA",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "MU",
+      "result": "fail_daily"
+    }
+  ]
+}
