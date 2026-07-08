@@ -1,0 +1,27 @@
+{
+  "scanned_at": "2026-07-08T12:33:08.234709-04:00",
+  "candidates_checked": 5,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "MU",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "STX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "KLAC",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "LRCX",
+      "result": "fail_intraday"
+    },
+    {
+      "symbol": "TER",
+      "result": "fail_daily"
+    }
+  ]
+}
