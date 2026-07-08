@@ -70,6 +70,52 @@ timeframe at once. Implemented by `scripts/scan_tjl.py` (live check) and
   mechanics, not proof of edge. Re-run periodically against the
   dynamic watchlist to see if the edge holds on live candidates.
 
+## 2c. Strategy 3 — Crypto Trend Join Long (C-TJL), regime-gated
+
+The crypto sleeve. Implemented by `scripts/scan_crypto.py` (live check,
+runs in the 6 AM and 12 PM workflows) and `scripts/backtest_crypto.py`.
+Alpaca paper crypto: 24/7, long-only, fractional, **no bracket orders**.
+
+- **Master regime gate (the rule that matters most)**: no new crypto
+  entries unless **BTC's previous daily close > its daily SMA200**. In a
+  bear regime the sleeve is FLAT — cash is the position. Validation
+  showed every long-only entry style (breakout and mean-reversion alike)
+  loses in a bear tape; the edge only exists with the gate on.
+- **Universe**: fixed liquid majors — BTC, ETH, SOL, XRP, DOGE, LINK,
+  AVAX, LTC (all /USD). Fixed is deliberate: crypto has no daily
+  gappers/catalyst flow and the liquid set is stable. Review monthly.
+- **Entry (4H bars)**: most recent completed 4-hour bar closes above the
+  highest high of the previous 20 bars AND above its 4H SMA200. Enter at
+  market on the signal (agent wakes on cron; slippage is budgeted).
+- **Stop (1R)**: entry − 1.5 × ATR(14, 4H) — signal-bar lows are too
+  tight on 4H crypto bars; ATR is the natural stop unit. Placed as a
+  **stop_limit GTC immediately after the entry fill** (two calls — no
+  brackets in crypto). Limit leg 0.5% below the stop.
+- **Target (3R)**: entry + 4.5 × ATR, as a GTC limit sell is NOT used —
+  the stop_limit sell already consumes the position qty (wash-trade
+  rule); the agent takes the 3R exit manually at a wake-up, or trails
+  per §3. Max hold 14 days, then exit at market.
+- **Cooldown**: 24h per symbol after any exit; one position per symbol.
+- **Sizing — validation phase**: risk **0.25% of equity** per trade
+  (half the sleeve's normal 0.5%, which is half the equities 1%) until
+  the paper gate below is passed. Max **2 concurrent crypto positions**,
+  sleeve notional cap **20% of equity**, single position cap 10%.
+- **Costs are real**: ~0.25% taker fee + slippage per side. The backtest
+  charges 0.6%/round trip; with a 1.5-ATR stop that's roughly 0.1–0.3R
+  per trade — thin setups aren't worth taking.
+
+### Validation status (paper gate)
+
+- Backtest (see changelog + `scans/backtest_crypto_*.json`): 12-month
+  window is a bear regime — every parameter cell negative, gate correctly
+  keeps the sleeve flat. Longer-window results below.
+- **Live paper gate before full 0.5% sizing**: ≥15 sleeve trades OR 8
+  weeks elapsed with the gate open, net expectancy ≥ 0R and no risk-rule
+  violations. Until then: 0.25% risk. Bear regime weeks don't count —
+  flat is correct behavior, not missing data.
+- Re-run `backtest_crypto.py` monthly (and at every regime flip) and
+  record the result in `WEEKLY-REVIEW.md`.
+
 ## 3. Risk & portfolio rules
 
 - Max **1% of equity risked per trade**; max **4 concurrent positions**;
@@ -81,8 +127,10 @@ timeframe at once. Implemented by `scripts/scan_tjl.py` (live check) and
 - **Trailing stops on winners**: at +2R unrealized, raise stop to
   breakeven; past +2.5R, trail below each new higher low (or use a 3%
   trailing stop) while keeping the 3R take-profit.
-- **No overnight leverage; no options; no crypto** in v1. Equities only,
-  liquid names (>1M average daily volume), price > $5.
+- **No overnight leverage; no options.** Equities: liquid names (>1M
+  average daily volume), price > $5. Crypto only via the §2c sleeve and
+  its own caps (0.25–0.5% risk, 2 positions, 20% notional, regime gate) —
+  no discretionary crypto trades outside the sleeve.
 - No new entries in the last 30 minutes of the session.
 - Max **2 new positions per day** — quality over activity.
 - If equity draws down **-10% from its high-water mark**, stop opening
