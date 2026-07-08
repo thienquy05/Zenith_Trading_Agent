@@ -9,8 +9,9 @@
 
 .env
 
-# Dashboard is worked on locally only — regenerated + published as an
-# Artifact each run, no longer committed to git (see AGENT-INSTRUCTIONS.md)
+# Quy Dashboard artifact source — contains real Robinhood balances/positions.
+# Built locally each session and published privately via the Artifact tool;
+# never committed to the repo. See AGENT-INSTRUCTIONS.md "Dashboard procedure".
 dashboard/quy-dashboard.html
 
 # Python

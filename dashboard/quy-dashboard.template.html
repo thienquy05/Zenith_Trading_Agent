@@ -1,0 +1,318 @@
+<title>Quy Dashboard</title>
+<style>
+  :root{
+    --bg:#f4f6f5; --surface:#ffffff; --surface-2:#eef1f0;
+    --ink:#1c2430; --ink-2:#54606e; --ink-3:#8b96a2;
+    --line:#dde3e2; --accent:#0d366b;
+    --good:#008300; --bad:#c03a3a; --warn:#9a6b00;
+    --good-bg:#e7f3e7; --bad-bg:#f9e9e9; --warn-bg:#f7efdc;
+    --chip-ok:#e7f3e7; --chip-wait:#f7efdc;
+    --alloc-1:#2a78d6; --alloc-2:#1baf7a; --alloc-3:#eda100;
+  }
+  @media (prefers-color-scheme: dark){:root{
+    --bg:#10151c; --surface:#161d26; --surface-2:#1e2732;
+    --ink:#e8edf2; --ink-2:#a7b2bf; --ink-3:#6d7987;
+    --line:#2a3542; --accent:#86b6ef;
+    --good:#4caf50; --bad:#e66767; --warn:#c98500;
+    --good-bg:#17301c; --bad-bg:#361d1d; --warn-bg:#332a14;
+    --chip-ok:#17301c; --chip-wait:#332a14;
+    --alloc-1:#3987e5; --alloc-2:#199e70; --alloc-3:#c98500;
+  }}
+  :root[data-theme="light"]{
+    --bg:#f4f6f5; --surface:#ffffff; --surface-2:#eef1f0;
+    --ink:#1c2430; --ink-2:#54606e; --ink-3:#8b96a2;
+    --line:#dde3e2; --accent:#0d366b;
+    --good:#008300; --bad:#c03a3a; --warn:#9a6b00;
+    --good-bg:#e7f3e7; --bad-bg:#f9e9e9; --warn-bg:#f7efdc;
+    --chip-ok:#e7f3e7; --chip-wait:#f7efdc;
+    --alloc-1:#2a78d6; --alloc-2:#1baf7a; --alloc-3:#eda100;
+  }
+  :root[data-theme="dark"]{
+    --bg:#10151c; --surface:#161d26; --surface-2:#1e2732;
+    --ink:#e8edf2; --ink-2:#a7b2bf; --ink-3:#6d7987;
+    --line:#2a3542; --accent:#86b6ef;
+    --good:#4caf50; --bad:#e66767; --warn:#c98500;
+    --good-bg:#17301c; --bad-bg:#361d1d; --warn-bg:#332a14;
+    --chip-ok:#17301c; --chip-wait:#332a14;
+    --alloc-1:#3987e5; --alloc-2:#199e70; --alloc-3:#c98500;
+  }
+  body{background:var(--bg); color:var(--ink);
+    font:15px/1.55 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    margin:0; padding:28px 20px 48px;}
+  .wrap{max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:22px;}
+  .num{font-variant-numeric:tabular-nums;
+    font-family:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;}
+
+  header{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px;
+    border-bottom:2px solid var(--ink); padding-bottom:14px;}
+  .mast{font-family:Georgia,"Times New Roman",serif; font-size:30px; font-weight:700;
+    letter-spacing:.5px; margin:0;}
+  .mast .tick{color:var(--good);}
+  .tagline{color:var(--ink-2); font-size:14px;}
+  .updated{margin-left:auto; color:var(--ink-3); font-size:13px; text-align:right;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px;
+    padding:4px 11px; border-radius:999px; border:1px solid var(--line);}
+  .chip .dot{width:8px; height:8px; border-radius:50%;}
+  .chip.ok{background:var(--chip-ok);} .chip.ok .dot{background:var(--good);}
+  .chip.wait{background:var(--chip-wait);} .chip.wait .dot{background:var(--warn);}
+
+  h2{font-family:Georgia,"Times New Roman",serif; font-size:19px; margin:0 0 2px;}
+  .sub{color:var(--ink-3); font-size:13px; margin:0 0 12px;}
+  section{background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:18px 20px;}
+
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px;}
+  .tile{background:var(--surface-2); border-radius:8px; padding:12px 14px;}
+  .tile .label{font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-2);}
+  .tile .value{font-size:24px; font-weight:600; margin-top:2px;}
+  .tile .delta{font-size:13px;}
+  .pos{color:var(--good);} .neg{color:var(--bad);} .muted{color:var(--ink-3);}
+
+  .notice{display:flex; gap:10px; align-items:flex-start; background:var(--warn-bg);
+    border:1px solid var(--line); border-radius:8px; padding:10px 14px;
+    font-size:13.5px; color:var(--ink-2); margin-top:12px;}
+  .notice b{color:var(--ink);}
+
+  .tbl-wrap{overflow-x:auto;}
+  table{border-collapse:collapse; width:100%; font-size:14px;}
+  th{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-2);
+    text-align:left; padding:7px 12px 7px 0; border-bottom:1px solid var(--line);}
+  td{padding:8px 12px 8px 0; border-bottom:1px solid var(--line); white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  th.r,td.r{text-align:right;}
+  .empty{color:var(--ink-3); font-size:14px; padding:14px 0 4px; font-style:italic;}
+
+  .rh-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:12px; margin-bottom:14px;}
+  .rh-card{background:var(--surface-2); border-radius:8px; padding:12px 14px;}
+  .rh-card .name{font-weight:600;}
+  .rh-card .acct{color:var(--ink-3); font-size:12.5px;}
+  .rh-card .val{font-size:21px; font-weight:600; margin-top:4px;}
+  .rh-card .note{font-size:12.5px; color:var(--ink-2); margin-top:2px;}
+
+  .alloc{display:flex; height:14px; border-radius:7px; overflow:hidden; gap:2px; margin:10px 0 6px;}
+  .alloc div{min-width:8px;}
+  .alloc-legend{display:flex; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--ink-2);}
+  .alloc-legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px;
+    margin-right:5px; vertical-align:-1px;}
+
+  .feed{list-style:none; margin:0; padding:0;}
+  .feed li{display:flex; gap:12px; padding:9px 0; border-bottom:1px solid var(--line);}
+  .feed li:last-child{border-bottom:none;}
+  .feed time{color:var(--ink-3); font-size:12.5px; flex:0 0 118px;}
+  .feed .what b{font-weight:600;}
+  .feed .what{font-size:14px;}
+
+  .sched{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px;}
+  .slot{background:var(--surface-2); border-radius:8px; padding:12px 14px;}
+  .slot .when{font-weight:600;}
+  .slot .does{font-size:13px; color:var(--ink-2); margin-top:3px;}
+  .slot .ping{font-size:12px; color:var(--ink-3); margin-top:6px;}
+
+  footer{color:var(--ink-3); font-size:12.5px; line-height:1.6;}
+  footer code{background:var(--surface-2); padding:1px 5px; border-radius:4px;}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1 class="mast">Quy Dashboard <span class="tick">▲</span></h1>
+    <span class="tagline">Claude’s paper-trading desk — Alpaca challenge, watched by Quy</span>
+    <span class="updated">Last updated<br><strong class="num" id="updated"></strong></span>
+  </header>
+
+  <div class="chips" id="chips"></div>
+
+  <section>
+    <h2>Alpaca paper account</h2>
+    <p class="sub">The account Claude trades. Refreshed on every scheduled run.</p>
+    <div class="tiles" id="alpaca-tiles"></div>
+    <div id="alpaca-note"></div>
+    <h2 style="margin-top:20px">Open positions</h2>
+    <div class="tbl-wrap" id="positions"></div>
+    <h2 style="margin-top:20px">Recent orders</h2>
+    <div class="tbl-wrap" id="orders"></div>
+  </section>
+
+  <section>
+    <h2>Robinhood — Quy’s real accounts (read-only)</h2>
+    <p class="sub">Displayed for reference only. Claude never trades these.</p>
+    <div class="rh-cards" id="rh-cards"></div>
+    <div class="tbl-wrap" id="rh-holdings"></div>
+  </section>
+
+  <section>
+    <h2>Scanners</h2>
+    <p class="sub">Premarket gappers (6:00 AM run) and Trend Join Long entry checks (hourly, 10:30–2:30 ET).</p>
+    <h2 style="font-size:16px">Premarket gappers <span class="muted num" id="gap-when"></span></h2>
+    <div class="tbl-wrap" id="gappers"></div>
+    <h2 style="font-size:16px; margin-top:18px">TJL watchlist <span class="muted num" id="tjl-when"></span></h2>
+    <div class="tbl-wrap" id="tjl"></div>
+    <h2 style="font-size:16px; margin-top:18px">TJL backtest <span class="muted" id="bt-note"></span></h2>
+    <div class="tiles" id="bt-tiles"></div>
+  </section>
+
+  <section>
+    <h2>Desk activity</h2>
+    <p class="sub">Latest from TRADE-LOG.md and RESEARCH-LOG.md — full history lives in the repo.</p>
+    <ul class="feed" id="feed"></ul>
+  </section>
+
+  <section>
+    <h2>Schedule — Mon–Fri, US Central</h2>
+    <p class="sub">Each run refreshes this page. Telegram pings only when noted.</p>
+    <div class="sched" id="sched"></div>
+  </section>
+
+  <footer>
+    Strategy rulebook: <code>TRADING-STRATEGY.md</code> (3R/1R gap strategy — edit it any time;
+    Claude follows the file as written). Logs: <code>TRADE-LOG.md</code>, <code>RESEARCH-LOG.md</code>,
+    <code>WEEKLY-REVIEW.md</code>. This page is a snapshot regenerated after each run — it does not
+    fetch live data.
+  </footer>
+</div>
+
+<script>
+// TEMPLATE — placeholder data only. Copy to quy-dashboard.html and fill
+// with live Alpaca/Robinhood/log data each run; never commit that copy.
+const DATA = {
+  lastUpdated: "2026-01-01T00:00:00Z",
+  chips: [
+    {label:"Alpaca connected — paper XXXXXXXXX", state:"ok"},
+    {label:"Robinhood connected", state:"ok"},
+    {label:"Telegram connected", state:"ok"}
+  ],
+  alpaca: {equity:100000, cash:100000, buying_power:400000, day_pl:0, day_pl_pct:0},
+  alpacaNote: null,
+  positions: [],
+  orders: [],
+  robinhood: {
+    accounts: [
+      {name:"Individual", acct:"••••0000", value:0, note:"margin · default"},
+      {name:"Agentic", acct:"••••0000", value:0, note:"cash",
+        alloc:[{label:"Equities", v:0},{label:"Crypto", v:0}]},
+      {name:"Roth IRA", acct:"••••0000", value:0, note:"cash"}
+    ],
+    holdings: [
+      {acct:"Agentic", sym:"XXX", qty:"0", avg:0}
+    ]
+  },
+  scanners: {
+    gappers: {when:"", rows:[]},
+    tjl: {when:"", rows:[]},
+    backtest: {note:"", trades:0, winRate:0, totalR:0, pf:0, perTicker:""}
+  },
+  feed: [
+    {t:"2026-01-01", what:"<b>Example entry.</b> Replace with latest TRADE-LOG.md / RESEARCH-LOG.md items."}
+  ],
+  schedule: [
+    {when:"6:00 AM — Pre-Market Research", does:"Account check, catalyst scan, 2–3 trade ideas → RESEARCH-LOG.md", ping:"Telegram: silent unless urgent"},
+    {when:"8:30 AM — Market Open", does:"Execute planned setups, stops set on every fill", ping:"Telegram: only if a trade was placed"},
+    {when:"Hourly — TJL Watch", does:"Trend Join Long entry check, 10:30–2:30 ET at :30 past; trades PASSes within rules", ping:"Telegram: first run, changed hits, or errors"},
+    {when:"12:00 PM — Midday Scan", does:"P&L check + TJL check, trail winners, cut thesis-breaks / −7%", ping:"Telegram: only if action taken"},
+    {when:"3:00 PM — Daily Summary", does:"Snapshot → TRADE-LOG.md, dashboard refresh", ping:"Telegram: always"}
+  ]
+};
+
+const $ = id => document.getElementById(id);
+const usd = n => n==null ? "—" : n.toLocaleString("en-US",{style:"currency",currency:"USD"});
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+$("updated").textContent = new Date(DATA.lastUpdated).toLocaleString("en-US",
+  {timeZone:"America/Chicago", month:"short", day:"numeric", hour:"numeric",
+   minute:"2-digit", timeZoneName:"short"});
+
+$("chips").innerHTML = DATA.chips.map(c =>
+  `<span class="chip ${c.state}"><span class="dot"></span>${esc(c.label)}</span>`).join("");
+
+// — Alpaca tiles —
+const a = DATA.alpaca;
+const tiles = [
+  {label:"Equity", v: a && usd(a.equity)},
+  {label:"Cash", v: a && usd(a.cash)},
+  {label:"Buying power", v: a && usd(a.buying_power)},
+  {label:"Day P&L", v: a && usd(a.day_pl),
+    d: a && a.day_pl_pct!=null ? {pct:a.day_pl_pct} : null}
+];
+$("alpaca-tiles").innerHTML = tiles.map(t => `
+  <div class="tile"><div class="label">${t.label}</div>
+    <div class="value num ${t.v?"":"muted"}">${t.v || "—"}</div>
+    ${t.d ? `<div class="delta num ${t.d.pct>=0?"pos":"neg"}">${t.d.pct>=0?"+":""}${t.d.pct.toFixed(2)}% today</div>` : ""}
+  </div>`).join("");
+$("alpaca-note").innerHTML = DATA.alpacaNote
+  ? `<div class="notice"><span>⏳</span><span><b>Waiting on setup:</b> ${esc(DATA.alpacaNote)}</span></div>` : "";
+
+// — Positions / orders tables —
+function table(el, rows, cols, emptyMsg){
+  if(!rows.length){ el.innerHTML = `<div class="empty">${emptyMsg}</div>`; return; }
+  el.innerHTML = `<table><thead><tr>${cols.map(c=>`<th class="${c.r?"r":""}">${c.h}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(r=>`<tr>${cols.map(c=>`<td class="${c.r?"r num":""}">${c.f(r)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+}
+table($("positions"), DATA.positions, [
+  {h:"Symbol", f:r=>`<b>${esc(r.sym)}</b>`}, {h:"Qty", r:1, f:r=>r.qty},
+  {h:"Entry", r:1, f:r=>usd(r.entry)}, {h:"Now", r:1, f:r=>usd(r.now)},
+  {h:"Stop", r:1, f:r=>usd(r.stop)}, {h:"Target", r:1, f:r=>usd(r.target)},
+  {h:"Unrealized", r:1, f:r=>`<span class="${r.upl>=0?"pos":"neg"}">${usd(r.upl)}</span>`}
+], "No open positions yet.");
+table($("orders"), DATA.orders, [
+  {h:"Placed", f:r=>esc(r.t)}, {h:"Symbol", f:r=>`<b>${esc(r.sym)}</b>`},
+  {h:"Side", f:r=>esc(r.side)}, {h:"Qty", r:1, f:r=>r.qty},
+  {h:"Type", f:r=>esc(r.type)}, {h:"Status", f:r=>esc(r.status)}
+], "No orders yet.");
+
+// — Robinhood —
+const ALLOC = ["var(--alloc-1)","var(--alloc-2)","var(--alloc-3)"];
+$("rh-cards").innerHTML = DATA.robinhood.accounts.map(ac => {
+  let alloc = "";
+  if(ac.alloc){
+    const tot = ac.alloc.reduce((s,x)=>s+x.v,0);
+    alloc = `<div class="alloc">${ac.alloc.map((x,i)=>
+        `<div style="flex:${x.v/tot};background:${ALLOC[i]}" title="${esc(x.label)} ${usd(x.v)}"></div>`).join("")}</div>
+      <div class="alloc-legend">${ac.alloc.map((x,i)=>
+        `<span><span class="sw" style="background:${ALLOC[i]}"></span>${esc(x.label)} <span class="num">${usd(x.v)}</span></span>`).join("")}</div>`;
+  }
+  return `<div class="rh-card"><div class="name">${esc(ac.name)}</div>
+    <div class="acct num">${esc(ac.acct)} · ${esc(ac.note)}</div>
+    <div class="val num">${usd(ac.value)}</div>${alloc}</div>`;
+}).join("");
+table($("rh-holdings"), DATA.robinhood.holdings, [
+  {h:"Account", f:r=>esc(r.acct)}, {h:"Symbol", f:r=>`<b>${esc(r.sym)}</b>`},
+  {h:"Shares", r:1, f:r=>r.qty}, {h:"Avg cost", r:1, f:r=>usd(r.avg)}
+], "No holdings.");
+
+// — Scanners —
+const SC = DATA.scanners || {};
+$("gap-when").textContent = SC.gappers ? "· " + SC.gappers.when : "";
+table($("gappers"), (SC.gappers||{}).rows || [], [
+  {h:"#", r:1, f:r=>r.rank}, {h:"Symbol", f:r=>`<b>${esc(r.sym)}</b>`},
+  {h:"Price", r:1, f:r=>usd(r.price)},
+  {h:"Gap", r:1, f:r=>`<span class="pos">+${r.gap}%</span>`},
+  {h:"PM vol", r:1, f:r=>r.vol.toLocaleString("en-US")},
+  {h:"Catalyst", f:r=>r.catalyst ? esc(r.catalyst) : `<span class="muted">—</span>`}
+], "No qualifying gappers.");
+$("tjl-when").textContent = SC.tjl ? "· " + SC.tjl.when : "";
+table($("tjl"), (SC.tjl||{}).rows || [], [
+  {h:"Symbol", f:r=>`<b>${esc(r.sym)}</b>`},
+  {h:"Result", f:r=>r.result==="PASS"
+      ? `<span class="pos"><b>PASS</b></span>` : `<span class="muted">${esc(r.result)}</span>`},
+  {h:"Detail", f:r=>esc(r.detail)}
+], "No TJL scan yet today.");
+const BT = SC.backtest;
+$("bt-note").textContent = BT ? "· " + BT.note : "";
+$("bt-tiles").innerHTML = !BT ? `<div class="empty">No backtest yet.</div>` : [
+  {l:"Trades", v:BT.trades},
+  {l:"Win rate", v:BT.winRate + "%"},
+  {l:"Total R", v:(BT.totalR>=0?"+":"") + BT.totalR + "R", c:BT.totalR>=0?"pos":"neg"},
+  {l:"Profit factor", v:BT.pf},
+  {l:"Per ticker", v:BT.perTicker, small:true}
+].map(t=>`<div class="tile"><div class="label">${t.l}</div>
+  <div class="value num ${t.c||""}" ${t.small?'style="font-size:14px;line-height:1.5"':""}>${t.v}</div></div>`).join("");
+
+// — Feed & schedule —
+$("feed").innerHTML = DATA.feed.map(e =>
+  `<li><time class="num">${esc(e.t)}</time><span class="what">${e.what}</span></li>`).join("");
+$("sched").innerHTML = DATA.schedule.map(s =>
+  `<div class="slot"><div class="when">${esc(s.when)}</div>
+   <div class="does">${esc(s.does)}</div><div class="ping">${esc(s.ping)}</div></div>`).join("");
+</script>
