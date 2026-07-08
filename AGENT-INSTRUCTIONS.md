@@ -3,7 +3,8 @@
 You are the trading agent for Quy's Alpaca paper-trading challenge. This
 file is the complete operating manual: daily workflows, API reference,
 gotchas, and strategy quick reference. Read the section for the workflow
-you were woken up to run, do it, log it, update the dashboard, push.
+you were woken up to run, do it, log it, update the dashboard locally,
+push the logs.
 
 ## The four daily workflows (Mon–Fri, all times US Central)
 
@@ -31,7 +32,8 @@ Files needed: `TRADING-STRATEGY.md`, `RESEARCH-LOG.md` (append only).
    `{"date": "YYYY-MM-DD", "symbols": [...], "source": "premarket research"}`
    — this is what `scan_tjl.py`/`backtest_tjl.py` check all day (see
    Scanners section; there is no fixed ticker universe anymore).
-6. Update dashboard, commit + push (including the scan JSON). **Silent
+6. Republish the dashboard locally (gitignored, not committed); commit +
+   push the scan JSON and logs. **Silent
    on Telegram beyond the gappers message unless something urgent**
    (e.g., overnight position gapped past its stop).
 
@@ -47,7 +49,7 @@ Files needed: `TRADING-STRATEGY.md`, today's `RESEARCH-LOG.md` entry,
 4. Set a stop-loss order on every new position immediately
    (`scripts/alpaca.sh order` with a stop, or a separate stop order).
 5. Log every fill in `TRADE-LOG.md`.
-6. Update dashboard, commit + push. **Telegram Quy ONLY if a trade was
+6. Republish the dashboard locally; commit + push the logs. **Telegram Quy ONLY if a trade was
    placed** (ticker, side, qty, entry, stop, target, thesis in 2 lines).
 
 ### 12:00 PM CT — Midday Scan
@@ -60,8 +62,8 @@ Files needed: `TRADING-STRATEGY.md`, `TRADE-LOG.md` (append only).
    bracket order, 1%-risk sizing, stop = signal bar low, 3R target.
 5. Quick web check for afternoon catalysts (Fed speakers, 1 PM ET
    auctions, earnings after close).
-6. Log any actions in `TRADE-LOG.md`; update dashboard, commit + push.
-   **Silent on Telegram unless action was taken.**
+6. Log any actions in `TRADE-LOG.md`; republish the dashboard locally,
+   commit + push the logs. **Silent on Telegram unless action was taken.**
 
 ### Hourly — TJL Watch (10:30 AM–2:30 PM ET, at :30 past)
 Files needed: `TRADING-STRATEGY.md` §2b only.
@@ -69,8 +71,9 @@ Files needed: `TRADING-STRATEGY.md` §2b only.
    Telegram gating itself.
 2. On a PASS that fits strategy rules (max positions, 1% risk, max 2 new
    positions/day), place the bracket order and log it in `TRADE-LOG.md`.
-3. Commit the scan JSON (+ any trade log changes). Update the dashboard
-   **only if the hit set changed** — keep these runs cheap.
+3. Commit the scan JSON (+ any trade log changes). Republish the
+   dashboard locally **only if the hit set changed** — keep these runs
+   cheap.
 
 ### 3:00 PM CT — Daily Summary (market close)
 Files needed: `TRADE-LOG.md` (append only), `WEEKLY-REVIEW.md` (Fridays).
@@ -79,8 +82,9 @@ Files needed: `TRADE-LOG.md` (append only), `WEEKLY-REVIEW.md` (Fridays).
 2. Append the daily snapshot to `TRADE-LOG.md`: equity, day P&L ($ and
    %), open positions with unrealized P&L, trades made today, lessons.
 3. On **Fridays**, also append the weekly review to `WEEKLY-REVIEW.md`.
-4. Regenerate + republish the dashboard (see Dashboard procedure).
-5. Commit + push.
+4. Regenerate + republish the dashboard locally (see Dashboard
+   procedure) — gitignored, not committed.
+5. Commit + push the logs.
 6. **Telegram the daily summary** (always): equity, day P&L, positions
    held, trades made. Keep it under 10 lines.
 
@@ -148,30 +152,22 @@ NOT used; plain text + simple `*bold*` HTML mode — see script). Policy:
 
 ## Dashboard procedure (Quy Dashboard artifact)
 
-`dashboard/quy-dashboard.html` is the artifact source, but it is
-**gitignored and must never be committed** — it carries real Robinhood
-balances/positions, and this repo is on GitHub. Only
-`dashboard/quy-dashboard.template.html` (placeholder data, no real
-numbers) is tracked in git.
-
-Every workflow run:
-1. If `dashboard/quy-dashboard.html` doesn't exist in the working copy
-   (fresh session), `cp dashboard/quy-dashboard.template.html
-   dashboard/quy-dashboard.html` first.
-2. Collect fresh JSON: Alpaca account/positions/orders, Robinhood
+`dashboard/quy-dashboard.html` is the artifact source. It's **gitignored
+— worked on locally, never committed/pushed to GitHub.** Artifacts cannot
+fetch live data, so every workflow run regenerates it:
+1. Collect fresh JSON: Alpaca account/positions/orders, Robinhood
    portfolio + equity positions (READ-ONLY, via the Robinhood MCP
    connector), latest TRADE-LOG / RESEARCH-LOG entries.
+2. For each Robinhood holding (+ the "First list" watchlist), compute the
+   buy/hold/sell signal per `TRADING-STRATEGY.md` §5: RSI(14) + 50/200-day
+   MA from `get_equity_historicals` (≤10 symbols per call, extract
+   `close_price` via `jq` — the raw payload blows past tool output
+   limits), plus an earnings-proximity flag from `get_earnings_calendar`.
 3. Rewrite the `const DATA = {...}` block near the top of the HTML with
    the fresh data + `lastUpdated` ISO timestamp. Don't touch the rest.
 4. Publish with the Artifact tool — favicon `📈`, and **always pass the
    artifact's URL** so it updates in place instead of minting a new one:
    `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`
-   (Artifacts are private by default — this is the only place the real
-   Robinhood numbers should ever be published.)
-5. Do **not** `git add`/commit `dashboard/quy-dashboard.html`. If you
-   change the page's structure/CSS/JS (not just the data), port that
-   change into `dashboard/quy-dashboard.template.html` (with placeholder
-   data) and commit that file instead.
 
 ## Gotchas
 

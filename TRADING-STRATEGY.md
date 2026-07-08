@@ -97,7 +97,48 @@ A candidate needs ALL of:
 3. Reward:risk ≥ 3:1 to a realistic target.
 4. Liquidity filter above.
 
-## 5. Review cadence
+## 5. Robinhood advisory signals (read-only, informational only)
+
+Quy's real Robinhood accounts are **never traded by Claude** (hard rule,
+`CLAUDE.md`). This section only governs how the dashboard's buy/hold/sell
+badges are computed for display — Quy places every Robinhood order
+himself.
+
+**Inputs** (Robinhood MCP connector, refreshed each dashboard run):
+- RSI(14) on daily closes (Wilder smoothing) over ~200 trading days.
+- Price vs 50-day and 200-day simple moving average.
+- Next earnings date (`get_earnings_calendar`) for held/watchlist names.
+
+**Zone thresholds** (RSI is primary; MA position adds context):
+- RSI < 30 → 🟢 **STRONG BUY ZONE** (oversold).
+- RSI 30–40 → 🟢 **FAVOURABLE ENTRY** ("ADD ZONE" if already held).
+- RSI 40–60 → 🟡 **NEUTRAL — DCA** (no edge either way; steady/DCA only).
+- RSI 60–70 → 🟡 **HOLD — pause new buys** (getting extended).
+- RSI > 70 → 🔴 **TRIM ZONE** (overbought; consider trimming 10–25%).
+- Extra flag regardless of RSI: price **>15% above its 200-day MA** →
+  note "extended" (e.g. a name up huge off a rally — RSI can look neutral
+  while the trend is stretched).
+- Earnings within 14 days → caution note: size down or wait for the print.
+
+**Selling discipline** (adapted from the -7% Alpaca rule for buy-and-hold
+real accounts, which carry no stop-loss orders):
+- Never sell 100% at once — trim in tranches (10–25% into strength).
+- Rebalance the crypto sleeve back toward its target split; don't predict.
+- Don't panic-sell on red days — Extreme Fear has historically rewarded
+  patient DCA buyers, not sellers.
+- VOO in the Roth is the multi-decade core holding — it is never flagged
+  for the Trim Zone; only "neutral/DCA" or a genuine >70 RSI extended
+  reading changes its badge, and even then the note says "trim never
+  sell the core."
+- These are informational signals only — Quy acts on them manually.
+
+**Refresh**: recomputed every dashboard run alongside the Alpaca data (see
+`AGENT-INSTRUCTIONS.md` → Dashboard procedure). Historicals calls easily
+exceed tool output limits above ~5 symbols; request ≤10 symbols per call
+and extract just `close_price` via `jq` rather than reading the raw
+payload.
+
+## 6. Review cadence
 
 - Daily: snapshot + lessons in `TRADE-LOG.md` (3 PM run).
 - Weekly (Fri): win rate, avg R won/lost, expectancy, rule violations,
@@ -113,3 +154,6 @@ A candidate needs ALL of:
   and `backtest_tjl.py` — both now resolve tickers from the day's
   research watchlist, then the gappers scan, per Quy's feedback that a
   hardcoded list isn't a flexible/realistic practice.
+- 2026-07-08: added §5, Robinhood advisory signals (RSI/MA/earnings-based
+  buy/hold/sell badges for the read-only Robinhood dashboard section),
+  ported from Quy's cowork portfolio dashboard concept.
