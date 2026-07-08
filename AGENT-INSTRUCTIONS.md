@@ -148,16 +148,30 @@ NOT used; plain text + simple `*bold*` HTML mode — see script). Policy:
 
 ## Dashboard procedure (Quy Dashboard artifact)
 
-`dashboard/quy-dashboard.html` is the artifact source. Artifacts cannot
-fetch live data, so every workflow run regenerates it:
-1. Collect fresh JSON: Alpaca account/positions/orders, Robinhood
+`dashboard/quy-dashboard.html` is the artifact source, but it is
+**gitignored and must never be committed** — it carries real Robinhood
+balances/positions, and this repo is on GitHub. Only
+`dashboard/quy-dashboard.template.html` (placeholder data, no real
+numbers) is tracked in git.
+
+Every workflow run:
+1. If `dashboard/quy-dashboard.html` doesn't exist in the working copy
+   (fresh session), `cp dashboard/quy-dashboard.template.html
+   dashboard/quy-dashboard.html` first.
+2. Collect fresh JSON: Alpaca account/positions/orders, Robinhood
    portfolio + equity positions (READ-ONLY, via the Robinhood MCP
    connector), latest TRADE-LOG / RESEARCH-LOG entries.
-2. Rewrite the `const DATA = {...}` block near the top of the HTML with
+3. Rewrite the `const DATA = {...}` block near the top of the HTML with
    the fresh data + `lastUpdated` ISO timestamp. Don't touch the rest.
-3. Publish with the Artifact tool — favicon `📈`, and **always pass the
+4. Publish with the Artifact tool — favicon `📈`, and **always pass the
    artifact's URL** so it updates in place instead of minting a new one:
    `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`
+   (Artifacts are private by default — this is the only place the real
+   Robinhood numbers should ever be published.)
+5. Do **not** `git add`/commit `dashboard/quy-dashboard.html`. If you
+   change the page's structure/CSS/JS (not just the data), port that
+   change into `dashboard/quy-dashboard.template.html` (with placeholder
+   data) and commit that file instead.
 
 ## Gotchas
 
