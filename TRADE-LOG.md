@@ -35,3 +35,15 @@ a new dated line.
 ## Phase 2 — Alpaca paper account (active)
 
 *(no trades yet — account initialized 2026-07-08)*
+
+### 2026-07-08 10:47 CT — BUY AAPL
+- Qty / entry / stop / target: 1 @ $310.47 | stop $300.00 | target $325.00
+- Risk: $10.47 (~0.01% of equity) | 1R = $10.47/share
+- Setup: system test — verifying Alpaca bracket-order pipeline end-to-end (entry + stop + target fill correctly), not a TRADING-STRATEGY.md signal
+- Thesis: n/a (infrastructure/performance verification trade, minimal size to limit exposure)
+- Order id(s): 41f3b9cd-3267-4f71-8ad6-87aebd48048e (entry, filled), bc06d1fb-70f8-47de-bbbc-f8d1c066d3b6 (stop, held), d1cfa077-a671-495e-92c9-1f162bc269e2 (target, held)
+
+### 2026-07-08 — account verification snapshot
+- Equity $100,000 | day P&L ~$0 (0.0%) | cash $99,689.53
+- Open: AAPL 1@$310.47 (uP&L -$0.06)
+- Trades today: 1 | notes: account created 2026-07-07, no prior trades; this session confirmed clock/account/positions endpoints working and placed a 1-share bracket test trade to verify end-to-end order execution + stop-loss attachment. No strategy signal — pure system check.
