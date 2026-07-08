@@ -41,6 +41,9 @@ This project is token-sensitive. Keep sessions lean:
 - Logs are append-only: add entries, don't re-read/rewrite whole files.
 - Telegram: silent unless a trade was placed, action was taken, or it's
   the 3 PM daily summary.
-- Commit + push log changes at the end of each run, one commit. The
+- Commit + push log changes at the end of each run, one commit, pushed
+  directly to `master` (`git push origin HEAD:master`) — Quy's standing
+  authorization (2026-07-08), details in `AGENT-INSTRUCTIONS.md`
+  Gotchas. The
   dashboard is regenerated and republished as an Artifact every run but
   is gitignored — it's worked on locally, never committed.
