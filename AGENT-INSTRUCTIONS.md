@@ -15,16 +15,21 @@ expressions must be shifted by one hour** — see Gotchas.
 Files needed: `TRADING-STRATEGY.md`, `RESEARCH-LOG.md` (append only).
 1. `scripts/alpaca.sh account` and `scripts/alpaca.sh positions` — note
    equity, cash, open positions.
-2. Web-search today's catalysts: earnings due today, economic data
+2. Run `python3 scripts/scan_gappers.py --no-telegram`, then **rewrite
+   each gapper's `catalyst` into a one-sentence summary** (from its
+   headlines) in the saved JSON, and send the Telegram gappers message
+   yourself in format A (see Scanners section).
+3. Web-search today's catalysts: earnings due today, economic data
    (CPI/PPI/FOMC/jobs), sector momentum, notable geopolitical events.
    Spawn an Explore/general sub-agent for the research sweep if it saves
    tokens over doing many searches inline.
-3. Find 2–3 actionable trade ideas that fit `TRADING-STRATEGY.md`
-   (gap setups preferred). For each: ticker, thesis, entry zone, stop,
-   3R target, catalyst, risk.
-4. Append findings to `RESEARCH-LOG.md` (template at top of that file).
-5. Update dashboard, commit + push. **Silent on Telegram unless
-   something urgent** (e.g., overnight position gapped past its stop).
+4. Find 2–3 actionable trade ideas that fit `TRADING-STRATEGY.md`
+   (gap setups preferred; the gappers scan is the candidate pool). For
+   each: ticker, thesis, entry zone, stop, 3R target, catalyst, risk.
+5. Append findings to `RESEARCH-LOG.md` (template at top of that file).
+6. Update dashboard, commit + push (including the scan JSON). **Silent
+   on Telegram beyond the gappers message unless something urgent**
+   (e.g., overnight position gapped past its stop).
 
 ### 8:30 AM CT — Market Open
 Files needed: `TRADING-STRATEGY.md`, today's `RESEARCH-LOG.md` entry,
@@ -46,10 +51,22 @@ Files needed: `TRADING-STRATEGY.md`, `TRADE-LOG.md` (append only).
 1. `scripts/alpaca.sh positions` — check P&L and movement on each.
 2. Adjust trailing stops upward on big winners (≥ +2R unrealized).
 3. Sell anything that broke its thesis or is at/below **-7%**.
-4. Quick web check for afternoon catalysts (Fed speakers, 1 PM ET
+4. Run `python3 scripts/scan_tjl.py` (TJL entry check — it handles its
+   own Telegram gating). A PASS inside strategy rules may be traded:
+   bracket order, 1%-risk sizing, stop = signal bar low, 3R target.
+5. Quick web check for afternoon catalysts (Fed speakers, 1 PM ET
    auctions, earnings after close).
-5. Log any actions in `TRADE-LOG.md`; update dashboard, commit + push.
+6. Log any actions in `TRADE-LOG.md`; update dashboard, commit + push.
    **Silent on Telegram unless action was taken.**
+
+### Hourly — TJL Watch (10:30 AM–2:30 PM ET, at :30 past)
+Files needed: `TRADING-STRATEGY.md` §2b only.
+1. Run `python3 scripts/scan_tjl.py`. It saves the JSON and handles
+   Telegram gating itself.
+2. On a PASS that fits strategy rules (max positions, 1% risk, max 2 new
+   positions/day), place the bracket order and log it in `TRADE-LOG.md`.
+3. Commit the scan JSON (+ any trade log changes). Update the dashboard
+   **only if the hit set changed** — keep these runs cheap.
 
 ### 3:00 PM CT — Daily Summary (market close)
 Files needed: `TRADE-LOG.md` (append only), `WEEKLY-REVIEW.md` (Fridays).
@@ -86,6 +103,27 @@ command line). Base: `https://paper-api.alpaca.markets/v2`, market data:
 
 Prefer `bracket` for entries — one call sets entry + stop + 3R target
 and satisfies the "stop on every position" rule atomically.
+
+## Scanners (`scripts/`, python3 stdlib, read `.env` or env vars)
+
+| Script | What / when |
+|---|---|
+| `scan_gappers.py [--no-telegram]` | Premarket gappers: Alpaca screener ∪ most-actives → real premarket gap% + volume filters (>5%, >$3, >50k) → top 10 with Benzinga headlines via Alpaca news. Runs in the 6:00 AM workflow. Saves `scans/premarket_gappers_<date>.json`. |
+| `scan_tjl.py [--force] [--no-telegram] [TICKERS…]` | Trend Join Long entry check (defaults AMD NVDA MU + judgement from the day's gappers). Time-gated 10:00–15:30 ET (`--force` bypass for testing). Saves `scans/tjl_watchlist_<date>_<HHMM>ET.json`. Telegram auto-gated: first run of day, changed hits, or error. |
+| `backtest_tjl.py [--tickers A,B,C] [--months N]` | TJL backtest on 5-min bars; universe defaults to the latest gappers scan top-10 (selection-bias caveat in its header). On demand only. |
+
+Agent duties around the scripts:
+- **Catalyst rewrite**: `catalyst` in the gappers JSON is just the top
+  headline. Rewrite each into a one-sentence summary before it goes to
+  Telegram (format A: `📊 *Premarket Gappers* — date` then one
+  `• SYM $px +x% — catalyst` bullet each, omit the dash when null) or
+  the dashboard.
+- Commit every scan JSON — they're the desk's memory and the TJL
+  Telegram gating state (fresh cron containers keep nothing else).
+- Dashboard `DATA.scanners` gets the latest gappers, TJL result, and
+  backtest stats on every update.
+- IEX-feed volumes undercount the consolidated tape; treat premarket
+  volume as a floor, not truth.
 
 ## Telegram
 

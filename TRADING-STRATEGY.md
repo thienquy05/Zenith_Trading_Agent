@@ -19,7 +19,7 @@ Every trade risks **1R** to make **3R**.
 - Enter with a **bracket order** (entry + stop + 3R target in one call)
   so no position ever exists without its stop.
 
-## 2. The gap setup (long)
+## 2. Strategy 1 — the gap setup (long)
 
 Worked on intraday bars (15Min default) or daily bars for swing entries.
 
@@ -41,6 +41,28 @@ Worked on intraday bars (15Min default) or daily bars for swing entries.
 
 Shorts are the mirror image (allowed only if the account supports it;
 skip shorts in v1).
+
+## 2b. Strategy 2 — Trend Join Long (TJL)
+
+Join an already-trending name when it breaks to new highs on every
+timeframe at once. Implemented by `scripts/scan_tjl.py` (live check) and
+`scripts/backtest_tjl.py` (historical test).
+
+- **Daily condition**: price > previous daily high AND previous close >
+  SMA200 (only join uptrends at breakout).
+- **Intraday condition**: price > premarket high AND price > today's
+  high-of-day so far.
+- **Time gate**: entries only 10:00–15:30 ET (skip the open's chop,
+  nothing new near the close).
+- **Exits (3R/1R, same as Strategy 1)**: stop = signal bar low (1R),
+  target = +3R, force-flat 15:55 ET, one trade per ticker per day.
+- **Candidate flow**: the 6:00 AM premarket gappers scan
+  (`scripts/scan_gappers.py`) builds the day's watchlist; TJL then gates
+  which of those (plus the core AMD/NVDA/MU test universe) are entries.
+- Backtest (2026-01-09 → 2026-07-08, AMD/NVDA/MU, 5-min bars): 83
+  trades, 32.5% win rate, +8.04R, profit factor 1.15. Positive
+  expectancy but concentrated in MU — treat as validation of the
+  mechanics, not proof of edge.
 
 ## 3. Risk & portfolio rules
 
@@ -79,3 +101,5 @@ A candidate needs ALL of:
 ## Changelog
 
 - 2026-07-08: v1 drafted by Claude (initial 3R/1R gap rulebook).
+- 2026-07-08: added Strategy 2 (Trend Join Long) + scanners/backtest
+  per Quy's spec; backtest baseline recorded.
