@@ -1,17 +1,4 @@
 {
-  "scanned_at": "2026-07-08T08:18:00.148323-04:00",
-  "gappers": [
-    {
-      "rank": 1,
-      "symbol": "SOXS",
-      "price": 5.06,
-      "gap_pct": 5.09,
-      "premarket_volume": 229587,
-      "catalyst": "SK Hynix ETF Race Heats Up As Direxion Files 2X Leveraged Fund",
-      "headlines": [
-        "SK Hynix ETF Race Heats Up As Direxion Files 2X Leveraged Fund",
-        "Micron CEO Says AI Memory Shortage Could Last Beyond 2028: These ETFs Are Positioned To Profit"
-      ]
-    }
-  ]
+  "scanned_at": "2026-07-08T08:42:06.481453-04:00",
+  "gappers": []
 }

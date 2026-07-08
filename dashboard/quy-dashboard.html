@@ -175,11 +175,11 @@
 
 <script>
 const DATA = {
-  lastUpdated: "2026-07-08T12:35:00Z",
+  lastUpdated: "2026-07-08T12:45:00Z",
   chips: [
     {label:"Alpaca connected — paper PA3Q8O23ZYJB", state:"ok"},
     {label:"Robinhood connected", state:"ok"},
-    {label:"Telegram — send /start to @Zenith_Trading_Agent_bot", state:"wait"}
+    {label:"Telegram connected", state:"ok"}
   ],
   alpaca: {equity:100000, cash:100000, buying_power:400000, day_pl:0, day_pl_pct:0},
   alpacaNote: null,
@@ -200,20 +200,21 @@ const DATA = {
     ]
   },
   scanners: {
-    gappers: {when:"Jul 8, 8:18 AM ET", rows:[
-      {rank:1, sym:"SOXS", price:5.06, gap:5.09, vol:229587,
-       catalyst:"Direxion filed a 2× leveraged SK Hynix ETF, heating up the semiconductor-ETF race"}
+    gappers: {when:"Jul 8, 8:42 AM ET", rows:[]},
+    tjl: {when:"Jul 8, 8:43 AM ET (premarket test, --force)", rows:[
+      {sym:"MU", result:"fail_daily", detail:"px $905.63 ≤ prev high $941.32"},
+      {sym:"STX", result:"fail_daily", detail:"px $827.38 ≤ prev high $836.91"},
+      {sym:"KLAC", result:"fail_daily", detail:"px $212.55 ≤ prev high $223.40"},
+      {sym:"LRCX", result:"fail_daily", detail:"px $325.94 ≤ prev high $330.42"},
+      {sym:"TER", result:"fail_daily", detail:"px $342.17 ≤ prev high $360.61"}
     ]},
-    tjl: {when:"Jul 8, 8:18 AM ET (premarket test, --force)", rows:[
-      {sym:"AMD", result:"fail_daily", detail:"px $518.20 ≤ prev high $524.80"},
-      {sym:"NVDA", result:"fail_daily", detail:"px $196.97 ≤ prev high $198.38"},
-      {sym:"MU", result:"fail_daily", detail:"px $903.13 ≤ prev high $941.32"}
-    ]},
-    backtest: {note:"AMD/NVDA/MU · 5-min bars · 2026-01-09 → 2026-07-08",
+    backtest: {note:"AMD/NVDA/MU (fixed test set, pre-dynamic-universe) · 5-min bars · 2026-01-09 → 2026-07-08",
       trades:83, winRate:32.5, totalR:8.04, pf:1.15,
       perTicker:"MU +12.82R · NVDA −1.90R · AMD −2.88R"}
   },
   feed: [
+    {t:"2026-07-08", what:"<b>Pre-market research.</b> Gappers scan came back empty (0 names >5% gap); FOMC minutes at 2 PM ET is the session's main catalyst risk. No gap setups met the filter — no trades planned at the open. Seeded today's watchlist (MU, STX, KLAC, LRCX, TER) off the AI memory-shortage/semi-equipment narrative for TJL trend-join checks."},
+    {t:"2026-07-08", what:"<b>Dynamic ticker universe.</b> Removed the fixed AMD/NVDA/MU default from scan_tjl.py/backtest_tjl.py — both now resolve from the day's research watchlist, then the gappers scan, never a hardcoded list."},
     {t:"2026-07-08", what:"<b>Scanners online.</b> Premarket gappers + TJL entry scanner + 6-month TJL backtest built and verified live against Alpaca; strategy rulebook gains Strategy 2 (Trend Join Long)."},
     {t:"2026-07-08", what:"<b>Desk opened.</b> Repo rebuilt around the Alpaca paper-trading challenge; strategy v1 (3R/1R gap) drafted and awaiting Quy’s edits."}
   ],
