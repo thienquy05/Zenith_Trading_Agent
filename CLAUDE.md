@@ -19,7 +19,7 @@ It has the full daily workflow, API reference, and gotchas.
 | `WEEKLY-REVIEW.md` | Weekly performance reviews |
 | `PROJECT-TRADING-CHALLENGE.md` | Project overview + rules |
 | `scripts/alpaca.sh`, `scripts/telegram.sh` | curl helpers (read `.env`) |
-| `dashboard/quy-dashboard.html` | Quy Dashboard artifact source |
+| `dashboard/quy-dashboard.html` | Quy Dashboard artifact source (local only, gitignored — not committed) |
 
 ## Hard rules (non-negotiable)
 
@@ -41,4 +41,6 @@ This project is token-sensitive. Keep sessions lean:
 - Logs are append-only: add entries, don't re-read/rewrite whole files.
 - Telegram: silent unless a trade was placed, action was taken, or it's
   the 3 PM daily summary.
-- Commit + push log/dashboard changes at the end of each run, one commit.
+- Commit + push log changes at the end of each run, one commit. The
+  dashboard is regenerated and republished as an Artifact every run but
+  is gitignored — it's worked on locally, never committed.

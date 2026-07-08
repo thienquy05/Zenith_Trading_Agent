@@ -9,6 +9,10 @@
 
 .env
 
+# Dashboard is worked on locally only — regenerated + published as an
+# Artifact each run, no longer committed to git (see AGENT-INSTRUCTIONS.md)
+dashboard/quy-dashboard.html
+
 # Python
 __pycache__/
 *.pyc
