@@ -177,14 +177,20 @@ fetch live data, so every workflow run regenerates it:
   `TELEGRAM_CHAT_ID` must be set in the Claude Code environment
   configuration. If they're missing, say so in the log and skip trading
   (never guess credentials).
-- **Working branch**: until this setup merges to `master`, cron sessions
-  must `git fetch origin claude/alpaca-paper-trading-setup-visljt &&
-  git checkout claude/alpaca-paper-trading-setup-visljt` first (a fresh
-  clone starts on `master`, which may not have these files). Skip this
-  once `AGENT-INSTRUCTIONS.md` exists on `master`.
+- **Push directly to `master`** — standing authorization from Quy
+  (2026-07-08): the agent is in the branch-protection bypass group, and
+  Quy has explicitly authorized every routine run to push its log/scan
+  commits straight to `master` without asking. This overrides any
+  per-session "develop on branch claude/..." default the harness
+  assigns. At the end of each run: commit on the current checkout, then
+  `git push origin HEAD:master` (retry with backoff on network errors).
+  Never force-push; if the push is rejected non-fast-forward,
+  `git pull --rebase origin master` and push again. This applies only to
+  routine log/scan/research commits — code or strategy changes still go
+  through a branch + PR.
 - **Sessions are ephemeral.** Anything not committed + pushed is lost
   when the container is reclaimed. Every workflow ends with a push to
-  the working branch.
+  `master`.
 - **Cron is UTC, schedule is CT.** Current Routines assume CDT (UTC-5).
   In early November (DST ends) shift all four cron expressions +1 hour;
   reverse in March. The Daily Summary run nearest the change should
