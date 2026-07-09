@@ -183,3 +183,14 @@ a new dated line.
   this morning's 9:30 AM computation (unchanged materially over ~5h,
   skipped re-running the historicals call for token frugality — noted
   in the dashboard as "as of 9:30 AM").
+
+### 2026-07-09 — daily snapshot (4:00 PM ET run)
+- Equity $100,005.42 | day P&L +$2.51 (+0.0025%) | cash $99,689.52
+- Open: AAPL 1@$310.47, current $315.90 (uP&L +$5.43 / +1.75%)
+- Trades today: 0 | notes:
+  - No new entries executed; premarket research + TJL + midday scans yielded zero setups meeting §2 (gap-retest) + §4 (defined 1R risk) criteria. Universe: energy (XLE/XOM/CVX) and memory/semi (MU/LRCX/KLAC) stayed in TJL-watch-only mode; crypto regime remained BEAR (BTC < SMA200).
+  - AAPL position held unchanged, GTC stop $300 (order `7709c58e...`) confirmed still resting end-of-day — no gap-through, position remains protected.
+  - **Geopolitical tape resilience**: US-Iran military escalation overnight (new US strikes + Iranian Gulf retaliation) spiked VIX intraday but tape closed resilient (+0.003% day P&L); flagging elevated overnight gap risk on the AAPL position heading into the weekend. No §3b tier-1 blackout, just risk awareness.
+  - **Robinhood extra-watch moves**: ORCL $140.49→$144.26 (+2.68%, ex-div $0.50 tomorrow 7/10, Piper PT chatter continues); NVDA $204.12→$202.76 (-0.67%); TSLA dust position noted, earnings 7/22 PM approaching (enter 14-day caution window 7/16).
+- Guardrail/breaker status: day P&L +0.0025%, zero trip (breaker -2%). Week P&L ~flat off $100,000 baseline (no -4% trip). Weekly trade cap 1 of 5 new entries used. No earnings 24h, no tilt-stop triggers, no violations. All clear.
+- Lesson: quiet catalyst-light tape — setups require gap + retest, not momentum. Iran escalation is real (risk noted), but tape stays resilient on core market health. Weekend gap risk elevated; tighter stop/reduced size would be prudent if entering large intraday Friday near close.
