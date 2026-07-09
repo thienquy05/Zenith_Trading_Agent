@@ -181,3 +181,24 @@ Append at the BOTTOM, one entry per pre-market run.
   and in the real-money warning.
 - Not adopted (rejected/deferred): immediate rule changes (Quy chose
   backtest-gated adoption); FVG zone geometry as a standalone edge.
+
+## 2026-07-09 — §2d validation run (Quy: "validate them then merge")
+- R1 (TJL intraday relative-volume ≥1.5–2× gate): backtested via new
+  `backtest_tjl.py --rvol` (cum session volume at signal minute vs
+  14-session same-minute avg; extra 30d bars for lookback so the trade
+  window matches baseline). AMD/NVDA/MU, 6mo, 2026-01-10→07-09:
+  baseline 84 trades / 33.3% WR / PF 1.20 / +11.04R;
+  rvol≥1.5×: 14 trades / 7.1% WR / PF 0.24 / −9.30R;
+  rvol≥2.0×: 7 trades / 14.3% WR / PF 0.50 / −3.00R.
+  → FAILED the gate (expectancy must be ≥ baseline) — REJECTED.
+  Read: SSRN 4729284's stock-in-play edge is a UNIVERSE-selection
+  effect (our gappers scan already does this); an intraday volume gate
+  on already-liquid mega-caps selects chaos, not follow-through, and
+  IEX-only volume makes the ratio noisy. Kept `--rvol` for future
+  re-tests on watchlist universes.
+- R2 (gap catalyst+volume quality filter): no §2 backtester exists and
+  zero live §2 trades to date — cannot be validated numerically today.
+  Adopted as a conservative pre-filter (restriction-only, adds no
+  risk); formal keep/drop after 20 logged §2 setups.
+- Artifacts: scans/backtest_tjl_2026-01-10_2026-07-09.json, *_rvol1.5,
+  *_rvol2. Strategy §2d + changelog updated with verdicts.

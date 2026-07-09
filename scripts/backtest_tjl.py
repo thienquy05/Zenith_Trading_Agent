@@ -16,9 +16,15 @@ Rules (mirror scan_tjl.py + the 3R/1R rulebook):
   both hit in one bar counts as a stop (conservative); flat 15:55 ET;
   one trade per ticker per day.
 
-Usage: backtest_tjl.py [--tickers AMD,NVDA,MU] [--months 6]
-Output: scans/backtest_tjl_<start>_<end>.json + printed stats table
+Optional --rvol X (strategy §2d-R1, backtest-gated): only take signals
+where cumulative session volume at the signal bar is ≥ X× the average
+cumulative volume at that same minute over the prior 14 sessions (the
+"stock in play" measure from SSRN 4729284). Off by default.
+
+Usage: backtest_tjl.py [--tickers AMD,NVDA,MU] [--months 6] [--rvol 1.5]
+Output: scans/backtest_tjl_<start>_<end>[_rvolX].json + printed stats table
 """
+import bisect
 import sys
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -28,6 +34,8 @@ from alpaca_common import ET, SCANS, get_bars, load_env, resolve_universe, save_
 LOOKBACK_MONTHS = 6
 TF = "5Min"
 R_TARGET = 3.0
+RVOL_LOOKBACK = 14   # sessions of volume history behind the rvol ratio
+RVOL_MIN_DAYS = 5    # min prior sessions before the ratio is trusted
 
 
 def arg(name, default=None):
@@ -47,8 +55,9 @@ def universe():
     return syms
 
 
-def backtest(sym, bars5, daily):
-    """Return list of trade dicts for one symbol."""
+def backtest(sym, bars5, daily, trade_from=None, rvol=None):
+    """Return list of trade dicts for one symbol. Days before trade_from
+    supply volume history for the rvol filter but never trade."""
     # prior-day aggregates keyed by date
     done = sorted(daily, key=lambda b: b["t"])
     daily_meta = {}
@@ -62,9 +71,35 @@ def backtest(sym, bars5, daily):
     for b in bars5:
         by_day[b["t"].date()].append(b)
 
+    # per-day cumulative volume profile: day -> (minute list, cumvol list)
+    profiles = {}
+    for day, bars in by_day.items():
+        mins, cum, tot = [], [], 0
+        for b in sorted(bars, key=lambda b: b["t"]):
+            tot += b.get("v", 0)
+            mins.append(b["t"].hour * 60 + b["t"].minute)
+            cum.append(tot)
+        profiles[day] = (mins, cum)
+    session_days = sorted(profiles)
+
+    def cum_at(day, minute):
+        mins, cum = profiles[day]
+        i = bisect.bisect_right(mins, minute) - 1
+        return cum[i] if i >= 0 else 0
+
+    def in_play(day, minute):
+        """cum volume now vs same-minute average of prior sessions."""
+        prior = session_days[max(0, bisect.bisect_left(session_days, day)
+                                 - RVOL_LOOKBACK):
+                             bisect.bisect_left(session_days, day)]
+        if len(prior) < RVOL_MIN_DAYS:
+            return False
+        base = sum(cum_at(d, minute) for d in prior) / len(prior)
+        return base > 0 and cum_at(day, minute) / base >= rvol
+
     trades = []
     for day, bars in sorted(by_day.items()):
-        if day not in daily_meta:
+        if day not in daily_meta or (trade_from and day < trade_from):
             continue
         prev_high, prev_close, sma200 = daily_meta[day]
         if prev_close <= sma200:
@@ -81,7 +116,8 @@ def backtest(sym, bars5, daily):
                 continue
             if pos is None and 600 <= mins <= 930:   # 10:00–15:30 gate
                 if (b["c"] > prev_high and b["c"] > pmh
-                        and hod is not None and b["c"] > hod):
+                        and hod is not None and b["c"] > hod
+                        and (rvol is None or in_play(day, mins))):
                     entry, stop = b["c"], b["l"]
                     if entry > stop:  # need positive R
                         pos = {"entry": entry, "stop": stop,
@@ -118,18 +154,23 @@ def backtest(sym, bars5, daily):
 def main():
     load_env()
     months = int(arg("--months", LOOKBACK_MONTHS))
+    rvol = arg("--rvol")
+    rvol = float(rvol) if rvol else None
     syms = universe()
     now = datetime.now(ET)
     start = now - timedelta(days=months * 30 + 320)
     bt_start = now - timedelta(days=months * 30)
+    # extra 30 days of 5-min bars so the rvol filter has full volume
+    # history from day one; days before bt_start never trade
+    bars5_start = bt_start - timedelta(days=30)
 
     all_trades = []
     for sym in syms:                                 # sequential: rate limits
         try:
             daily = [b for b in get_bars([sym], "1Day", start)[sym]
                      if b["t"].date() < now.date()]
-            bars5 = [b for b in get_bars([sym], TF, bt_start)[sym]]
-            all_trades += backtest(sym, bars5, daily)
+            bars5 = [b for b in get_bars([sym], TF, bars5_start)[sym]]
+            all_trades += backtest(sym, bars5, daily, bt_start.date(), rvol)
             print(f"{sym}: fetched {len(bars5)} bars, "
                   f"{sum(t['symbol'] == sym for t in all_trades)} trades")
         except Exception as e:
@@ -154,15 +195,21 @@ def main():
     }
     out = {"scanned_at": now.isoformat(),
            "params": {"tickers": syms, "months": months, "timeframe": TF,
+                      "rvol_filter": rvol,
                       "rules": "entry TJL 10:00-15:30 ET; stop=signal bar low; "
-                               "target=+3R; flat 15:55; 1 trade/ticker/day",
+                               "target=+3R; flat 15:55; 1 trade/ticker/day"
+                               + (f"; rvol>={rvol}x vs {RVOL_LOOKBACK}-session "
+                                  f"same-minute avg" if rvol else ""),
                       "selection_bias_note": "universe picked from today's "
                       "gappers; past-window results describe behavior, not "
                       "an achievable historical portfolio"},
            "stats": stats, "trades": all_trades}
-    save_json(SCANS / f"backtest_tjl_{bt_start.date()}_{now.date()}.json", out)
+    suffix = f"_rvol{rvol:g}" if rvol else ""
+    save_json(SCANS / f"backtest_tjl_{bt_start.date()}_{now.date()}{suffix}.json",
+              out)
 
-    print(f"\nTJL backtest {bt_start.date()} → {now.date()} on {', '.join(syms)}")
+    print(f"\nTJL backtest {bt_start.date()} → {now.date()} on {', '.join(syms)}"
+          + (f" [rvol ≥ {rvol:g}x]" if rvol else ""))
     print(f"trades {stats['total_trades']} | win rate {stats['win_rate_pct']}% | "
           f"total {stats['total_r']}R | PF {stats['profit_factor']} | "
           f"avg win {stats['avg_win_r']}R / avg loss {stats['avg_loss_r']}R")

@@ -1,0 +1,151 @@
+{
+  "scanned_at": "2026-07-09T09:06:26.975289-04:00",
+  "params": {
+    "tickers": [
+      "AMD",
+      "NVDA",
+      "MU"
+    ],
+    "months": 6,
+    "timeframe": "5Min",
+    "rvol_filter": 1.5,
+    "rules": "entry TJL 10:00-15:30 ET; stop=signal bar low; target=+3R; flat 15:55; 1 trade/ticker/day; rvol>=1.5x vs 14-session same-minute avg",
+    "selection_bias_note": "universe picked from today's gappers; past-window results describe behavior, not an achievable historical portfolio"
+  },
+  "stats": {
+    "total_trades": 14,
+    "win_rate_pct": 7.1,
+    "total_r": -9.3,
+    "profit_factor": 0.24,
+    "avg_win_r": 3.0,
+    "avg_loss_r": -0.95,
+    "per_ticker": {
+      "AMD": {
+        "trades": 5,
+        "total_r": -5.0
+      },
+      "NVDA": {
+        "trades": 6,
+        "total_r": -5.3
+      },
+      "MU": {
+        "trades": 3,
+        "total_r": 1.0
+      }
+    }
+  },
+  "trades": [
+    {
+      "symbol": "AMD",
+      "date": "2026-01-13",
+      "entry": 222.24,
+      "exit": 221.2,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "AMD",
+      "date": "2026-01-15",
+      "entry": 236.7,
+      "exit": 235.1,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "AMD",
+      "date": "2026-01-21",
+      "entry": 247.03,
+      "exit": 244.99,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "AMD",
+      "date": "2026-04-01",
+      "entry": 210.74,
+      "exit": 209.62,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "AMD",
+      "date": "2026-04-24",
+      "entry": 351.5,
+      "exit": 349.56,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "NVDA",
+      "date": "2026-01-15",
+      "entry": 189.17,
+      "exit": 188.5,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "NVDA",
+      "date": "2026-01-21",
+      "entry": 184.29,
+      "exit": 183.56,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "NVDA",
+      "date": "2026-02-06",
+      "entry": 183.82,
+      "exit": 183.19,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "NVDA",
+      "date": "2026-04-24",
+      "entry": 208.7,
+      "exit": 208.18,
+      "reason": "eod",
+      "r_multiple": -0.3
+    },
+    {
+      "symbol": "NVDA",
+      "date": "2026-05-06",
+      "entry": 205.41,
+      "exit": 204.53,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "NVDA",
+      "date": "2026-06-01",
+      "entry": 221.03,
+      "exit": 220.52,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "MU",
+      "date": "2026-03-17",
+      "entry": 461.74,
+      "exit": 461.08,
+      "reason": "stop",
+      "r_multiple": -1.0
+    },
+    {
+      "symbol": "MU",
+      "date": "2026-04-01",
+      "entry": 369.08,
+      "exit": 373.55,
+      "reason": "target",
+      "r_multiple": 3.0
+    },
+    {
+      "symbol": "MU",
+      "date": "2026-05-05",
+      "entry": 646.32,
+      "exit": 636.37,
+      "reason": "stop",
+      "r_multiple": -1.0
+    }
+  ]
+}

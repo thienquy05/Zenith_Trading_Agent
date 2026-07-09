@@ -138,28 +138,44 @@ Alpaca paper crypto: 24/7, long-only, fractional, **no bracket orders**.
 - Re-run `backtest_crypto.py` monthly (and at every regime flip) and
   record the result in `WEEKLY-REVIEW.md`.
 
-## 2d. Pending-validation rule upgrades (backtest-gated — NOT live yet)
+## 2d. Rule upgrades from the §7 research (validation results)
 
-Added 2026-07-09 from the expert-source research in §7. Per Quy's
-decision, these adopt only after our own backtest confirms them on our
-data — evidence from papers is a reason to test, not a reason to trade.
+Added 2026-07-09 from the expert-source research in §7; validated the
+same day per Quy's backtest-gated-adoption decision — evidence from
+papers is a reason to test, not a reason to trade. Outcome: **R1
+rejected by backtest, R2 adopted as a conservative pre-filter** pending
+its live-sample review.
 
-- **R1 — TJL "stock in play" filter**: TJL entries require relative
-  volume ≥ **1.5–2× the 14-day average** at signal time. Source: SSRN
-  4729284 (§7) — the paper's core finding is that the ORB edge lives
-  almost entirely in high-relative-volume, news-driven names; the top-20
-  relative-volume portfolio did Sharpe 2.81 while the unfiltered version
-  was far weaker. Our TJL baseline (PF 1.15, expectancy CI spanning 0)
-  needs exactly this kind of selectivity. **Gate**: re-run
-  `backtest_tjl.py` with the filter; adopt only if expectancy ≥ the
-  unfiltered baseline on the same period/universe.
-- **R2 — gap setup quality filter**: a §2 gap setup is tradeable only on
-  a **catalyst-confirmed, high-relative-volume gap** (≥3× relative
-  volume or a named news catalyst). No-news, low-volume gaps are
-  skipped. Source: gap-continuation research (§7) — follow-through
-  concentrates in catalyst+volume gaps; quiet gaps tend to fade.
-  **Gate**: log every §2 setup taken/skipped with its volume+catalyst
-  state for 20+ setups, then compare.
+- **R1 — TJL "stock in play" filter: TESTED 2026-07-09 → REJECTED.**
+  Proposal was: TJL entries require relative volume ≥ 1.5–2× the
+  14-session same-minute average (source: SSRN 4729284, §7). The gate
+  was run (`backtest_tjl.py --rvol`, AMD/NVDA/MU, 6mo, same window as
+  baseline) and the filter FAILED it badly: baseline 84 trades / PF 1.20
+  / +11.0R vs rvol≥1.5× 14 trades / PF 0.24 / −9.3R and rvol≥2× 7
+  trades / PF 0.50 / −3.0R. Interpretation: the paper's in-play edge is
+  about *universe selection* (scanning the whole market each morning
+  for elevated-volume news names — which our gappers-scan→watchlist
+  flow already does), not an intraday volume gate on names that are
+  already liquid; on mega-caps, mid-session volume spikes mark chaos,
+  not follow-through. IEX-only volume (undercounted, per Gotchas) also
+  makes the ratio noisy. Verdict: **not adopted** — the in-play concept
+  stays implemented at the universe level, where it already lives. The
+  `--rvol` flag stays in `backtest_tjl.py` for future re-tests on
+  watchlist-style universes. Full records:
+  `scans/backtest_tjl_2026-01-10_2026-07-09*.json`.
+- **R2 — gap setup quality filter: still pending (needs live samples).**
+  A §2 gap setup is tradeable only on a **catalyst-confirmed,
+  high-relative-volume gap** (≥3× relative volume or a named news
+  catalyst); no-news, low-volume gaps are skipped. Source:
+  gap-continuation research (§7) — follow-through concentrates in
+  catalyst+volume gaps; quiet gaps tend to fade. **Gate**: log every §2
+  setup taken/skipped with its volume+catalyst state for 20+ setups,
+  then compare. Cannot be backtested today — there is no §2 gap-setup
+  backtester and zero live §2 trades yet (checked 2026-07-09). Since
+  R2 only *restricts* entries (never adds risk) and §4 already demands
+  a catalyst, it is applied as a **conservative pre-filter effective
+  immediately**, with the formal keep/drop decision after 20 logged
+  setups.
 - **Honesty note on §2 itself**: the gap-zone/retest entry is the
   component with the *weakest* external evidence (§7 grades it weak —
   practitioner claims only, no peer-reviewed support). Until we have our
@@ -441,3 +457,10 @@ earns trust. Conditions before that's reasonable, stated plainly:
   per Quy's request to enhance the strategy with verified expert
   research. New script `scripts/strategy_metrics.py`. Rule changes are
   pending validation, not live (Quy's choice: backtest-gated adoption).
+- 2026-07-09 (later): §2d gates run per Quy's "validate then merge".
+  R1 (intraday relative-volume gate on TJL) REJECTED — failed its
+  backtest decisively (PF 1.20/+11.0R baseline → PF 0.24/−9.3R at
+  rvol≥1.5×; the in-play edge belongs at universe selection, where the
+  gappers scan already applies it). R2 (gap quality filter) adopted as
+  a conservative pre-filter — restriction-only, keep/drop after 20
+  logged §2 setups. `backtest_tjl.py` gained a reusable `--rvol` flag.
