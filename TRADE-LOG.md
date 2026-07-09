@@ -147,3 +147,39 @@ a new dated line.
   47.1, earnings 7/22 pm flagged — within the 14-day caution window)
   + crypto $31.36 (est. BTC ~$18.81/ETH ~$8.36/SOL ~$4.18 off the
   $18/$8/$4 basis split) + $70 pending deposit.
+
+### 2026-07-09 14:25 ET — midday scan
+- Positions: AAPL 1@$310.47, current $314.53, uP&L +$4.06/+1.31%. GTC
+  stop still resting at $300 (order `7709c58e...`, status `new`) — no
+  gap-through. Not near +2R (would need ~$10.47/share gain, currently
+  ~$4.06) so no trailing-stop adjustment; not near -7% or thesis-break,
+  no sell. No action needed on the position.
+- `scan_tjl.py --no-telegram` (universe: XLE, XOM, CVX, MU, LRCX, KLAC
+  from today's watchlist): 0/6 PASS — XLE/XOM/CVX fail_daily (price ≤
+  prior-day high), MU/LRCX/KLAC fail_intraday (price ≤ HOD/PMH). No
+  trade.
+- `scan_crypto.py --no-telegram`: regime still BEAR (BTC $62,244.95 <
+  daily SMA200 $74,356.29) — sleeve stands down, no entries. Crypto
+  positions: none open (sleeve flat), so no -7%/thesis check applies.
+- Guardrail check: moot this run (no PASS to evaluate) — daily/weekly
+  breakers not tripped (equity $100,004.10, ~flat), weekly trade cap 1
+  of 5 used, no earnings-24h conflicts, no tilt-stop triggers.
+- Afternoon catalysts: no tier-1 macro release this afternoon — June
+  FOMC minutes already released Wed 7/8, no fresh Treasury auction
+  today (next 30Y auction is 7/15). Market tone: US-Iran conflict still
+  the dominant driver (new US strikes + Iranian retaliation against
+  Gulf targets reported this morning); PEP (held? no — market-wide)
+  missed EPS by $0.01 this AM, other earnings light until after the
+  bell. No held/watchlist name reports today; TSLA earnings 7/22 pm
+  remains the nearest 24h-window flag (not yet inside window).
+- Extra-watch one-liners (live): BTC ~$62,870 (bear regime intact, well
+  under SMA200 ~$74.4k); ETH ~$1,744; SOL ~$78.23 (holding the $79
+  support test per crypto press); NVDA $203.12 (-0.49% today, chip
+  stocks mixed); ORCL $143.925 (+2.44% today, continuing yesterday's
+  rally — ex-dividend $0.50 today, Piper Sandler $225 PT chatter still
+  circulating, no single new confirmed catalyst).
+- Dashboard republished (local, gitignored) with fresh Alpaca + live
+  Robinhood pulls for all three accounts; RSI/MA signals reused from
+  this morning's 9:30 AM computation (unchanged materially over ~5h,
+  skipped re-running the historicals call for token frugality — noted
+  in the dashboard as "as of 9:30 AM").
