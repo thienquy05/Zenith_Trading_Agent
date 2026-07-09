@@ -103,3 +103,47 @@ a new dated line.
   flagged gap, done at the 7:00 AM pre-market run rather than waiting
   for the 9:30 AM open, since the position was unprotected in the
   interim.
+
+### 2026-07-09 09:30 ET — market open check
+- Market open confirmed (`clock`). Equity $100,001.32 | cash $99,689.52
+  | day P&L -$1.59 (-0.0016%) | open positions: AAPL 1@$310.47
+  (current $311.89, uP&L +$1.42/+0.46%). GTC stop confirmed still
+  resting (`7709c58e...`, stop $300, status `new`) — no gap-through
+  event, position remains protected.
+- Guardrail pre-check (§3b), all clear: daily breaker (-2%) — day P&L
+  -0.0016%, no trip. Weekly breaker (-4%) — week P&L ~flat off the
+  $100,000 baseline, no trip. Weekly trade cap — 1 of 5 entries used
+  (AAPL test buy 7/8). Event blackout — no tier-1 macro release today
+  (Initial Jobless Claims 8:30 AM already released pre-open, not
+  tier-1). Earnings 24h — no held/candidate name inside the window.
+  Correlation cap — n/a (single position). Tilt stop — n/a (no
+  stop-outs today). Checks are moot this run: no trades were planned.
+- No entries: the 7:00 AM `RESEARCH-LOG.md` run found zero qualifying
+  setups (0 premarket gappers, no verified gap-with-catalyst anywhere,
+  crypto sleeve regime-gated flat). Energy (XLE/XOM/CVX) and
+  memory/semi (MU/LRCX/KLAC) remain TJL trend-join watches only
+  (`scans/watchlist_2026-07-09.json`, feeds the hourly scanner) — no
+  gap setup to execute at the open.
+- Geopolitical update since 7 AM: the US launched new airstrikes on
+  Iran overnight and Iran retaliated against Gulf targets — an
+  escalation beyond the "ceasefire declared over" headline noted this
+  morning. VIX spiked toward ~18 intraday before easing back; WTI
+  pulled back ~0.9% to ~$72.9 after Wednesday's +4.4% spike. S&P/Nasdaq
+  futures still opened green — tape shrugging off the headline so far,
+  but flagging elevated overnight/weekend gap risk on the open AAPL
+  position. Not a §3b tier-1 blackout event (no scheduled data
+  release), noted for risk awareness only.
+- ORCL (Robinhood extra-watch, real money) up +4.05% today
+  ($140.49→$146.18) — no single confirmed catalyst found (ex-dividend
+  $0.50 tomorrow 7/10, bullish Piper Sandler commentary/$225 PT
+  circulating, but technicals still weak per moving averages); flagged
+  as a notable move without a confirmed driver, not acted on (Claude
+  never trades Robinhood).
+- Dashboard republished with live Robinhood pull: Individual ORCL
+  0.761815@$146.18 (uP&L +$5.78/+5.5%, RSI(14) 27.3 → STRONG BUY ZONE);
+  Roth IRA VOO 0.110322@$687.61 (uP&L +$0.11, RSI 52.4, neutral-DCA,
+  core — never sell); Agentic NVDA 0.358944@$201.80 (uP&L +$2.40, RSI
+  51.0, neutral-DCA) + TSLA 0.002340@$395.17 (dust, uP&L -$0.08, RSI
+  47.1, earnings 7/22 pm flagged — within the 14-day caution window)
+  + crypto $31.36 (est. BTC ~$18.81/ETH ~$8.36/SOL ~$4.18 off the
+  $18/$8/$4 basis split) + $70 pending deposit.
