@@ -1,0 +1,31 @@
+{
+  "scanned_at": "2026-07-09T11:33:01.982680-04:00",
+  "candidates_checked": 6,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "XLE",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "XOM",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "CVX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "MU",
+      "result": "fail_intraday"
+    },
+    {
+      "symbol": "LRCX",
+      "result": "fail_intraday"
+    },
+    {
+      "symbol": "KLAC",
+      "result": "fail_intraday"
+    }
+  ]
+}
