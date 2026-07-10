@@ -222,13 +222,13 @@ const DATA = {
     backtest: {note:"", trades:0, winRate:0, totalR:0, pf:0, perTicker:""}
   },
   // one-line pulse of reports/premarket_<date>.md (the committed archive)
-  premarketReport: {date:"", summary:"", emailed:false},
+  premarketReport: {date:"", summary:""},
   feed: [
     {t:"2026-01-01", what:"<b>Example entry.</b> Replace with latest TRADE-LOG.md / RESEARCH-LOG.md items."}
   ],
   schedule: [
     {when:"5:00 AM — Morning Brief", does:"Quy's real Robinhood portfolio + market mood + VOO signal + crypto check", ping:"Telegram: always"},
-    {when:"7:00 AM — Pre-Market Research", does:"Packet scan (gappers + levels + econ calendar), rules-flagged day/swing watchlists, full report → reports/ + email, 2–3 trade ideas → RESEARCH-LOG.md", ping:"Telegram: always · Email: full report"},
+    {when:"7:00 AM — Pre-Market Research", does:"Packet scan (gappers + levels + econ calendar), rules-flagged day/swing watchlists, full report → reports/, 2–3 trade ideas → RESEARCH-LOG.md", ping:"Telegram: always"},
     {when:"9:30 AM — Market Open", does:"Execute planned setups, stops set on every fill", ping:"Telegram: always"},
     {when:"Hourly — TJL Watch", does:"Trend Join Long entry check, 10:30–2:30 ET at :30 past; trades PASSes within rules", ping:"Telegram: only if a trade was placed"},
     {when:"1:00 PM — Midday Scan", does:"P&L check + TJL + crypto check, trail winners, cut thesis-breaks / −7%", ping:"Telegram: always"},
@@ -317,7 +317,7 @@ table($("rh-holdings"), DATA.robinhood.holdings, [
 const SC = DATA.scanners || {};
 const PR = DATA.premarketReport;
 $("gap-when").textContent = (SC.gappers ? "· " + SC.gappers.when : "")
-  + (PR && PR.summary ? ` · report ${PR.date}${PR.emailed ? " (emailed)" : ""}: ${PR.summary}` : "");
+  + (PR && PR.summary ? ` · report ${PR.date}: ${PR.summary}` : "");
 table($("gappers"), (SC.gappers||{}).rows || [], [
   {h:"#", r:1, f:r=>r.rank}, {h:"Symbol", f:r=>`<b>${esc(r.sym)}</b>`},
   {h:"Price", r:1, f:r=>usd(r.price)},

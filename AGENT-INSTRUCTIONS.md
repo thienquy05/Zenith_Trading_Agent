@@ -14,14 +14,14 @@ expressions must be shifted by one hour** — see Gotchas.
 
 | ET time | Workflow | Telegram |
 |---|---|---|
-| 5:00 AM | Morning Brief (Quy's real portfolio) | ALWAYS — the brief IS the deliverable |
+| 5:00 AM | Morning Brief (Quy's real portfolio) | NONE — email only (AgentMail), see below |
 | 7:00 AM | Pre-Market Research | ALWAYS — detailed market brief |
 | 9:30 AM | Market Open | ALWAYS — open report (+ trades if placed) |
 | 10:30a–2:30p hourly | TJL Watch | ONLY if a trade was placed |
 | 1:00 PM | Midday Scan | ALWAYS — midday update |
 | 4:00 PM | Daily Summary | ALWAYS — daily summary |
 
-### 5:00 AM ET — Morning Brief (Quy's real portfolio, via Telegram)
+### 5:00 AM ET — Morning Brief (Quy's real portfolio, via Email)
 
 Purpose: Quy's personal investing brief — his REAL Robinhood money, not
 the paper account. Educational tone, beginner level, honest signals.
@@ -38,7 +38,11 @@ the paper account. Educational tone, beginner level, honest signals.
 2. Web-search (keep it tight): VIX level, S&P 500 / futures tone,
    BTC-ETH-SOL prices + Crypto Fear & Greed index, Fed/rates headline,
    any geopolitical or crypto-regulation driver.
-3. Telegram the brief (split into 2 messages if near the 4096 limit):
+3. **Email the brief (ALWAYS — no Telegram send for this workflow, Quy's
+   standing preference 2026-07-10)** via AgentMail (`AGENTMAIL_API_KEY` /
+   `AGENTMAIL_INBOX=zenith-alert@agentmail.to`, see Gotchas) to
+   `REPORT_EMAIL_TO`/Quy's Gmail. No 4096-char limit, so send one clean
+   HTML/plain-text email covering:
    - **Market mood**: VIX + one-line tone; futures direction.
    - **Your portfolio (real numbers)**: each account, each position —
      symbol, qty, avg cost, live price, $ value, $ / % P&L. Crypto:
@@ -51,6 +55,8 @@ the paper account. Educational tone, beginner level, honest signals.
      enough or a dip merits an extra contribution.
    - **Today's calendar**: earnings/data with exact ET times.
    - **Beginner tip**: 2–3 sentences tied to today's actual data.
+   If AgentMail fails, fall back to a Gmail DRAFT via the connector and
+   flag the failure in the next Telegram-bearing run (7:00 AM).
 4. No repo commit needed unless something was logged; no trading — this
    run never places orders anywhere.
 
@@ -100,14 +106,10 @@ Files needed: `TRADING-STRATEGY.md`, `PROMPT-PREMARKET.md`,
    `{"date": "YYYY-MM-DD", "symbols": [...], "source": "premarket research"}`
    — this is what `scan_tjl.py`/`backtest_tjl.py` check all day (see
    Scanners section; there is no fixed ticker universe anymore).
-6. **Email the full report**: `python3 scripts/send_report.py
-   reports/premarket_<date>.md`. If AgentMail keys are missing it skips
-   cleanly — then create a Gmail DRAFT with the report via the Gmail
-   connector (it has no send tool) and say so in the Telegram brief.
-7. Republish the dashboard locally (gitignored, not committed) —
+6. Republish the dashboard locally (gitignored, not committed) —
    include `DATA.premarketReport` (report summary + watchlists);
    commit + push the packet, report, watchlist, and logs.
-8. **Telegram the pre-market brief (ALWAYS)** — the condensed report,
+7. **Telegram the pre-market brief (ALWAYS)** — the condensed report,
    split into 2 messages if needed: gappers (format A), macro calendar
    with ET times, market tone, crypto regime + BTC/ETH/SOL, extra-watch
    callouts, day/swing watchlists with conviction, the day's trade
@@ -247,7 +249,6 @@ and satisfies the "stop on every position" rule atomically.
 | Script | What / when |
 |---|---|
 | `scan_premarket.py [--no-alpaca]` | **The 7:00 AM packet builder** (needs `.venv` — see Gotchas). Hybrid: Alpaca screener candidates with real premarket gap/volume/RVOL + live levels; yfinance market snapshot, market caps, earnings dates (and keyless fallback candidates); RSS market news; ForexFactory US high-impact econ calendar (cached ~4h). Stamps `day_eligible`/`swing_eligible` per `WATCHLIST_CRITERIA.md`. Data only, zero analysis. Saves `scans/packet_<date>.json`. |
-| `send_report.py report.md [subject]` | Emails the premarket report via AgentMail (`AGENTMAIL_API_KEY`/`AGENTMAIL_INBOX` in env). No key = clean skip; fall back to a Gmail draft via the connector. |
 | `scan_gappers.py [--no-telegram]` | LEGACY backup (superseded by `scan_premarket.py` in the daily workflow, kept because it runs on stdlib+Alpaca alone): screener ∪ most-actives → real premarket gap% + volume filters (>5%, >$3, >50k) → top 10 with Benzinga headlines. Saves `scans/premarket_gappers_<date>.json`. |
 | `scan_tjl.py [--force] [--no-telegram] [TICKERS…]` | Trend Join Long entry check. Universe: explicit args override, else `scans/watchlist_<date>.json` (today's research picks), else latest gappers scan top-10, else exits cleanly with "no candidates." Time-gated 10:00–15:30 ET (`--force` bypass for testing). Saves `scans/tjl_watchlist_<date>_<HHMM>ET.json`. **Run with `--no-telegram`** — since 2026-07-08 the agent owns all Telegram sends (trade-only policy for TJL runs). |
 | `backtest_tjl.py [--tickers A,B,C] [--months N]` | TJL backtest on 5-min bars; same universe resolution as `scan_tjl.py` (selection-bias caveat in its header). On demand only. |
@@ -281,7 +282,10 @@ NOT used; plain text + simple `*bold*` HTML mode — see script).
 
 **Quy wants ALL updates through Telegram, with as much market detail as
 fits.** Concretely:
-- 5:00 AM Morning Brief: ALWAYS (the brief is the deliverable).
+- 5:00 AM Morning Brief: **NONE — email only** (AgentMail to Quy's
+  Gmail; Quy's standing preference, 2026-07-10, revised from the prior
+  Telegram-always rule). See the 5:00 AM workflow section for the
+  AgentMail inbox and fallback.
 - 7:00 AM Pre-Market: ALWAYS — full research brief.
 - 9:30 AM Open: ALWAYS — trades or "no entries + why".
 - Hourly TJL: **only if a trade was placed** (Quy chose this to avoid
@@ -348,9 +352,9 @@ fetch live data, so every workflow run regenerates it:
   at :30, Midday 17:00, Summary 20:00 UTC. In early November (DST
   ends) shift all six cron expressions +1 hour; reverse in March. The
   Daily Summary run nearest the change should flag it via Telegram.
-- **Python venv for the packet builder**: `scan_premarket.py` and
-  `send_report.py` want `.venv` with `requirements.txt` installed
-  (yfinance, feedparser, requests, markdown). Fresh cron containers
+- **Python venv for the packet builder**: `scan_premarket.py` wants
+  `.venv` with `requirements.txt` installed (yfinance, feedparser,
+  requests, markdown). Fresh cron containers
   don't have it: `python3 -m venv .venv && .venv/bin/pip install -q -r
   requirements.txt` (~40s) — or add that to the environment's setup
   script. Everything degrades gracefully without it (Alpaca-only
@@ -360,18 +364,25 @@ fetch live data, so every workflow run regenerates it:
   policy must allow `query1.finance.yahoo.com`, `query2.finance.yahoo.com`,
   `fc.yahoo.com` (yfinance), `nfs.faireconomy.media` (econ calendar),
   `feeds.content.dowjones.io`, `www.cnbc.com`, `news.google.com`,
-  `finance.yahoo.com` (RSS), and `api.agentmail.to` (email). Verified
-  2026-07-09: with these blocked the scan still completes but the
-  snapshot/market-caps/econ-calendar come back empty — the workflow's
-  step-3 fallbacks (Robinhood index quotes, one web search) cover it.
+  `finance.yahoo.com` (RSS), and `api.agentmail.to` (5:00 AM Morning
+  Brief email). Verified 2026-07-09: with these blocked the scan still
+  completes but the snapshot/market-caps/econ-calendar come back empty
+  — the workflow's step-3 fallbacks (Robinhood index quotes, one web
+  search) cover it.
 - **ForexFactory calendar rate limit**: the feed 429s on rapid calls;
   `scan_premarket.py` caches it in `scans/.ff_calendar_cache.json`
   (gitignored) with a ~4h TTL and falls back to the stale cache on
   fetch failure. Don't fetch it manually in the same session.
-- **AgentMail**: full-report email needs `AGENTMAIL_API_KEY` +
-  `AGENTMAIL_INBOX` (from agentmail.to) in the environment. Missing =
-  `send_report.py` skips cleanly; fall back to a Gmail DRAFT via the
-  connector (it cannot send) and mention it in the Telegram brief.
+- **AgentMail**: the 5:00 AM Morning Brief emails via AgentMail
+  (`AGENTMAIL_API_KEY` + `AGENTMAIL_INBOX` from agentmail.to). Working
+  inbox: `zenith-alert@agentmail.to` (verified live 2026-07-10 — the
+  earlier `stock-alert@agentmail.to` value was never provisioned and
+  every send 404'd; set as a project-level `env` default in
+  `.claude/settings.json` so fresh sessions pick it up automatically).
+  If AgentMail fails, fall back to a Gmail DRAFT via the connector (it
+  cannot send) and flag it in the next Telegram-bearing run. The 7:00
+  AM Pre-Market report is Telegram-only (Quy's standing preference,
+  2026-07-10) — no email send for that workflow.
 - **Market holidays**: `scripts/alpaca.sh clock` says if the market is
   open — check it before trading; research runs can proceed anyway.
 - **Wash-trade rejections**: Alpaca rejects an order that would
