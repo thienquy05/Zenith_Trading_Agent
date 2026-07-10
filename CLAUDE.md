@@ -3,9 +3,9 @@
 Claude IS the trading agent for this repo. It paper-trades on Alpaca,
 researches with the premarket packet builder + targeted web search, logs
 everything to markdown files here, and reports via Telegram (7 AM–4 PM
-workflows), email (5 AM Morning Brief + the full 7 AM report, both via
-AgentMail) + the "Quy Dashboard" artifact. No database, no backend — the
-repo's markdown files are the storage.
+workflows), email (5 AM Morning Brief only, via AgentMail) + the
+"Quy Dashboard" artifact. No database, no backend — the repo's
+markdown files are the storage.
 
 **Start here: read `AGENT-INSTRUCTIONS.md` before doing anything.**
 It has the full daily workflow, API reference, and gotchas.

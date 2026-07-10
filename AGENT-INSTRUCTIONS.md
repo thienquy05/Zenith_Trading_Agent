@@ -106,14 +106,10 @@ Files needed: `TRADING-STRATEGY.md`, `PROMPT-PREMARKET.md`,
    `{"date": "YYYY-MM-DD", "symbols": [...], "source": "premarket research"}`
    — this is what `scan_tjl.py`/`backtest_tjl.py` check all day (see
    Scanners section; there is no fixed ticker universe anymore).
-6. **Email the full report**: `python3 scripts/send_report.py
-   reports/premarket_<date>.md`. If AgentMail keys are missing it skips
-   cleanly — then create a Gmail DRAFT with the report via the Gmail
-   connector (it has no send tool) and say so in the Telegram brief.
-7. Republish the dashboard locally (gitignored, not committed) —
+6. Republish the dashboard locally (gitignored, not committed) —
    include `DATA.premarketReport` (report summary + watchlists);
    commit + push the packet, report, watchlist, and logs.
-8. **Telegram the pre-market brief (ALWAYS)** — the condensed report,
+7. **Telegram the pre-market brief (ALWAYS)** — the condensed report,
    split into 2 messages if needed: gappers (format A), macro calendar
    with ET times, market tone, crypto regime + BTC/ETH/SOL, extra-watch
    callouts, day/swing watchlists with conviction, the day's trade
@@ -253,7 +249,6 @@ and satisfies the "stop on every position" rule atomically.
 | Script | What / when |
 |---|---|
 | `scan_premarket.py [--no-alpaca]` | **The 7:00 AM packet builder** (needs `.venv` — see Gotchas). Hybrid: Alpaca screener candidates with real premarket gap/volume/RVOL + live levels; yfinance market snapshot, market caps, earnings dates (and keyless fallback candidates); RSS market news; ForexFactory US high-impact econ calendar (cached ~4h). Stamps `day_eligible`/`swing_eligible` per `WATCHLIST_CRITERIA.md`. Data only, zero analysis. Saves `scans/packet_<date>.json`. |
-| `send_report.py report.md [subject]` | Emails the premarket report via AgentMail (`AGENTMAIL_API_KEY`/`AGENTMAIL_INBOX` in env). No key = clean skip; fall back to a Gmail draft via the connector. |
 | `scan_gappers.py [--no-telegram]` | LEGACY backup (superseded by `scan_premarket.py` in the daily workflow, kept because it runs on stdlib+Alpaca alone): screener ∪ most-actives → real premarket gap% + volume filters (>5%, >$3, >50k) → top 10 with Benzinga headlines. Saves `scans/premarket_gappers_<date>.json`. |
 | `scan_tjl.py [--force] [--no-telegram] [TICKERS…]` | Trend Join Long entry check. Universe: explicit args override, else `scans/watchlist_<date>.json` (today's research picks), else latest gappers scan top-10, else exits cleanly with "no candidates." Time-gated 10:00–15:30 ET (`--force` bypass for testing). Saves `scans/tjl_watchlist_<date>_<HHMM>ET.json`. **Run with `--no-telegram`** — since 2026-07-08 the agent owns all Telegram sends (trade-only policy for TJL runs). |
 | `backtest_tjl.py [--tickers A,B,C] [--months N]` | TJL backtest on 5-min bars; same universe resolution as `scan_tjl.py` (selection-bias caveat in its header). On demand only. |
@@ -357,9 +352,9 @@ fetch live data, so every workflow run regenerates it:
   at :30, Midday 17:00, Summary 20:00 UTC. In early November (DST
   ends) shift all six cron expressions +1 hour; reverse in March. The
   Daily Summary run nearest the change should flag it via Telegram.
-- **Python venv for the packet builder**: `scan_premarket.py` and
-  `send_report.py` want `.venv` with `requirements.txt` installed
-  (yfinance, feedparser, requests, markdown). Fresh cron containers
+- **Python venv for the packet builder**: `scan_premarket.py` wants
+  `.venv` with `requirements.txt` installed (yfinance, feedparser,
+  requests, markdown). Fresh cron containers
   don't have it: `python3 -m venv .venv && .venv/bin/pip install -q -r
   requirements.txt` (~40s) — or add that to the environment's setup
   script. Everything degrades gracefully without it (Alpaca-only
@@ -369,24 +364,25 @@ fetch live data, so every workflow run regenerates it:
   policy must allow `query1.finance.yahoo.com`, `query2.finance.yahoo.com`,
   `fc.yahoo.com` (yfinance), `nfs.faireconomy.media` (econ calendar),
   `feeds.content.dowjones.io`, `www.cnbc.com`, `news.google.com`,
-  `finance.yahoo.com` (RSS), and `api.agentmail.to` (email). Verified
-  2026-07-09: with these blocked the scan still completes but the
-  snapshot/market-caps/econ-calendar come back empty — the workflow's
-  step-3 fallbacks (Robinhood index quotes, one web search) cover it.
+  `finance.yahoo.com` (RSS), and `api.agentmail.to` (5:00 AM Morning
+  Brief email). Verified 2026-07-09: with these blocked the scan still
+  completes but the snapshot/market-caps/econ-calendar come back empty
+  — the workflow's step-3 fallbacks (Robinhood index quotes, one web
+  search) cover it.
 - **ForexFactory calendar rate limit**: the feed 429s on rapid calls;
   `scan_premarket.py` caches it in `scans/.ff_calendar_cache.json`
   (gitignored) with a ~4h TTL and falls back to the stale cache on
   fetch failure. Don't fetch it manually in the same session.
-- **AgentMail**: full-report email needs `AGENTMAIL_API_KEY` +
-  `AGENTMAIL_INBOX` (from agentmail.to) in the environment. Working
+- **AgentMail**: the 5:00 AM Morning Brief emails via AgentMail
+  (`AGENTMAIL_API_KEY` + `AGENTMAIL_INBOX` from agentmail.to). Working
   inbox: `zenith-alert@agentmail.to` (verified live 2026-07-10 — the
   earlier `stock-alert@agentmail.to` value was never provisioned and
   every send 404'd; set as a project-level `env` default in
   `.claude/settings.json` so fresh sessions pick it up automatically).
-  Missing keys = `send_report.py` skips cleanly; any other failure
-  (bad inbox, network) logs `send_report: FAILED - ...` and falls back
-  to a Gmail DRAFT via the connector (it cannot send) — mention it in
-  the next Telegram-bearing run.
+  If AgentMail fails, fall back to a Gmail DRAFT via the connector (it
+  cannot send) and flag it in the next Telegram-bearing run. The 7:00
+  AM Pre-Market report is Telegram-only (Quy's standing preference,
+  2026-07-10) — no email send for that workflow.
 - **Market holidays**: `scripts/alpaca.sh clock` says if the market is
   open — check it before trading; research runs can proceed anyway.
 - **Wash-trade rejections**: Alpaca rejects an order that would

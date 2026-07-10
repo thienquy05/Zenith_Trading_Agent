@@ -57,12 +57,9 @@ following REPORT_TEMPLATE.md exactly, section for section. No em dashes.
 2. Write `scans/watchlist_<date>.json` with the day-list tickers (plus any
    flagged swing name worth intraday eyes): that file is what scan_tjl.py
    trades from all day.
-3. Email the full report (scripts/send_report.py, AgentMail). If the key is
-   missing it exits cleanly; fall back to a Gmail draft via the connector
-   and note where the report lives.
-4. Telegram the condensed brief per AGENT-INSTRUCTIONS.md (ALWAYS, all
+3. Telegram the condensed brief per AGENT-INSTRUCTIONS.md (ALWAYS, all
    standing sections). The report is the archive; the brief is the ping.
-5. Refresh the dashboard (`DATA.premarketReport`).
+4. Refresh the dashboard (`DATA.premarketReport`).
 
 ## Voice
 
