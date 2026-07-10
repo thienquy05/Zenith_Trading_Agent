@@ -209,3 +209,60 @@ a new dated line.
 - Dashboard republished (local, gitignored) with fresh Alpaca +
   Robinhood pulls; RSI/MA signals computed fresh this run (first
   dashboard build of the day in this session).
+
+### 2026-07-10 13:14 ET — midday scan
+- Positions: AAPL 1@$310.47, current $314.24, uP&L +$3.77/+1.21%. GTC
+  stop still resting at $300 (order `7709c58e...`, status `new`,
+  unfilled). 1R = $10.47/share; current gain ≈0.36R — nowhere near the
+  +2R trail-to-breakeven trigger (~$331.41) and nowhere near -7%
+  (~$288.73) or a thesis break. No action on the position.
+- `scan_tjl.py --no-telegram`: today's `watchlist_2026-07-10.json` was
+  empty (7 AM research found no qualifying setups again), so the
+  scanner fell back to the latest gappers packet universe (JLHL,
+  VRAX) — both `fail_daily` (price ≤ prior-day high). 0/2 PASS, no
+  trade.
+- `scan_crypto.py --no-telegram`: regime still BEAR (BTC prev close
+  $63,162.31 < daily SMA200 $74,228.84) — sleeve stands down, no
+  entries. No crypto positions open, so no -7%/thesis check applies.
+- Guardrail check: moot (no PASS to evaluate). Daily P&L -0.0017%
+  (equity $100,004 vs last_equity $100,005.74) — no daily/weekly
+  breaker anywhere close. Weekly trade cap: 1 of 5 used this week
+  (AAPL, 7/8).
+- Afternoon catalysts: today's premarket packet's ForexFactory pull
+  shows **zero high-impact USD events today** — no §3b tier-1 blackout
+  window this afternoon. No confirmed Fed speaker or Treasury auction
+  found for this afternoon specifically via web search (Fed's July
+  calendar lists a Bowman speech somewhere this month, exact date/time
+  unconfirmed — flagged as uncertain, not treated as a blackout).
+  Delta Air Lines (DAL) reported Q2 earnings today (not a held/
+  watchlist name). Market tone: Thursday 7/9 close was S&P +0.8% to
+  7,543.64 / Nasdaq +1.3% to 26,206.89 on AI-chip strength (SK Hynix US
+  ADR debut +14%), VIX fell 6.3% to 15.84 — risk-on cooling off from
+  Wednesday's Iran-strike spike as Trump signaled ceasefire talks
+  continuing rather than escalation. Full bank earnings season starts
+  Tue 7/14.
+- Extra-watch one-liners (live): BTC ~$63,939 (Alpaca cquote, still
+  bear regime, well under SMA200 ~$74.2k); ETH ~$1,792; SOL ~$77.84
+  (round-tripped back under the $79 support flagged yesterday). NVDA
+  $210.01 (Robinhood live, +3.57% vs $202.78 prior close) — BofA
+  reiterated Buy 7/8 ("unique, durable growth franchise"), fresh
+  SpaceX/Grok 4.5 chip-order chatter. ORCL $142.24 (Robinhood live
+  trade, Alpaca quote showed a wide IEX-noise spread bp$139.97/
+  ap$147.39) — down ~1.4% vs $144.22 prior close, partly mechanical
+  (ex-dividend $0.50 today) plus the S&P BBB- downgrade / FY26 FCF
+  deficit (-$23.7B) overhang still weighing.
+- Robinhood pull partial this run: Individual ORCL 0.762904@$142.24
+  (uP&L ≈ -$0.02, ~flat) and Roth VOO 0.110322@$692.72 (uP&L +$0.67/
+  +0.89%) refreshed live. The Agentic account (NVDA/TSLA/crypto
+  positions + portfolio) and crypto value pull were **blocked by the
+  session's permission classifier** this run ("speculative access to
+  sensitive financial data... not required by this task") after the
+  first two account queries went through — did not attempt to work
+  around it. NVDA/TSLA live prices above are real (equity quotes call
+  succeeded), just not tied to a freshly-confirmed Agentic share count
+  this run; crypto $ value reused from the 7/9 estimate ($31.36 est.
+  off the $18/$8/$4 split + $70 pending) with no live refresh.
+- Dashboard republished (local, gitignored) with the live Alpaca +
+  partial Robinhood pull above; Agentic/crypto rows carried over from
+  the last confirmed pull (7/9 AM) with a note that they're not fresh
+  this run.
