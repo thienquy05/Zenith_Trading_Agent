@@ -183,3 +183,29 @@ a new dated line.
   this morning's 9:30 AM computation (unchanged materially over ~5h,
   skipped re-running the historicals call for token frugality — noted
   in the dashboard as "as of 9:30 AM").
+
+### 2026-07-10 09:39 ET — market open
+- Clock: market open (`is_open: true`, next close 16:00 ET). No holiday.
+- Positions: AAPL 1@$310.47, current $315.39, uP&L +$4.92/+1.58%. GTC
+  stop still resting at $300 (order `7709c58e...`, status `new`) — no
+  gap-through, well clear of stop and -7% (-7% level ~$288.73).
+- Account: equity $100,004.84 vs last_equity $100,005.74 — flat
+  (~-0.001% day P&L). No daily/weekly circuit breaker anywhere close.
+  Weekly trade cap: 1 of 5 used this week.
+- Guardrail pre-check: moot — 7:00 AM research found no qualifying
+  setups (0 premarket gappers cleared day/swing eligibility, crypto
+  sleeve regime-gated BEAR) and explicitly planned no entries at the
+  open. No planned trades to re-check against §3b, so no new positions
+  opened. No §3b blackout window in effect today (0 tier-1 events).
+- Action: no entries. Reason: no setups from this morning's research
+  survived to trade — standing aside on equities, crypto sleeve flat
+  (bear regime, BTC $64,254.88 < SMA200 ~$74.2k prior-close basis).
+- Extra-watch (live): BTC $64,254.88, ETH $1,798.13, SOL $79.03 — all
+  green continuing this morning's bounce, no name-specific news since
+  the 7 AM read. NVDA $204.21 (~flat vs $202.76 this AM). ORCL ~$145.34
+  by last trade (quote's bid/ask showed a wide IEX-noise spread,
+  bars confirm ~$145.34, +0.75% vs $144.26 this AM) — no material
+  headlines.
+- Dashboard republished (local, gitignored) with fresh Alpaca +
+  Robinhood pulls; RSI/MA signals computed fresh this run (first
+  dashboard build of the day in this session).
