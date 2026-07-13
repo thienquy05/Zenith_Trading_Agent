@@ -322,3 +322,42 @@ a new dated line.
 - Dashboard republished (local, gitignored) with fresh Alpaca account/
   positions/orders + live Robinhood pull (all three accounts + crypto
   portfolio value, confirmed this run).
+
+### 2026-07-13 13:14 ET — midday scan
+- Positions: AAPL 1@$310.47, current $316.42, uPL +$5.95/+1.92%
+  (≈+0.57R). Stop still resting at $300 (order `7709c58e...`, `new`).
+  Not near -7% (~$288.73) or the +2R trail trigger (~$331.41) — no
+  stop adjustment, no thesis break. No crypto positions open.
+- `scan_tjl.py --no-telegram`: universe SUNE (from today's premarket
+  watchlist) — fail_daily, px $3.36 ≤ prev high $4.48. No PASS.
+- `scan_crypto.py --no-telegram`: regime BEAR (BTC $63,745 prior close
+  < SMA200 $73,869) — sleeve stands down, no entries scanned.
+- Trades today: 0 | guardrails: daily/weekly breakers clear, weekly
+  trade cap 0/5 used, no blackout in effect right now (CPI + Fed Chair
+  Warsh testimony are tomorrow 7/14).
+- Afternoon catalysts: Fed Vice Chair Bowman speech + Gov. Waller panel
+  in Rome today; no scheduled Treasury auction or FOMC release this
+  afternoon found. Tape driven by Trump reinstating the Iran shipping
+  blockade (Strait of Hormuz) — Nasdaq -1.3%/S&P -0.7% at midday, oil
+  +4.5% (~$75/bbl), chip/tech names leading the selloff (Micron -4.7%,
+  SanDisk -10.2%, SK Hynix -15% in Seoul). Kevin Warsh's first
+  congressional testimony as Fed Chair is later today.
+- Extra-watch (live): BTC $62,320 (24/7, still < SMA200 regime line),
+  ETH $1,774, SOL $75.51 (crypto weak, no material coin-specific news
+  found — broad risk-off), NVDA $204.88 (-2.9% vs prior close $210.96,
+  dragged by the chip selloff; RSI(14) 50.3, neutral/DCA zone, no
+  extension flag), ORCL $134.33 (-4.5% vs prior close $140.64, fresh
+  52-week low; RSI(14) 12.4 — STRONG BUY ZONE/oversold, informational
+  only, price well below both 50-day ($183.07) and 200-day ($195.72)
+  SMA — cautious outlook on cloud-margin sustainability cited as the
+  driver, no earnings-date proximity).
+- **Robinhood account change noted**: Individual account (556092849)
+  now shows $0 equity value / no ORCL position — cash $104.15 with a
+  $100 pending deposit. This differs from the AGENT-INSTRUCTIONS.md
+  reference (ORCL ~$100 invested, verified 2026-07-08). Flagging as
+  observed fact only (read-only account, Quy manages it manually) —
+  will confirm again on the 4 PM pull and note in the summary if it
+  persists.
+- Dashboard republished (local, gitignored) with fresh Alpaca account/
+  positions/orders + live Robinhood pull (all three accounts, VOO/NVDA/
+  TSLA/ORCL RSI+SMA signals, crypto portfolio value) confirmed this run.
