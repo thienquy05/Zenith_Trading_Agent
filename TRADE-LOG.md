@@ -293,3 +293,32 @@ a new dated line.
   capital — the waiting is part of the process. Focus stays on
   gate/guardrail discipline, not activity. Trade-only when the setup
   clears every filter.
+
+### 2026-07-13 09:39 ET — market open check
+- Clock: market open (`is_open:true`, next close 4:00 PM ET today).
+- Account: equity $100,010.72 | cash $99,689.52 | day P&L +$5.88
+  (+0.0059%) — nowhere near the -2% daily circuit breaker.
+- Open position: AAPL 1@$310.47, current $321.73, uP&L +$11.26/+3.63%
+  (≈ +1.07R). GTC stop `7709c58e...` still resting at $300 (verified
+  live via `orders all` — status `new`, untouched since 7/9). Did not
+  gap through the stop; no thesis break. +2R trail trigger (~$331.41)
+  not yet reached — no stop adjustment warranted.
+- Guardrail pre-check (§3b): daily breaker clear (+0.01% vs -2%
+  threshold), weekly breaker clear, weekly trade cap 0/5 used this week
+  (resets Monday — today), no tier-1 event blackout today (CPI + Fed
+  Chair Warsh testimony are tomorrow 7/14, already flagged), tilt stop
+  n/a (no stop-outs today), correlation cap n/a (only 1 open position).
+- Trades today: 0 | notes: this morning's research (RESEARCH-LOG.md
+  2026-07-13 pre-market) found no qualifying setups — the one gapper
+  (SUNE) failed the day/swing screens mechanically (down-gap) and read
+  as a non-catalyst on discretion; crypto sleeve stayed regime-gated
+  BEAR (BTC $63,745 prior close < SMA200 $73,869). Nothing was planned
+  to execute at the open, so no entry-zone/guardrail conflict arose —
+  standing aside on equities and crypto, same as the 7 AM call.
+  Session dominated by the weekend US-Iran escalation (fresh CENTCOM
+  strikes, Iran retaliation) dragging chip names lower premarket
+  (SK Hynix -8%, Micron -5.2%, NVDA -1.2%) — a macro/geopolitical
+  driver, not a stock-specific setup, so no new opportunity screened in.
+- Dashboard republished (local, gitignored) with fresh Alpaca account/
+  positions/orders + live Robinhood pull (all three accounts + crypto
+  portfolio value, confirmed this run).
