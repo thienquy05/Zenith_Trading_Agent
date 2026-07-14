@@ -426,3 +426,14 @@ a new dated line.
   price-moving).
 - Dashboard republished (local, gitignored) with fresh Alpaca account/
   positions/orders + live quotes for extra-watch names.
+
+### 2026-07-14 16:00 ET — daily snapshot
+- Equity $100,004.05 | day P&L -$2.78 (-0.003%) | cash $99,689.52
+- Open: AAPL 1@$310.47, current $314.5272 (uP&L +$4.0572 / +1.31%)
+- Trades today: 0 | notes:
+  - No new entries placed today (premarket research found no qualifying setups; CPI + Warsh testimony tier-1 blackout window 8:00-10:15 AM ET, no entries afterward either).
+  - AAPL position from 7/8 remains open and protected (GTC stop resting at $300, order `7709c58e...`, status `new`, confirmed unfilled). 1R = $10.47; current unrealized gain ≈ +$4.06 ≈ +0.39R, well clear of both the -7% level (~$288.73) and the +2R trail trigger (~$331.41). No action warranted.
+  - **Robinhood account changes noted**: Individual (556092849) now shows ORCL 0.790482 @ avg cost $131.76 (was reported $0 equity / no position in yesterday's midday scan). The re-appearance of ORCL suggests Quy may have re-bought or the prior read was a data glitch. Current live price: ORCL $127.97 (down -2.7% from yesterday's close $131.54, ex-dividend $0.50 now cleared) — individual account uP&L ≈ -$2.97. Roth VOO 0.110322 @ $686.63 (avg cost; live price $0.11 off the basis per recent reads). Agentic: NVDA 0.358944 @ $195.10 (live $211.79, +4.04% day, uP&L +$5.98); TSLA 0.002340 @ $427.35 (dust). Agentic crypto value: $32.54 (BTC est. $19.49 / ETH $8.16 / SOL $4.90 off the live price pulls and the $18/$8/$4 basis split approximation). Robinhood portfolio total: $109.36 (equity $76.82 + crypto $32.54, no pending deposits/cash this run).
+  - Extra-watch intraday moves (live as of 4 PM ET close): BTC $64,486.80 (still < SMA200 regime line ~$73.7k, bear regime intact), ETH (no separate quote pull, estimated ~$1,867 from intraday high), SOL (no separate pull, estimated ~$77 from premarket scan), NVDA +4.04% to $211.79 (chip-stock bounce on inflation relief), ORCL -2.7% to $127.97 (ex-dividend mechanics + IBM sympathy hangover).
+- Guardrail/breaker status: day P&L -0.003%, well inside the -2% daily / -4% weekly circuit breakers — no trip. Weekly trade cap: 0 of 5 new entries used this week (resets Monday 7/14, but we're still in the same calendar week; AAPL was placed 7/8, prior week). No rule violations. Tilt stop n/a (no stop-outs today).
+- Lesson: flat equity days with zero new setups reflect discipline — no setup = no edge = standing aside. The process depends on quality entries, not activity. Robinhood real-account moves (ORCL's re-buy, NVDA's chip-stock bounce) are noted for context only — paper Alpaca account isolation maintained.
