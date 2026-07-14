@@ -1,0 +1,15 @@
+{
+  "scanned_at": "2026-07-14T10:33:33.618638-04:00",
+  "candidates_checked": 2,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "VEEE",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "AGEN",
+      "result": "fail_daily"
+    }
+  ]
+}
