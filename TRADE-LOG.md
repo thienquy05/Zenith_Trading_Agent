@@ -384,3 +384,45 @@ a new dated line.
 - Crypto sleeve: BEAR regime (BTC < SMA200) — stands down, no entries.
 - Dashboard republished (local, gitignored); Alpaca account/positions
   refreshed this run.
+
+### 2026-07-14 13:11 ET — midday scan
+- Positions: AAPL 1@$310.47, current $314.74, uPL +$4.27/+1.37%
+  (≈+0.41R, 1R=$10.47). Stop still resting at $300 (order `7709c58e...`,
+  status `new`). Not near -7% (~$288.73) or the +2R trail trigger
+  (~$331.41) — no stop adjustment, no thesis break. No crypto positions
+  open (Alpaca paper).
+- `scan_tjl.py --no-telegram`: universe VEEE, AGEN (today's premarket
+  watchlist). VEEE fail_daily (prev close $24.87 ≤ SMA200 $41.56); AGEN
+  fail_daily (px $5.35 ≤ prev high $8.65). No PASS.
+- `scan_crypto.py --no-telegram`: regime BEAR (BTC $62,274 prior close
+  < SMA200 $73,744) — sleeve stands down, no entries.
+- Trades today: 0 | guardrails: daily circuit breaker clear, weekly
+  breaker clear, weekly trade cap 0/5 used this week, tier-1 blackout
+  (CPI 8:30 AM + Warsh testimony 10:00 AM) already passed by midday —
+  no blackout active now, tilt stop n/a (no stop-outs), correlation cap
+  n/a (1 open position).
+- Afternoon catalysts: Fed Gov. Barr speech on AI (time TBD) + Fed Chair
+  Warsh's first congressional testimony (House Financial Services,
+  started 10:00 AM ET, semiannual Monetary Policy Report) continues
+  into the afternoon; no scheduled Treasury auction or 2 PM FOMC release
+  found today. No major earnings after close flagged for held/watchlist
+  names. Tape: June CPI cooled more than expected (3.5% YoY vs ~3.8%
+  expected) — S&P 500 +0.37% (~7,542.79), Nasdaq leading +1% on the
+  inflation relief and a chip-stock bounce; Dow held back by IBM -25%
+  on a Q2 profit warning (software/infrastructure demand). Oil still
+  elevated on US-Iran tension but risk appetite improved vs yesterday's
+  selloff.
+- Extra-watch (live): BTC $64,599 (up from this morning's $62,274 print
+  — still < SMA200 $73,744, regime stays BEAR despite the bounce), ETH
+  $1,867, SOL $77.21 (crypto firmed with the broader risk-on CPI
+  reaction; Fear & Greed still Extreme Fear per news scan, no
+  coin-specific catalyst), NVDA $211.16 (+1.4% intraday, $208.25 open →
+  $211.16, participating in the chip-stock bounce, no company-specific
+  news found), ORCL $129.71 (-1.7% intraday, $131.92 open → $129.71,
+  trading in sympathy with IBM's profit warning per Benzinga; stock is
+  down ~33% YTD on AI-capex debt/execution concerns — no new
+  company-specific news beyond the IBM sympathy move and a routine AI
+  product announcement (Fusion Agentic Applications) which is not
+  price-moving).
+- Dashboard republished (local, gitignored) with fresh Alpaca account/
+  positions/orders + live quotes for extra-watch names.
