@@ -1,0 +1,39 @@
+{
+  "scanned_at": "2026-07-15T10:33:12.349876-04:00",
+  "candidates_checked": 8,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "SOXS",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "TZA",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "CRMT",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "BMGL",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "VEEE",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "NXTC",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "BMNU",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "LCID",
+      "result": "fail_daily"
+    }
+  ]
+}
