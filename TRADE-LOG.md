@@ -426,3 +426,56 @@ a new dated line.
   price-moving).
 - Dashboard republished (local, gitignored) with fresh Alpaca account/
   positions/orders + live quotes for extra-watch names.
+
+### 2026-07-15 09:39 ET — market open
+- Market open confirmed (`clock`: `is_open: true`, next close 4:00 PM
+  ET today). No holiday.
+- Positions: AAPL 1@$310.47, current $318.97, uPL +$8.50/+2.74%
+  (intraday +1.31% vs yesterday's $314.86 close; ≈+0.81R, 1R=$10.47).
+  Stop still resting at $300 (order `7709c58e...`, status `new`) — did
+  not gap through, no thesis break, no action needed.
+- Guardrail pre-check (§3b): daily circuit breaker clear (equity
+  $100,008.48 vs last_equity $100,004.38, day P&L +$4.10/+0.004%,
+  nowhere near -2%); weekly breaker clear; weekly trade cap 0/5 used
+  this week; **event blackout window ACTIVE right now** — PPI
+  (core/headline, 8:30 AM ET) + Fed Chair Warsh's second day of
+  testimony (Senate Banking, 10:00 AM ET) tier-1 window runs
+  ~8:00-10:15 AM ET, current time 9:39 AM ET is inside it — no new
+  entries permitted regardless of setup quality.
+- Trades executed: **0**. No entries — today's premarket research
+  (RESEARCH-LOG.md 2026-07-15) found no qualifying setups (all 8
+  gappers failed the day/swing screens; two were leveraged-ETF
+  reverse-split data artifacts, not real moves) even before the
+  blackout window is considered. Nothing was in the day's trade-idea
+  list to execute at the open.
+- Crypto sleeve: BEAR regime (BTC prior close < SMA200) — stands down,
+  no entries.
+- **Robinhood account change confirmed** (live pull this run): the
+  Individual account (556092849) is now fully empty — $0.38 total
+  value, no positions (down from ORCL ~$100 invested per the
+  AGENT-INSTRUCTIONS.md reference, first flagged 2026-07-14). ORCL now
+  shows up as a fractional position (0.790482 sh, $102.79 value) inside
+  the "Agentic" account (539785238) alongside NVDA (0.358944 sh,
+  $76.10, avg $195.10, +$6.07 uPL) and TSLA (0.002340 sh, $0.95, avg
+  $427.35, -$0.05 uPL) — looks like Quy consolidated/moved the ORCL
+  position rather than sold it outright. Agentic account total $213.59
+  (equity $180.42 + crypto $33.18, no cash/pending). Roth IRA
+  (829651439): VOO 0.183159 sh, $127.03, avg $689.29, +$0.78 uPL,
+  pending deposit $50.
+- Robinhood advisory signals (RSI(14)/50-200MA, `TRADING-STRATEGY.md`
+  §5), live historicals this run: VOO $693.58 RSI 64.1 (🟡 HOLD — pause
+  new buys), NVDA $212.00 RSI 60.7 (🟡 HOLD — pause new buys, +10.3%
+  above SMA200 but not >15% extended), TSLA $404.43 RSI 54.3 (🟡
+  NEUTRAL/DCA; earnings 2026-07-22 pm, outside 24h window), ORCL
+  $130.03 RSI 14.0 (🟢 STRONG BUY ZONE/oversold, still ~33% below its
+  SMA200 $193.91 — informational only, not a paper-account trade
+  signal).
+- Extra-watch (live): BTC $65,323 (ask), ETH $1,934.79, SOL $78.70
+  (crypto tape firmer than this morning's premarket read, still < BTC
+  SMA200 regime line — BEAR unchanged), NVDA $212.00 (+0.09% vs
+  yesterday's close), ORCL $130.03 (+1.63% vs yesterday's close,
+  continuing this week's bounce).
+- Dashboard republished (local, gitignored) with fresh Alpaca account/
+  positions/orders + live Robinhood pull (all three accounts, VOO/NVDA/
+  TSLA/ORCL RSI+SMA signals, crypto portfolio estimate) confirmed this
+  run.
