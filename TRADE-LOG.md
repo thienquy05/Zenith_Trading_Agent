@@ -705,3 +705,18 @@ a new dated line.
 - Telegram: midday update sent (ALWAYS-send workflow) — positions,
   stop trail, no-candidate scans, afternoon catalysts, extra-watch
   one-liners.
+
+### 2026-07-16 13:32 ET — Hourly TJL watch (no candidates)
+- `scan_tjl.py --no-telegram`: today's watchlist is still empty and no
+  gappers scan exists to fall back on — scanner exits cleanly with "no
+  candidates," nothing to check against §2b. Saved
+  `scans/tjl_watchlist_2026-07-16_1332ET.json`.
+- §3b guardrail note (moot, no candidate to gate): position count
+  unchanged at 7 open (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL) vs the
+  4-concurrent cap, and today's/this-week's new-entry caps remain
+  exceeded by Quy's manual adds from the 9:30 AM open — no new entry
+  would be permitted this run even on a PASS.
+- No trade placed. Hit set unchanged (empty → empty) — dashboard not
+  republished this run per the cheap-hourly-run rule.
+- Telegram: none sent (quiet run, no trade, no emergency action —
+  Quy's standing preference).
