@@ -386,3 +386,37 @@ Append at the BOTTOM, one entry per pre-market run.
 - Watching but not trading: none of today's gappers warrant a watch —
   see Skips & Traps in today's report. Reassess after PPI + Warsh's
   second testimony clear at 10 AM ET.
+
+## 2026-07-16 — pre-market
+- Account: equity $100,018.13 | cash $99,689.52 | open positions: AAPL
+  1@$310.47, current $328.61, uP&L +$18.14/+5.84%.
+- Macro/calendar: 0 US high-impact events today (ForexFactory live
+  fetch) — the CPI(Tue)/PPI(Wed) blackout run is over, first clear
+  morning since Monday. No §3b blackout window in effect today. UNH
+  reports before the bell, NFLX after today's close (neither held, but
+  market-moving for sentiment).
+- Sector momentum / market tone: genuinely quiet premarket — packet's
+  gap filter returned ZERO gappers from 60 Alpaca-screener candidates
+  (not a data-feed issue, the Alpaca candidate path worked fine).
+  Futures mixed but calmer (some +0.2% on eased inflation, some -0.1%).
+  10Y yield drifted to ~4.57% on this week's cooler CPI/PPI combo. SPX
+  7,572.40 / NDX 29,502.60 / RUT 2,976.26 (yesterday close, yfinance
+  snapshot blocked again). VIX 16.10, third straight session cooling
+  off the Iran-driven spike from last week.
+- Crypto regime: BEAR (BTC prior close $64,724.27 < daily SMA200
+  $73,517.57) — sleeve stands down. BTC/ETH/SOL all pulling back
+  slightly today after a strong prior session: BTC $64,117.94 (-0.9% vs
+  today's open), ETH $1,885.08 (-1.6%), SOL $76.19 (-1.3%) — yesterday
+  saw BTC reclaim $65k on softer inflation data + $180M+ spot ETF
+  inflows ($139M into IBIT).
+- Extra-watch (BTC/ETH/SOL/NVDA/ORCL): NVDA $208.85 premarket (-1.7%),
+  no specific news. ORCL $134.00 premarket (+1.1%), continuing this
+  week's bounce. Note: an "Oracle" hack headline circulating today is
+  about a DeFi price-oracle exploit on Ostium (~$18M), unrelated to
+  Oracle Corp — flagged to avoid confusion.
+- Ideas (2-3): none. Zero gappers to screen, zero econ events, nothing
+  to force. Cleanest "no qualifying setups" of the week — the absence of
+  candidates is the whole story today, not a screen filtering anything
+  out. Crypto sleeve flat (bear regime).
+- Watching but not trading: nothing flagged today. Watch for NFLX
+  after-hours volatility bleeding into tomorrow's premarket tape.
