@@ -779,3 +779,17 @@ a new dated line.
   RSI/MA signals for ORCL/VOO/NVDA/TSLA).
 - Telegram: open report sent (ALWAYS-send workflow) — no entries + why,
   position status, extra-watch one-liners.
+
+### 2026-07-17 11:33 ET — Hourly TJL watch (no candidates)
+- `scan_tjl.py --no-telegram`: universe ATPC, STAK (today's premarket
+  packet). Both `fail_daily` — ATPC px $3.25 ≤ prev high $4.81, STAK
+  px $2.01 ≤ prev high $4.36. Saved
+  `scans/tjl_watchlist_2026-07-17_1133ET.json`.
+- §3b guardrail note (moot, no PASS to gate): position count still 7
+  open vs the 4-concurrent max, and this week's new-entry count (6,
+  Quy's manual trades 7/16) still exceeds the 5/week cap — no new
+  agent entry would be permitted this run even on a PASS.
+- No trade placed. Hit set unchanged (empty → empty, only timestamp
+  differs) — dashboard not republished per the cheap-hourly-run rule.
+- Telegram: none sent (quiet run, no trade, no emergency action —
+  Quy's standing preference).
