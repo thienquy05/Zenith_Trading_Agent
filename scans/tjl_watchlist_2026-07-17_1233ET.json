@@ -1,0 +1,15 @@
+{
+  "scanned_at": "2026-07-17T12:33:06.489604-04:00",
+  "candidates_checked": 2,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "ATPC",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "STAK",
+      "result": "fail_daily"
+    }
+  ]
+}
