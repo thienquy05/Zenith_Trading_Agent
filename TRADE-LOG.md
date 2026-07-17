@@ -871,3 +871,18 @@ a new dated line.
   cheap-hourly-run rule.
 - Telegram: none sent (quiet run, no trade, no emergency action —
   Quy's standing preference).
+
+### 2026-07-17 14:32 ET — Hourly TJL watch (no candidates)
+- `scan_tjl.py --no-telegram`: universe ATPC, STAK (today's premarket
+  packet). Both `fail_daily` — ATPC px $3.17 ≤ prev high $4.81, STAK
+  px $2.03 ≤ prev high $4.36 — same as every prior read today, no
+  PASS. Saved `scans/tjl_watchlist_2026-07-17_1432ET.json`.
+- §3b guardrail note (moot, no PASS to gate): position count still 7
+  open vs the 4-concurrent max, and this week's new-entry count (6,
+  Quy's manual trades 7/16) still exceeds the 5/week cap — no new
+  agent entry would be permitted this run even on a PASS.
+- No trade placed. Hit set unchanged vs the 13:33 read (only the
+  scan timestamp differs) — dashboard not republished per the
+  cheap-hourly-run rule.
+- Telegram: none sent (quiet run, no trade, no emergency action —
+  Quy's standing preference).
