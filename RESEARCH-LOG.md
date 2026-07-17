@@ -420,3 +420,54 @@ Append at the BOTTOM, one entry per pre-market run.
   out. Crypto sleeve flat (bear regime).
 - Watching but not trading: nothing flagged today. Watch for NFLX
   after-hours volatility bleeding into tomorrow's premarket tape.
+
+## 2026-07-17 — pre-market
+- Account: equity $100,000.16 | cash $98,584.47 | open positions: 7
+  total — AAPL 1@$310.47 (now $332.92, +$22.45/+7.23%, stop trailed to
+  breakeven $310.47), NVDA 1@$209.84 (now $202.05, -$7.79/-3.71%, stop
+  $195.15), ORCL 1@$127.93 (now $122.55, -$5.38/-4.21%, stop $118.97),
+  VOO 1@$692.29 (now $684.73, -$7.56/-1.09%, stop $643.83), BTC
+  0.000699945@$64,132.85 (now ~$63,100, -1.6%, stop_limit
+  59643.60/59345.40), ETH 0.010610407@$1,880.36 (now ~$1,836.60, -2.3%,
+  stop_limit 1748.70/1739.96), SOL 0.130862025@$76.086 (now ~$74.63,
+  -1.9%, stop_limit 70.76/70.4062). NVDA/ORCL/VOO/BTC/ETH/SOL were all
+  placed by Quy manually yesterday (7/16 open), not agent-driven —
+  confirmed via 7/16 09:41 AM open log.
+- **Guardrail flag (standing, not one-off)**: position count is 7 open
+  vs the strategy's 4-concurrent max, and this week's new-entry count
+  (6, all Quy's manual trades) already exceeds the 5/week cap. **No new
+  agent entry is permitted today regardless of scan results** until the
+  position count normalizes. None of the 7 positions are near their
+  stops or -7% today (worst is ORCL at -4.2%, ~3% cushion above stop).
+- Macro/calendar: 0 US high-impact events today (ForexFactory live
+  fetch) — housing starts, building permits, industrial production,
+  and prelim UMich consumer sentiment are scheduled but don't trigger
+  a §3b blackout. No blackout window in effect today. Travelers,
+  Truist, Fifth Third report earnings (not held names).
+- Sector momentum / market tone: Iran/US tension has a tentatively
+  easing tone (Trump says Iran wants to negotiate, Qatar/Pakistan
+  brokering talks) after Wednesday's VIX spike toward 19; oil behaved
+  (WTI ~$71.59). Our live VIX read this morning is 18.14 (up from
+  16.10 Thursday) — still elevated, de-escalation unconfirmed. SPX
+  7,533.77 / NDX 29,025.77 / RUT 2,974.57 (yesterday close, down on
+  chip-sector weakness — yfinance snapshot blocked again). Gappers:
+  ATPC +9.65% (roundup non-catalyst, ~75% below 200-day SMA — dead-
+  stock bounce), STAK -4.5% (vague real headline, down-gap, already
+  faded from a June halt). Neither cleared day/swing eligibility.
+- Crypto regime: BEAR (BTC prior close $63,783.12 < daily SMA200
+  $73,397.04) — sleeve stands down. Broader crypto down ~1.6% 24h,
+  Fear & Greed at 27. BTC $63,077 (live, -1.1%), ETH $1,834, SOL
+  $74.79 — all lower, tracking dollar/yield sensitivity and
+  semiconductor weakness. DeFiTuna Solana-lending exploit (~$580K,
+  patched) circulating but minor/protocol-specific, not SOL-wide.
+- Extra-watch (BTC/ETH/SOL/NVDA/ORCL): NVDA $202.10 premarket (-2.6%),
+  continuing yesterday's chip-sector weakness (TSM spending-concern
+  selloff), no new NVDA-specific news. ORCL $122.64 premarket (-1.3%),
+  continuing its pullback, no new company-specific news.
+- Ideas (2-3): none. Both gappers failed the screens on trend/mcap
+  grounds, and even a clean setup would be vetoed today by the
+  position-count guardrail (7 open vs 4-max). No qualifying setups —
+  standing aside on equities. Crypto sleeve flat (bear regime).
+- Watching but not trading: ATPC, STAK (see Skips & Traps in today's
+  report). Bigger picture: watch for the 7-position count to normalize
+  before the agent can take any new entry, even a great one.

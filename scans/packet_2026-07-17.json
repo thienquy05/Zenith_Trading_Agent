@@ -1,0 +1,329 @@
+{
+  "generated_at": "2026-07-17T07:10:30.943907-04:00",
+  "candidate_source": "alpaca_screener_premarket",
+  "trading_day_note": "Friday 2026-07-17 07:10 ET; inside the 04:00-09:30 premarket window",
+  "scan_params": {
+    "gap_filter_abs_pct": 3.0,
+    "price_min": 3.0,
+    "top_n": 12,
+    "open_note": "before 09:30 ET the latest premarket price stands in for the official open in swing checks"
+  },
+  "criteria": {
+    "day_trading": "Trend Join Long selection: gap > 3% vs prev close, price > $3, market cap > $1B, premarket RVOL > 1.5, price above prior-day high, prev close above 200-day SMA. Execution per TRADING-STRATEGY.md 2b: trigger over PMH + prior HOD 10:00-15:30 ET, stop = signal bar low, 3R bracket, flat 15:55.",
+    "swing": "Gap >= 8%, price > $3, open above prior-day high, open above 200-day SMA, market cap >= $800M, and a real catalyst (earnings on gap day, or news with no earnings). Starter ideas only, swing management is still being built."
+  },
+  "market_snapshot": {
+    "S&P 500": {
+      "symbol": "^GSPC",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Dow": {
+      "symbol": "^DJI",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Nasdaq": {
+      "symbol": "^IXIC",
+      "error": "not enough history"
+    },
+    "Russell 2000": {
+      "symbol": "^RUT",
+      "error": "not enough history"
+    },
+    "VIX": {
+      "symbol": "^VIX",
+      "error": "not enough history"
+    },
+    "US 10Y": {
+      "symbol": "^TNX",
+      "error": "not enough history"
+    },
+    "US 3M": {
+      "symbol": "^IRX",
+      "error": "not enough history"
+    },
+    "WTI Oil": {
+      "symbol": "CL=F",
+      "error": "not enough history"
+    },
+    "Dollar (DXY)": {
+      "symbol": "DX-Y.NYB",
+      "error": "not enough history"
+    }
+  },
+  "econ_calendar": {
+    "source": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+    "filter": "country=USD, impact=High",
+    "today_date": "2026-07-17",
+    "tomorrow_date": "2026-07-18",
+    "today": [],
+    "tomorrow": [],
+    "note": "live fetch"
+  },
+  "gappers": [
+    {
+      "rank": 1,
+      "symbol": "ATPC",
+      "name": null,
+      "price": 4.66,
+      "prev_close": 4.25,
+      "gap_pct": 9.65,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 18.34,
+      "prior_day_high": 4.81,
+      "prior_close": 4.25,
+      "avg_vol_20d": 26368,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "12 Health Care Stocks Moving In Thursday's Intraday Session",
+      "headlines": [
+        {
+          "title": "12 Health Care Stocks Moving In Thursday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-16T17:05:31Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "Gold Falls Over 1%; UnitedHealth Posts Upbeat Earnings",
+          "source": "benzinga",
+          "published": "2026-07-16T16:31:04Z",
+          "n_symbols": 7
+        },
+        {
+          "title": "Dow Gains 100 Points; US Retail Sales Rise 0.2% In June",
+          "source": "benzinga",
+          "published": "2026-07-16T13:59:56Z",
+          "n_symbols": 6
+        },
+        {
+          "title": "Stock Market Today: Dow Futures Rise, S&P 500 Falls As Trump Says Iran Wants To Negotiate\u2014 AtaiBeckley, J B Hunt, AST SpaceMobile in Focus (UPDATED)",
+          "source": "benzinga",
+          "published": "2026-07-16T13:28:54Z",
+          "n_symbols": 9
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 2,
+      "symbol": "STAK",
+      "name": null,
+      "price": 3.4,
+      "prev_close": 3.56,
+      "gap_pct": -4.49,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 1.31,
+      "prior_day_high": 4.36,
+      "prior_close": 3.56,
+      "avg_vol_20d": 17332,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "What's Going On With STAK Shares On Thursday?",
+      "headlines": [
+        {
+          "title": "What's Going On With STAK Shares On Thursday?",
+          "source": "benzinga",
+          "published": "2026-07-16T16:42:47Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "STAK Shares Resume Trade",
+          "source": "benzinga",
+          "published": "2026-06-09T14:18:31Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "STAK Shares Halted On Circuit Breaker To The Upside, Stock Now Up 46.39%",
+          "source": "benzinga",
+          "published": "2026-06-09T14:13:28Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Top 2 Energy Stocks You May Want To Dump This Quarter",
+          "source": "benzinga",
+          "published": "2026-06-11T12:45:10Z",
+          "n_symbols": 2
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": true
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": true,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    }
+  ],
+  "market_news": [
+    {
+      "title": "Ranch dressing and stuffed raccoons: Some of the World Cup\u2019s biggest winners as Spain and Argentina face off in the final",
+      "summary": "As the World Cup wraps up, the off-field battle for eyeballs, ad dollars and viral fame has already crowned some champions",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 11:01:00 GMT"
+    },
+    {
+      "title": "As semiconductor stocks slump, one AI-adjacent sector is thriving \u2014 and these are the stocks to buy",
+      "summary": "Another way to exploit the AI evolution is available for investors",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 10:51:00 GMT"
+    },
+    {
+      "title": "\u2018Respect is important\u2019: If my financial adviser said, \u2018Hey,\u2019 my wife and I would walk out. Where do you draw the line?",
+      "summary": "\u201cI met with a financial representative who was not aware that AT&amp;T was the shortened form of American Telephone and Telegraph.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 10:30:00 GMT"
+    },
+    {
+      "title": "SpaceX postponed a crucial launch \u2014 now its stock is set to slide even further below the IPO price",
+      "summary": "Shares in SpaceX declined about 4% in premarket trading on Friday after aborted mission.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 10:05:00 GMT"
+    },
+    {
+      "title": "Silently freaking out about retirement? Why it may not be as bad as you think.",
+      "summary": "Amid all the gloom and doom, there are ways to change the math in your favor.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 10:00:00 GMT"
+    },
+    {
+      "title": "Retail investors had been outperforming the market since May. Not any more.",
+      "summary": "Retail investors had a pretty strong two-month stretch when they were outperforming the broader market by as much as 10 percentage points.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 10:00:00 GMT"
+    },
+    {
+      "title": "Bad week for \u2018the ants\u2019 as ripple effects of Korean crash spread out across Asia",
+      "summary": "It was a bad week for \u201cthe ants,\u201d as South Korea\u2019s army of retail traders are known colloquially. 1.2 million of them were clobbered with margin calls. That\u2019s more than 3% of the country\u2019s adult population, illustrating the feverish extent of stock market speculation and the dang",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 09:36:00 GMT"
+    },
+    {
+      "title": "\u2018I am at a loss\u2019: My brother is dying. We are not close. What responsibility do I have to help him?",
+      "summary": "\u201cHe is now no longer able to think clearly or communicate his wishes.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 09:30:00 GMT"
+    },
+    {
+      "title": "Buyer snaps up Josh Duhamel\u2019s $3 million L.A. home as actor embraces his Minnesota \u2018doomsday prepper\u2019 cabin",
+      "summary": "\u201cRansom Canyon\u201d star Josh Duhamel\u2019s Los Angeles home has come under offer just days after it was put on the market\u2014as the actor and his family continue to spend more time living at their rural off-grid cabin.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 09:01:00 GMT"
+    },
+    {
+      "title": "Micron has turned into \u2018the most important stock in the market.\u2019 So is it time to worry?",
+      "summary": "While investors are concerned about a memory peak, analysts say the stock still looks cheap relative to various earnings scenarios.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 17 Jul 2026 02:11:00 GMT"
+    },
+    {
+      "title": "Elon Musk in a post on X says some of his Trump posts \u2018went too far\u2019 and that he regrets them",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 11 Jun 2025 07:09:00 GMT"
+    },
+    {
+      "title": "Bank of England decision on Thursday will be at 12:02 p.m. local time instead of 12 p.m., due to VE Day\u2019s two minutes of silence",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 06 May 2025 11:59:00 GMT"
+    },
+    {
+      "title": "Swiss National Bank cuts interest rates by a half point to 0.5%",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Dollar jumps 0.5% to 0.8890 francs",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Germany flash manufacturing PMI rises to 4-month high of 43.2",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Germany flash services PMI falls to 9-month low of 49.4",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Powell says labor market not a source of significant inflation pressure",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:48:00 GMT"
+    },
+    {
+      "title": "Fed\u2019s Powell says rate cut \u2018on the table\u2019 as soon as September",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:41:00 GMT"
+    },
+    {
+      "title": "Final S&P U.S. manufacturing index is 52.2 in February vs. initial 51.5",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 01 Mar 2024 14:47:00 GMT"
+    },
+    {
+      "title": "Duolingo started at buy with $222 price target at Seaport",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 27 Feb 2024 12:40:00 GMT"
+    }
+  ],
+  "gaps_to_fill": [
+    "market-wide earnings calendar is only partial: next earnings dates come per gapper, there is no full day-by-day earnings list",
+    "intraday levels (VWAP/HOD/LOD/PMH) need intraday bars and are only available on the Alpaca path",
+    "premarket RVOL: yfinance reports about 0 premarket volume, so a true premarket RVOL needs a premarket feed (Alpaca supplies it here); on the keyless path full-day RVOL is the stand-in"
+  ]
+}
