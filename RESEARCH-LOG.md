@@ -471,3 +471,51 @@ Append at the BOTTOM, one entry per pre-market run.
 - Watching but not trading: ATPC, STAK (see Skips & Traps in today's
   report). Bigger picture: watch for the 7-position count to normalize
   before the agent can take any new entry, even a great one.
+
+## 2026-07-20 — pre-market
+- Account: equity $100,009.10 | cash $98,584.47 | open positions: 7
+  total, unchanged over the weekend and all healthy — AAPL +7.2%
+  (stop at breakeven $310.47), NVDA -2.2%, ORCL -1.6%, VOO -0.9%, BTC
+  +0.3%, ETH -0.3%, SOL +0.2% (crypto stop_limits unchanged). None near
+  their stops.
+- **Guardrail flag (standing, unchanged from Friday)**: position count
+  still 7 open vs the strategy's 4-concurrent max. **No new agent entry
+  is permitted today regardless of scan results.** New week means the
+  weekly entry-cap counter resets, but the position-count cap remains
+  the binding constraint.
+- Macro/calendar: 0 US high-impact events today (ForexFactory live
+  fetch) — no §3b blackout window in effect today.
+- Sector momentum / market tone: **Iran war escalated sharply over the
+  weekend** — 2 US service members killed + 1 missing after an Iranian
+  strike on a Jordan base (war's US death toll now 17 over ~5 months),
+  another KIA from a downed-drone detonation in Iraq, Iran struck
+  Jordan and Kuwait (incl. an oil-sector site), US carried out a 9th
+  consecutive night of strikes + reimposed a naval blockade of Iranian
+  ports. Iran reports 50+ killed, 500+ injured from US strikes.
+  Confirmed via CNN/WaPo/Fox/NPR/Al Jazeera. Gasoline back above
+  $4/gallon. Market reaction mixed: some futures reads higher (Trump
+  framing Iran as "very badly damaged," read as dominance/de-escalation
+  by some traders), others down ~1%. 10Y yield eased to ~4.5% on softer
+  inflation + safe-haven demand. Pending home sales -5.4% June.
+  SPX 7,457.69 / NDX 28,592.66 / RUT 2,962.22 (Friday close, down from
+  Thursday — yfinance snapshot blocked again). VIX 18.19, flat vs
+  Friday's 18.14, still the week's high read. Gappers: BIYA +18.5%
+  (catalyst headline is actually about a different stock in a 20-symbol
+  roundup, not BIYA-specific; ~88% below its 200-day SMA) — not
+  eligible, broken-trend bounce.
+- Crypto regime: BEAR (BTC prior close $64,680.69 < daily SMA200
+  $73,048.92) — sleeve stands down. BTC pushed below $64k over the
+  weekend on Iran-risk-off flow; SOL testing $74-75 support (macro-
+  driven, not SOL-specific — Circle issued $500M USDC on Solana,
+  ~$900M RWA inflows over 30 days, fundamentals still constructive).
+- Extra-watch (BTC/ETH/SOL/NVDA/ORCL): NVDA $205.20 premarket (+1.2%),
+  small bounce, no specific news. ORCL $125.84 premarket (-0.5%),
+  roughly flat, no new company-specific news.
+- Ideas (2-3): none. BIYA failed the screens on trend/mcap grounds and
+  its catalyst is a mismatch anyway. Even a clean setup would be vetoed
+  today by the position-count guardrail (7 open vs 4-max, unchanged
+  from Friday). No qualifying setups — standing aside on equities.
+  Crypto sleeve flat (bear regime).
+- Watching but not trading: BIYA (see Skips & Traps in today's report).
+  Bigger picture: watching the Iran war for further escalation —
+  dominant risk driver right now, more than anything on the scan.
