@@ -886,3 +886,53 @@ a new dated line.
   cheap-hourly-run rule.
 - Telegram: none sent (quiet run, no trade, no emergency action —
   Quy's standing preference).
+
+### 2026-07-20 09:39 ET — Market Open
+
+- `scripts/alpaca.sh clock`: market open, next close 16:00 ET today.
+- Account: equity $100,010.69 | cash $98,584.47 | day P&L +$5.93
+  (+0.006%, negligible) — no circuit breaker concerns.
+- `scripts/alpaca.sh positions` re-check (post-open): all 7 positions
+  intact, none gapped through a stop, none near -7% or thesis-broken —
+  AAPL +6.6% (stop at breakeven $310.47), NVDA -1.3% (stop $195.15),
+  ORCL -2.1% (stop $118.97), VOO -0.7% (stop $643.83), BTC +0.7% (stop
+  $59,643.60), ETH -0.5% (stop $1,748.70), SOL +0.9% (stop $70.76). All
+  7 stop-loss orders confirmed still resting open (`scripts/alpaca.sh
+  orders`). No action needed.
+- **Guardrail pre-check (§3b)**: moot — today's premarket research
+  (`RESEARCH-LOG.md` 2026-07-20) logged **zero trade ideas**
+  (`scans/watchlist_2026-07-20.json` symbols: []) and flagged the
+  standing position-count guardrail (7 open vs the strategy's 4-max
+  concurrent cap) that blocks any new agent entry regardless of scan
+  results. No planned trades existed to check against the daily/weekly
+  breakers, blackout windows, or earnings distance. Weekly circuit
+  breaker: not tripped (account flat this week). Daily breaker: not
+  tripped (+0.006%).
+- Trades executed this run: **0** (no ideas from premarket research;
+  position-count guardrail would have blocked a new entry even if one
+  existed).
+- Robinhood real-account pull (live, for dashboard + Telegram):
+  **Individual account (556092849) now shows zero equity positions** —
+  the ~$100 ORCL holding previously documented there is not present on
+  this live pull; ORCL (0.790482 sh @ $131.76 avg) now appears in the
+  Agentic account (539785238) instead, alongside NVDA (0.358944 sh @
+  $195.10) and TSLA (0.002340 sh @ $427.35). Roth IRA (829651439) holds
+  VOO 0.183159 sh @ $689.29. Flagging as a material account-layout
+  change per the "watch for new positions" gotcha — noted, not acted
+  on (Robinhood is read-only/display for this agent).
+  - RSI(14)/MA signals (§5, ~241 daily bars): NVDA RSI 48.2, price
+    $207.49 vs 50d $209.91 / 200d $192.40 (+7.8%, not extended) →
+    NEUTRAL/DCA. ORCL RSI 29.3 (<30) → STRONG BUY ZONE, though tempered
+    by this week's S&P downgrade to BBB- and ~13% workforce-cut
+    headlines — noted, not acted on (Quy trades this manually). TSLA
+    RSI 42.6, price $381.00 vs 200d $417.05 (-8.6%) → NEUTRAL/DCA, but
+    **earnings 2026-07-22 PM (2 days out)** → caution flag, size
+    down/wait for print. VOO (Roth core) RSI 48.2, price $687.82 vs
+    200d $640.66 (+7.4%, not extended) → NEUTRAL/DCA, never flagged for
+    Trim (core holding).
+- Dashboard republished (local, gitignored) with fresh Alpaca
+  account/positions/orders + live Robinhood pull (3 accounts +
+  RSI/MA signals for NVDA/ORCL/TSLA/VOO) + today's premarket packet
+  (1 gapper, BIYA, ineligible).
+- Telegram: open report sent (ALWAYS-send workflow) — no entries + one
+  -line reason, position re-check, extra-watch one-liners.
