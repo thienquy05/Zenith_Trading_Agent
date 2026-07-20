@@ -949,3 +949,70 @@ a new dated line.
   not republished per the cheap-hourly-run rule.
 - Telegram: none sent (quiet run, no trade, no emergency action —
   Quy's standing preference).
+
+### 2026-07-20 13:11 ET — 1:00 PM Midday Scan
+
+- Account: equity $99,995.74 | cash $98,584.47 | day P&L -$8.02
+  (-0.008%, negligible) — no circuit breaker concerns.
+- **Position review (7 open — AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL)**:
+  - AAPL 1 sh @ $310.47, now $324.88 (+$14.41 / +4.64% ≈ +1.38R off
+    the $10.47 1R), stop already at breakeven $310.47 (raised
+    7/17 1:10 PM run) — below the +2.0R re-trigger ($331.41), no
+    further trail this run.
+  - NVDA 1 sh @ $209.84, now $203.54 (-3.00%), stop $195.15 (-7%)
+    unchanged — small loser, chip-sector sell-off continues, no
+    thesis on file to break.
+  - ORCL 1 sh @ $127.93, now $122.49 (-4.25%), stop $118.97 (-7%)
+    unchanged — small loser (CLSA started Hold, $145 target; stock
+    -4.4% reported today), still above -7%, no action.
+  - VOO 1 sh @ $692.29, now $684.27 (-1.16%), stop $643.83 (-7%)
+    unchanged — small loser, no action.
+  - BTC 0.000699945 @ $64,132.85, now $65,442.79 (+2.04% / ~0.29R),
+    stop_limit $59,643.60/$59,345.40 (-7%) unchanged — small winner,
+    well below +2R, no action.
+  - ETH 0.010610407 @ $1,880.36, now $1,898.52 (+0.97% / ~0.14R),
+    stop_limit $1,748.70/$1,739.96 (-7%) unchanged — flat, no action.
+  - SOL 0.130862025 @ $76.086, now $77.50 (+1.86% / ~0.27R),
+    stop_limit $70.76/$70.41 (-7%) unchanged — small winner, no
+    action.
+  - **No position at/below -7% or thesis-broken. No stop changes this
+    run** (AAPL's breakeven trail already covers it; nothing else
+    past +2R).
+- `scan_tjl.py --no-telegram`: universe BIYA (today's premarket
+  packet, single gapper). `fail_daily` — prev close $4.16 ≤ SMA200
+  $39.75, same as every hourly read today. No PASS. Saved
+  `scans/tjl_watchlist_2026-07-20_1310ET.json`.
+- `scan_crypto.py --no-telegram`: regime BEAR (BTC $64,680.69 <
+  daily SMA200 $73,048.92) — sleeve stands down, no entries scanned.
+  Saved `scans/crypto_tjl_2026-07-20_1710UTC.json`.
+- **Guardrail note (moot, no PASS to gate either scan)**: position
+  count still 7 open vs. the §3 max-4-concurrent cap — no new agent
+  entry would be permitted this run even on a PASS.
+- Afternoon catalysts (web check): no confirmed tier-1 US macro
+  release in the 1-2 PM ET window today (Fed officials entering the
+  pre-July-29-FOMC blackout period; Bowman/Waller remarks on the
+  calendar are routine appearances, not policy-decision events — no
+  active §3b blackout). No 1 PM Treasury auction or 2 PM release
+  flagged. Week's broader tone: Nasdaq/semis leading losses this
+  week on AI-capex spending anxiety (semis -10%+ on the week); Brent
+  crude > $90/bbl on Gulf tensions; June CPI 3.5% y/y (down from
+  4.2% in May, still above target); markets positioning into the
+  July 29 FOMC (~85.6% priced for a hold) and this week's earnings
+  from Alphabet, Intel, Tesla. No confirmed after-close earnings
+  tonight for held names.
+- Extra-watch one-liners (live): BTC $65,442.79 (regime BEAR still,
+  <SMA200 $73,048.92; large options flow targeting $70-72k into the
+  FOMC decision); ETH $1,898.52 (+0.97% today); SOL $77.50 (+1.86%
+  today); NVDA $203.54 (-3.0% today, Blackwell demand/price-hike
+  reports positive but Michael Burry disclosed an increased Dec-2026
+  NVDA put position on valuation/margin concerns — sentiment
+  headwind); ORCL $122.49 (-4.25% today, CLSA initiated Hold rating
+  $145 target, reports separately note a 4.4% decline attributed to
+  the AMD MI450 rack-share story — ORCL getting a smaller allocation
+  than META).
+- Trades executed this run: **0** (no scanner PASS, no stop changes
+  needed, no exits triggered).
+- Dashboard republished (local, gitignored) with fresh Alpaca
+  account/positions/orders.
+- Telegram: midday update sent (ALWAYS-send workflow) — positions,
+  "no action needed", afternoon catalysts, extra-watch one-liners.
