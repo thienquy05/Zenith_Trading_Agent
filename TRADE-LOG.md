@@ -936,3 +936,16 @@ a new dated line.
   (1 gapper, BIYA, ineligible).
 - Telegram: open report sent (ALWAYS-send workflow) — no entries + one
   -line reason, position re-check, extra-watch one-liners.
+
+### 2026-07-20 11:33 ET — Hourly TJL watch (no candidates)
+- `scan_tjl.py --no-telegram`: universe BIYA (today's premarket
+  packet, single gapper). `fail_daily` — prev close $4.16 ≤ SMA200
+  $39.75. Same failure as the 10:33 ET read. Saved
+  `scans/tjl_watchlist_2026-07-20_1133ET.json`.
+- §3b guardrail note (moot, no PASS to gate): position count still 7
+  open vs the 4-concurrent max — no new agent entry would be
+  permitted this run even on a PASS.
+- No trade placed. Hit set unchanged vs the 10:33 ET read — dashboard
+  not republished per the cheap-hourly-run rule.
+- Telegram: none sent (quiet run, no trade, no emergency action —
+  Quy's standing preference).
