@@ -1100,3 +1100,18 @@ a new dated line.
   not republished per the cheap-hourly-run rule.
 - Telegram: none sent (quiet run, no trade, no emergency action —
   Quy's standing preference).
+
+### 2026-07-21 — daily snapshot (4:00 PM ET)
+- Equity $100,009.42 | day P&L +$15.44 (+0.0154%) | cash $98,584.47
+- Open: AAPL 1@$310.47 (uP&L +$16.28/+5.24%), NVDA 1@$209.84 (uP&L -$3.22/-1.54%), ORCL 1@$127.93 (uP&L -$0.87/-0.68%), VOO 1@$692.29 (uP&L -$4.85/-0.70%), BTC 0.000699945@$64,132.85 (uP&L +$1.62/+3.60%), ETH 0.010610407@$1,880.36 (uP&L +$0.45/+2.25%), SOL 0.130862025@$76.086 (uP&L +$0.24/+2.39%)
+- Trades today: 0 (no new entries; all hourly TJL scans failed_daily on the premarket packet's 4 gappers — SNDQ/ZYBT/ADVB/GMM). Standing aside all day per guardrails: position count 7 open vs. max-4 concurrent (fourth+ straight day pinned at ceiling). No exits triggered (no -7% breach, no thesis breaks).
+- Guardrail status:
+  - Day P&L +0.0154%, far inside -2% day circuit breaker.
+  - Week P&L: from EOD 2026-07-18 ($99,993.98) to now ($100,009.42) = +$15.44 on the week to date (~+0.015%), well under -4% weekly circuit breaker.
+  - Tier-1 event blackout: none active today (FOMC 7/29, no premarket macros today).
+  - Earnings distance: no earnings today on held/watched names. Next confirmed: Nasdaq Tech days 7/23–7/25 (Alphabet 7/23, Tesla 7/23, Broadcom 7/25).
+  - Weekly new-entry cap (Mon–Fri reset): 0/5 used this week (this is the Monday open of week 2026-07-21–07-25).
+  - No rule violations this week or today.
+  - Max-position lock: 7 concurrent (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL), pinned at §3 ceiling since 2026-07-18. No new equities/crypto trades permitted until at least one position exits or -7% stops one out.
+- Extra-watch (live Robinhood + Alpaca): BTC $66,442.35 (+1.91% today on weak inflation relief + potential Fed patience narrative), ETH $1,922.74 (+0.80% today, crypto breadth weak vs BTC), SOL $77.906 (+0.20% today, holding above $76 support), NVDA $206.62 (-1.54% today, demand questions on Blackwell capex pivot), ORCL $127.06 (+4.68% today — late bid spike, CLSA Hold $145 target from 7/20; prior weak on AMD MI450 allocation reports).
+- Lesson: quiet Monday consolidation day. Market tone: S&P still digesting big tech dislocation from Friday (AI enthusiasm met profit-taking, Nvidia specific weakness, semis sector off pace). Retail consolidation into the 7/29 FOMC. The premarket gaps today (SNDQ/ZYBT/ADVB/GMM) all printed sub-prior-close by midday — classic low-RVOL, low-follow gappers. No new entries warranted; holding 7 as-is with active §3 circuit at max-4 ceiling is the correct risk posture.
