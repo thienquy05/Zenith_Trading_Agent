@@ -519,3 +519,54 @@ Append at the BOTTOM, one entry per pre-market run.
 - Watching but not trading: BIYA (see Skips & Traps in today's report).
   Bigger picture: watching the Iran war for further escalation —
   dominant risk driver right now, more than anything on the scan.
+
+## 2026-07-21 — pre-market
+- Account: equity $99,999.08 | cash $98,584.47 | open positions: 7
+  total, all healthy — AAPL +4.6% (stop at breakeven $310.47), NVDA
+  -2.2%, ORCL -4.2%, VOO -1.0%, BTC +3.1%, ETH +2.7%, SOL +2.4%
+  (crypto stop_limits unchanged). None near their stops.
+- **Guardrail flag (standing, unchanged)**: position count still 7
+  open vs the strategy's 4-concurrent max — third straight day. No new
+  agent entry permitted today regardless of scan results.
+- Macro/calendar: 0 US high-impact events today (ForexFactory live
+  fetch) — no §3b blackout window today. Fed officials reportedly
+  entering pre-FOMC blackout ahead of the July 29 decision (~85.6%
+  priced for a hold). Alphabet, Intel, Tesla report earnings this
+  week (TSLA is Quy's real dust position).
+- Sector momentum / market tone: relief rally on Iran ceasefire HOPES,
+  not resolution — mediators (Qatar/Egypt/Pakistan/Oman) presented a
+  10-day ceasefire proposal, but neither US nor Iran has accepted it;
+  both reportedly pushing for more leverage via further strikes first,
+  US moving jets/refueling aircraft into the region for a possible
+  major escalation even while exploring the truce. 10 consecutive
+  nights of US strikes on Iran. Houthis now threatening Saudi
+  shipping — conflict widening, not narrowing. Confirmed via
+  Axios/CNBC/JPost. Nasdaq-100 futures +1.3% on chip-sector recovery
+  ahead of Big Tech earnings, S&P +0.5%, Dow +0.3%. SPX 7,443.28 / NDX
+  28,604.23 / RUT 2,942.43 (yesterday close — yfinance blocked again).
+  VIX 17.74, down slightly from Monday's 18.19. Gappers: 4 total, all
+  down — SNDQ -90.2% (no catalyst, likely artifact/halt-resume, avg
+  vol 227k/day so not obviously a thin stock), ZYBT -38.4% (real story:
+  yesterday's +780% halt now fading hard, pump-and-dump aftermath),
+  ADVB -19.6% (headline says "surging" but price says otherwise,
+  Monday's pop giving back), GMM -4.1% (generic roundup, no driver).
+  None eligible — all down-gaps, mechanically excluded regardless.
+- Crypto regime: BEAR (BTC prior close $65,206.45 < daily SMA200
+  $72,931.17) — sleeve stands down. BTC at a 2-week high ~$65,500 on
+  Asian chip-rally spillover + 5 straight days of BTC ETF inflows
+  ($600M+, strongest since mid-July). ETH ~$1,922 (+3%, +8% on the
+  week). SOL ~$78 (+2%).
+- Extra-watch (BTC/ETH/SOL/NVDA/ORCL): NVDA $205.25 premarket (+1.0%),
+  participating in the chip recovery bounce. ORCL $122.49 premarket
+  (+0.9%), also bouncing, no new company-specific news.
+- Ideas (2-3): none. All 4 gappers are down-gaps (mechanically
+  excluded) with no fresh catalyst worth chasing on a bounce anyway.
+  Even a clean setup would be vetoed today by the position-count
+  guardrail (7 open vs 4-max, unchanged for 3 days). No qualifying
+  setups — standing aside on equities. Crypto sleeve flat (bear
+  regime, though the tape itself is green today on ceasefire hopes).
+- Watching but not trading: SNDQ, ZYBT, ADVB, GMM (see Skips & Traps
+  in today's report). Bigger picture: watching for an actual Iran
+  ceasefire confirmation (risk-on continuation) vs a breakdown back
+  into active strikes (risk-off reversal) — today's bounce is
+  hope-driven, not resolved.
