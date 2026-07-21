@@ -1,0 +1,23 @@
+{
+  "scanned_at": "2026-07-21T14:33:42.667343-04:00",
+  "candidates_checked": 4,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "SNDQ",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "ZYBT",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "ADVB",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "GMM",
+      "result": "fail_daily"
+    }
+  ]
+}
