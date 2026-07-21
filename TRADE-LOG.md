@@ -937,6 +937,44 @@ a new dated line.
 - Telegram: open report sent (ALWAYS-send workflow) — no entries + one
   -line reason, position re-check, extra-watch one-liners.
 
+### 2026-07-21 09:39 ET — Market Open
+
+- `scripts/alpaca.sh clock`: market open, next close 16:00 ET today.
+- Account: equity $100,002.12 | cash $98,584.47 | day P&L +$8.14
+  (+0.008%, negligible) — no circuit breaker concerns (daily -2% /
+  weekly -4% both nowhere close).
+- `scripts/alpaca.sh positions` re-check (post-open): all 7 positions
+  intact, none gapped through a stop, none near -7% or thesis-broken —
+  AAPL +4.7% (stop at breakeven $310.47), NVDA -1.3% (stop $195.15),
+  ORCL -2.7% (stop $118.97), VOO -1.0% (stop $643.83), BTC +3.6% (stop
+  $59,643.60), ETH +2.7% (stop $1,748.70), SOL +2.8% (stop $70.76). All
+  7 stop-loss orders confirmed still resting open (`scripts/alpaca.sh
+  orders`). No action needed.
+- **Guardrail pre-check (§3b)**: moot — today's premarket research
+  (`RESEARCH-LOG.md` 2026-07-21) logged **zero trade ideas** (all 4
+  gappers were down-gaps, mechanically excluded; crypto sleeve in bear
+  regime) and flagged the standing position-count guardrail (7 open vs
+  the strategy's 4-max concurrent cap, third straight day) that blocks
+  any new agent entry regardless of scan results. No planned trades
+  existed to check against the daily/weekly breakers, blackout windows,
+  or earnings distance. No tier-1 macro events today (ForexFactory).
+  Daily breaker: not tripped (+0.008%). Weekly breaker: not tripped.
+- Trades executed this run: **0** (no ideas from premarket research;
+  position-count guardrail would have blocked a new entry even if one
+  existed).
+- Robinhood real-account pull (live, for dashboard + Telegram):
+  Individual (556092849) — zero equity positions (unchanged from
+  2026-07-20's account-layout shift). Roth IRA (829651439) — VOO
+  0.183159 sh @ $689.29 avg. Agentic (539785238) — NVDA 0.358944 sh @
+  $195.10 avg, ORCL 0.790482 sh @ $131.76 avg, TSLA 0.002340 sh @
+  $427.35 avg, crypto_value $33.43 (est. $18/$8/$4 BTC/ETH/SOL split).
+  Live quotes: NVDA $206.60 (+1.6% today), ORCL $124.06 (+2.2% today).
+- Dashboard republished (local, gitignored) with fresh Alpaca
+  account/positions/orders + live Robinhood pull (3 accounts) + today's
+  premarket packet (4 down-gappers, all ineligible).
+- Telegram: open report sent (ALWAYS-send workflow) — no entries + one
+  -line reason, position re-check, extra-watch one-liners.
+
 ### 2026-07-20 11:33 ET — Hourly TJL watch (no candidates)
 - `scan_tjl.py --no-telegram`: universe BIYA (today's premarket
   packet, single gapper). `fail_daily` — prev close $4.16 ≤ SMA200
