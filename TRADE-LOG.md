@@ -1115,3 +1115,44 @@ a new dated line.
   - Max-position lock: 7 concurrent (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL), pinned at §3 ceiling since 2026-07-18. No new equities/crypto trades permitted until at least one position exits or -7% stops one out.
 - Extra-watch (live Robinhood + Alpaca): BTC $66,442.35 (+1.91% today on weak inflation relief + potential Fed patience narrative), ETH $1,922.74 (+0.80% today, crypto breadth weak vs BTC), SOL $77.906 (+0.20% today, holding above $76 support), NVDA $206.62 (-1.54% today, demand questions on Blackwell capex pivot), ORCL $127.06 (+4.68% today — late bid spike, CLSA Hold $145 target from 7/20; prior weak on AMD MI450 allocation reports).
 - Lesson: quiet Monday consolidation day. Market tone: S&P still digesting big tech dislocation from Friday (AI enthusiasm met profit-taking, Nvidia specific weakness, semis sector off pace). Retail consolidation into the 7/29 FOMC. The premarket gaps today (SNDQ/ZYBT/ADVB/GMM) all printed sub-prior-close by midday — classic low-RVOL, low-follow gappers. No new entries warranted; holding 7 as-is with active §3 circuit at max-4 ceiling is the correct risk posture.
+
+### 2026-07-22 09:39 ET — Market Open
+- `clock`: market open (`is_open: true`, next close 16:00 ET).
+- `positions`: 7 open, unchanged, all healthy — AAPL +5.4% (uP&L
+  +$16.90, stop at breakeven $310.47), NVDA -1.5% (uP&L -$3.06), ORCL
+  -1.0% (uP&L -$1.30), VOO -0.8% (uP&L -$5.35), BTC +2.4% (uP&L
+  +$1.06), ETH +2.7% (uP&L +$0.53), SOL +1.8% (uP&L +$0.18). Nothing
+  near -7%; nothing gapped through a stop overnight.
+- §3b guardrail pre-check:
+  - Day circuit breaker: equity $100,008.42 vs last_equity
+    $100,011.62 = -$3.21 (-0.003%), far inside -2%.
+  - Weekly circuit breaker: week-to-date from $99,993.98 (7/18 close)
+    to $100,008.42 = +$14.44 (+0.014%), well inside -4%.
+  - Weekly new-entry cap: 0/5 used this week (Mon-Wed, no trades yet).
+  - Tier-1 event blackout: none today (per 7:00 AM research — 0 US
+    high-impact events).
+  - Earnings 24h no-entry: n/a, no planned trades to check.
+  - **Max-position lock (binding)**: 7 concurrent open
+    (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL) vs the §3 4-concurrent max —
+    pinned since 2026-07-18, fifth straight trading day. Blocks any
+    new agent entry today regardless of scan results.
+- No trades planned this morning (7:00 AM research: "no qualifying
+  setups — standing aside," all 3 gappers CPHI/SNXX/SNDU failed
+  screens on catalyst/fundamentals grounds) — moot anyway under the
+  position-count lock.
+- **No entries**: standing aside — 7/7 concurrent slots filled
+  (max-4 lock, unchanged since 7/18) and no qualifying setup existed
+  this morning regardless.
+- Crypto sleeve: flat, bear regime unchanged (BTC prior close
+  $66,527.99 < daily SMA200 $72,814.00).
+- Robinhood real-account pull (live, for dashboard + Telegram):
+  Individual (556092849) — zero equity positions (unchanged since
+  2026-07-20's account-layout shift). Roth IRA (829651439) — VOO
+  0.183159 sh @ $689.29 avg. Agentic (539785238) — NVDA 0.358944 sh @
+  $195.10 avg, ORCL 0.790482 sh @ $131.76 avg, TSLA 0.002340 sh @
+  $427.35 avg, crypto_value $33.24 (est. $18/$8/$4 BTC/ETH/SOL split).
+  Live quotes: NVDA $206.74 (-0.26% today), ORCL $125.84 (-0.95%
+  today).
+- Dashboard republished (local, gitignored) with fresh Alpaca
+  account/positions + live Robinhood pull (3 accounts).
+- Telegram: open report sent (ALWAYS policy).
