@@ -1156,3 +1156,18 @@ a new dated line.
 - Dashboard republished (local, gitignored) with fresh Alpaca
   account/positions + live Robinhood pull (3 accounts).
 - Telegram: open report sent (ALWAYS policy).
+
+### 2026-07-22 10:33 ET — Hourly TJL watch (no candidates)
+- `scan_tjl.py --no-telegram`: universe CPHI/SNXX/SNDU (today's
+  premarket packet, 3 gappers). All `fail_daily`: CPHI $1.87 ≤ prev
+  high $19.18, SNXX insufficient data, SNDU insufficient data. No
+  PASS. Saved `scans/tjl_watchlist_2026-07-22_1033ET.json`.
+- §3b guardrail note (moot, no PASS to gate): position count still 7
+  open (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL) vs the §3 4-concurrent max —
+  no new agent entry would be permitted this run even on a PASS,
+  sixth straight trading day pinned at the ceiling.
+- No trade placed. Hit set empty, consistent with the 9:30 AM open
+  assessment — dashboard not republished per the cheap-hourly-run
+  rule.
+- Telegram: none sent (quiet run, no trade, no emergency action —
+  Quy's standing preference).
