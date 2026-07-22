@@ -570,3 +570,49 @@ Append at the BOTTOM, one entry per pre-market run.
   ceasefire confirmation (risk-on continuation) vs a breakdown back
   into active strikes (risk-off reversal) — today's bounce is
   hope-driven, not resolved.
+
+## 2026-07-22 — pre-market
+- Account: equity $100,007.01 | cash $98,584.47 | open positions: 7
+  total, all healthy — AAPL +5.3% (stop at breakeven $310.47), NVDA
+  -2.1%, ORCL -0.8%, VOO -0.8%, BTC +3.0%, ETH +2.6%, SOL +2.2%
+  (crypto stop_limits unchanged). None near their stops.
+- **Guardrail flag (standing, unchanged)**: position count still 7
+  open vs the strategy's 4-concurrent max — fourth-plus straight
+  trading day (pinned since 7/18). No new agent entry permitted today
+  regardless of scan results.
+- Macro/calendar: 0 US high-impact events today (ForexFactory live
+  fetch) — no §3b blackout window today. TSLA (held, dust position)
+  reports after today's close alongside Alphabet; Intel also reports
+  this week. FOMC decision July 29, still a week out.
+- Sector momentum / market tone: **yesterday's ceasefire-hope rally
+  reversed overnight** — Rubio said Iran is "not serious about talks"
+  ("if they're serious, we're serious"), US struck Iran for an 11th
+  straight night, Brent crude jumped ~4% toward $94/bbl. Confirmed via
+  CNN/CNBC/Al Jazeera/The National. Directly reverses yesterday's
+  driver — the fast-reversal risk flagged in yesterday's report played
+  out. Yesterday's regular session was strong before this (Dow +0.74%,
+  S&P +0.89% to 7,509.20, Nasdaq +1.29%, chipmakers led) but futures
+  sliding into today's open on the oil/Iran headlines. SPX 7,509.20 /
+  NDX 29,155.18 / RUT 2,987.40 (yesterday close). VIX 17.45 live (7:15
+  AM ET), up on the oil spike. Gappers: CPHI -7.0% (fading an
+  unexplained 700% pump from Tuesday, company disclaims any known
+  catalyst), SNXX +4.6% / SNDU +3.7% (both leveraged single-stock ETFs
+  tracking SanDisk via Tradr's 2X lineup, not operating companies, no
+  SMA200 data, stale May/April headlines — riding chip-sector momentum
+  not fresh news). None eligible.
+- Crypto regime: BEAR (BTC prior close $66,527.99 < daily SMA200
+  $72,814.00) — sleeve stands down. BTC $65,980 (-0.8% vs today's
+  open), ETH $1,928 (flat), SOL $77.76 (-0.5%) — giving back a little
+  of yesterday's strength on the Iran-headline reversal.
+- Extra-watch (BTC/ETH/SOL/NVDA/ORCL): NVDA $205.37 premarket (-0.9%),
+  no specific news. ORCL $126.98 premarket (flat), no new
+  company-specific news.
+- Ideas (2-3): none. All 3 gappers failed the screens (one fading
+  pump, two leveraged ETF products with stale/no real catalyst). Even
+  a clean setup would be vetoed today by the position-count guardrail
+  (7 open vs 4-max, pinned since 7/18). No qualifying setups —
+  standing aside on equities. Crypto sleeve flat (bear regime).
+- Watching but not trading: CPHI, SNXX, SNDU (see Skips & Traps in
+  today's report). Bigger picture: Alphabet + Tesla earnings tonight
+  (TSLA is the real dust holding), and watching for further Iran
+  ceasefire whiplash given how fast yesterday's optimism reversed.
