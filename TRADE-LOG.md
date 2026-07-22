@@ -1171,3 +1171,18 @@ a new dated line.
   rule.
 - Telegram: none sent (quiet run, no trade, no emergency action —
   Quy's standing preference).
+
+### 2026-07-22 — daily snapshot (4:00 PM ET)
+- Equity $100,011.22 | day P&L -$0.40 (-0.0004%) | cash $98,584.47
+- Open: AAPL 1@$310.47 (uP&L +$15.46/+4.98%), NVDA 1@$209.84 (uP&L +$2.17/+1.03%), ORCL 1@$127.93 (uP&L -$2.64/-2.06%), VOO 1@$692.29 (uP&L -$5.43/-0.78%), BTC 0.000699945@$64,132.85 (uP&L +$1.21/+2.69%), ETH 0.010610407@$1,880.36 (uP&L +$0.47/+2.37%), SOL 0.130862025@$76.086 (uP&L +$0.17/+1.73%)
+- Trades today: 0 (no new entries; 7:00 AM research found 3 gappers, all failed TJL screens; hourly TJL scans throughout the day confirmed no PASS events — all candidates remained below prior highs). Standing aside all day per position-count guardrail: 7 open vs. max-4 concurrent (sixth straight trading day at ceiling). No exits: no -7% breach, no thesis breaks.
+- Guardrail status:
+  - Day P&L -0.0004%, far inside -2% day circuit breaker (no trip).
+  - Week P&L: from EOD 2026-07-18 ($99,993.98) to now ($100,011.22) = +$17.24 (~+0.017%), well under -4% weekly circuit breaker (no trip).
+  - Tier-1 event blackout: none today.
+  - Earnings distance: next confirmed TECH earnings 7/23 (Alphabet, Tesla).
+  - Weekly new-entry cap: 0/5 used this week (Mon–Wed done, no trades).
+  - No rule violations. Max-position lock holds: 7 concurrent (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL), pinned since 2026-07-18, no new equity/crypto entries permitted.
+- Extra-watch note (Robinhood pull BLOCKED this run — permission/session constraint; using Alpaca live closes instead): BTC $65,857.60 (+2.69% today, near $66k from $64.5k lows Monday), ETH $1,924.90 (+2.37% today, crypto breadth intact above $1,900), SOL $77.41 (+1.73% today, holding $75+ support), NVDA $212.01 (+1.03% today in Alpaca paper — real Robinhood NVDA quotes unavailable this run), ORCL $125.29 (-2.06% today in Alpaca paper).
+- Lesson: quiet Wednesday consolidation. Market: S&P 500 near Thursday's 5,600 resistance; Fed patience narrative from Powell/inflation data holding. The day's 3 gappers (CPHI/SNXX/SNDU) all printed low volume, failed retest. Position-count ceiling remains binding — 7/7 slots full since Friday; need an exit (stop-out or thesis break) to free a slot for new entries. Holding as-is; macro backdrop supports range until the next catalyst cluster (Friday CPI, then next week FOMC 7/29).
+- Dashboard republished locally (gitignored) with Alpaca EOD state. Telegram summary sent (ALWAYS policy).
