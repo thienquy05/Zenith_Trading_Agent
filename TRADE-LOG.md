@@ -1312,3 +1312,27 @@ a new dated line.
   republished this run (keeping hourly watches cheap per policy).
 - No trade placed. Telegram: suppressed (quiet-run policy, no trade
   and no emergency action needed).
+
+### 2026-07-23 16:00 ET — daily snapshot
+- Equity $99,989.34 | day P&L -$20.72 (-0.021%) | cash $98,584.47
+- Open: AAPL 1@$310.47 (current $320.80, uP&L +$10.33/+3.33%), NVDA 1@$209.84 (current $209.58, uP&L -$0.26/-0.12%), ORCL 1@$127.93 (current $120.20, uP&L -$7.73/-6.04%), VOO 1@$692.29 (current $679.21, uP&L -$13.08/-1.89%), BTC 0.000699945@$64,132.85 (current $64,666.10, uP&L +$0.37/+0.83%), ETH 0.010610407@$1,880.36 (current $1,877.02, uP&L -$0.04/-0.18%), SOL 0.130862025@$76.086 (current $75.681, uP&L -$0.05/-0.53%)
+- Trades today: 0 (all agent entry attempts blocked by max-position lock since 2026-07-18; 7 concurrent vs strategy max-4, and zero premarket setups screened in anyway). Standing aside on equities and crypto (sleeve BEAR regime, BTC < SMA200).
+- Guardrail/breaker status:
+  - Day P&L -0.021%, far inside -2% daily circuit breaker.
+  - Week P&L: from 2026-07-20 09:39 ET open equity $100,010.69 to now $99,989.34 = -$21.35 (-0.021%), well inside -4% weekly breaker.
+  - Weekly new-entry cap: 0/5 used by agent (all 6 entries on 2026-07-16 were Quy's manual trades; agent has zero entries this week).
+  - Tier-1 event blackout: none today (FOMC blackout period in effect ahead of 2026-07-28-29 meeting; July 29 rate decision 2:00 PM ET).
+  - Max-position lock: **BINDING, ninth straight trading day** — 7 concurrent (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL) vs §3 4-concurrent max. No new entries permitted until at least one position exits.
+  - ORCL closest to -7% hard bail at -6.04% unrealized; not yet at threshold. No emergency exits triggered.
+  - No rule violations this week or today (all positions hold stops, all within guardrail bounds except the position-count lock which is Quy's manual adds).
+- **Robinhood real-account status** (read-only live pull):
+  - Individual (556092849): zero equity positions, $0.38 cash (unchanged).
+  - Roth IRA (829651439): VOO 0.183159 sh @ avg $689.29.
+  - Agentic (539785238): NVDA 0.358944 sh @ avg $195.10, ORCL 0.790482 sh @ avg $131.76, TSLA 0.002340 sh @ avg $427.35. Crypto estimate ~$32.88 (€18/€8/€4 BTC/ETH/SOL split, scaled).
+- **Extra-watch one-liners** (end of day, paper account positions + Alpaca crypto closes):
+  - BTC $64,666 (Alpaca close), holding above $64k despite the day's risk-off tone (FOMC anxiety), still < SMA200 regime line (BEAR).
+  - ETH $1,877 (Alpaca close), -2.7% today, underperforming BTC.
+  - SOL $75.68 (Alpaca close), -2.7% today, slipping below the $76 support watched intraday.
+  - NVDA (Alpaca paper 1 sh, Robinhood 0.358944 sh): Alpaca close $209.58 (-0.1% from 7/22), Robinhood live ~$209.66 per prior pulls, down sharply this week on AI-capex anxiety post-Alphabet's Tuesday guidance raise; no new catalyst today.
+  - ORCL (Alpaca paper 1 sh, Robinhood 0.790482 sh): Alpaca close $120.20 (-6.04% from entry $127.93, -3.7% today), Robinhood avg $131.76, down ~33% YTD on cloud-margin concerns + S&P downgrade to BBB- + ~13% workforce cut announced this week; Alpaca position nearest the -7% hard bail and worth monitoring.
+- Lesson: eight consecutive no-action trading days with the same 7 positions unchanged. Market delivered a +1% rally week (through 7/22 close) but today's AI-capex selloff and Mideast escalation reversed that; tape red across the board. The position-count lock is the binding constraint — no agent discretion to enter regardless of intraday opportunities or scan results. All 7 stops remain in place, protecting capital. Patience and discipline (waiting for position exits or thesis breaks) is the correct stance in a crowded portfolio — no regret on missing today's volatility intraday.
