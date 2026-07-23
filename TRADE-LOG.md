@@ -1171,3 +1171,55 @@ a new dated line.
   rule.
 - Telegram: none sent (quiet run, no trade, no emergency action —
   Quy's standing preference).
+
+### 2026-07-23 09:40 ET — Market Open
+- `clock`: market open (`is_open: true`, next close 16:00 ET).
+- **Note**: no `RESEARCH-LOG.md` entry, `reports/premarket_2026-07-23.md`,
+  or `scans/watchlist_2026-07-23.json` exist for today — the 5:00 AM /
+  7:00 AM runs did not land before this 9:30 run fired (last committed
+  activity was 2026-07-22's 10:33 ET hourly watch). No planned trades
+  exist to check against an entry zone this morning as a result. Moot
+  regardless — see position-count lock below.
+- `positions` re-check (post-open): 7 open, unchanged, all healthy,
+  none gapped through a stop overnight — AAPL +3.5% (uP&L +$10.87,
+  stop at breakeven $310.47), NVDA -0.3% (uP&L -$0.64, stop $195.15),
+  ORCL -3.7% (uP&L -$4.77, stop $118.97), VOO -1.5% (uP&L -$10.65,
+  stop $643.83), BTC +1.4% (uP&L +$0.62, stop_limit 59,643.60/
+  59,345.40), ETH +1.0% (uP&L +$0.20, stop_limit 1,748.70/1,739.96),
+  SOL +1.2% (uP&L +$0.12, stop_limit 70.76/70.4062). All 7 stop
+  orders confirmed still resting (`orders open`). Nothing near -7%,
+  no thesis breaks.
+- §3b guardrail pre-check:
+  - Day circuit breaker: equity $99,995.39, day P&L ≈ -$16.49
+    (-0.0165%, sum of per-position `unrealized_intraday_pl`), far
+    inside -2%.
+  - Weekly circuit breaker: week-to-date from Monday 7/20 open
+    equity $100,010.69 to now $99,995.39 ≈ -$15.30 (-0.015%), well
+    inside -4%.
+  - Weekly new-entry cap: 0/5 used this week (Mon-Wed, no trades).
+  - Tier-1 event blackout: unknown today — no 7:00 AM calendar pull
+    (see note above); moot, no planned trade to gate.
+  - Earnings 24h no-entry: n/a, no planned trades.
+  - **Max-position lock (binding)**: 7 concurrent open
+    (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL) vs the §3 4-concurrent max —
+    pinned since 2026-07-18, seventh straight trading day. Blocks any
+    new agent entry today regardless of scan results or missing
+    research.
+- **No entries**: standing aside — 7/7 concurrent slots filled
+  (max-4 lock, unchanged since 7/18) and no premarket research/watchlist
+  existed this morning to check anyway.
+- Crypto sleeve: flat, regime last confirmed BEAR (BTC prior close
+  $66,527.99 < daily SMA200 $72,814.00, 2026-07-22 read) — no fresh
+  regime check this run (moot, sleeve already flat + position lock
+  binding).
+- Robinhood real-account pull (live, for dashboard + Telegram):
+  Individual (556092849) — zero equity positions (unchanged). Roth
+  IRA (829651439) — VOO 0.183159 sh @ $689.29 avg. Agentic
+  (539785238) — NVDA 0.358944 sh @ $195.10 avg (live $209.73, -1.10%
+  today), ORCL 0.790482 sh @ $131.76 avg (live $124.04, -1.43%
+  today), TSLA 0.002340 sh @ $427.35 avg, crypto_value $32.88 (est.
+  $18/$8/$4 BTC/ETH/SOL split, scaled ×1.096).
+- Dashboard republished (local, gitignored) with fresh Alpaca
+  account/positions/orders + live Robinhood pull (3 accounts).
+- Telegram: open report sent (ALWAYS policy), including the missing-
+  premarket-research flag and extra-watch one-liners.
