@@ -1223,3 +1223,60 @@ a new dated line.
   account/positions/orders + live Robinhood pull (3 accounts).
 - Telegram: open report sent (ALWAYS policy), including the missing-
   premarket-research flag and extra-watch one-liners.
+
+### 2026-07-23 13:10 ET — Midday Scan
+- `positions` re-check: 7 open, unchanged, none gapped through a stop.
+  AAPL $320.615 (+3.27%, stop breakeven $310.47), NVDA $209.66
+  (-0.09%, stop $195.15), ORCL $121.155 (-5.30%, stop $118.97 —
+  closest to the -7% bail but not there), VOO $678.74 (-1.96%, stop
+  $643.83), BTC $64,774.14 (+1.00%, stop_limit 59,643.60/59,345.40),
+  ETH $1,886.82 (+0.34%, stop_limit 1,748.70/1,739.96), SOL $76.13
+  (+0.06%, stop_limit 70.76/70.4062). No thesis breaks. No position
+  at/below -7% — no sells triggered.
+- Trailing-stop check: none of the 7 positions is at ≥+2R unrealized
+  right now (AAPL's +3.27% is down off its 7/22 high of +5.4% and
+  already sits with its stop trailed to breakeven from that prior
+  peak — nothing to raise further this run).
+- `scan_tjl.py --no-telegram`: universe CPHI/SNXX/SNDU (still latest
+  premarket packet, `packet_2026-07-22.json` — no fresh 7 AM packet
+  today, same gap noted at the 9:40 AM open). All `fail_daily`: CPHI
+  $1.78 ≤ prev high $2.63, SNXX/SNDU insufficient data. No PASS.
+  Saved `scans/tjl_watchlist_2026-07-23_1310ET.json`.
+- `scan_crypto.py --no-telegram`: REGIME BEAR (BTC prior close
+  $66,081.59 < daily SMA200 $72,691.42) — sleeve stands down, no
+  entries checked. Saved `scans/crypto_tjl_2026-07-23_1710UTC.json`.
+- §3b guardrail note (moot, no PASS to gate either sleeve): position
+  count still 7 open (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL) vs the §3
+  4-concurrent max — pinned since 2026-07-18, eighth straight trading
+  day. No new agent entry would be permitted this run regardless of
+  scan results.
+- No trades placed. Market tone since the open: a sharp broad selloff
+  — Nasdaq -1.98%, S&P 500 -1.01%, Dow -1.05% — driven by Brent crude
+  topping $100/bbl on escalating Mideast tensions plus AI-capex
+  anxiety after Tuesday's after-hours prints: Alphabet -7% (raised
+  capex guidance) and Tesla -14% (profit miss despite delivery beat);
+  IBM also -5% on trimmed revenue guidance. This explains today's
+  weakness in NVDA/ORCL.
+- Afternoon catalysts (ET): no Fed speakers today — FOMC blackout
+  period is in effect (7/18-30) ahead of the 7/28-29 meeting (rate
+  decision Wed 7/29 2:00 PM ET). Fed H.4.1 balance-sheet data releases
+  today (routine, non-market-moving). No confirmed 1 PM Treasury
+  auction found this search. Earnings after today's close: **Intel
+  (INTC)** — consensus $14.4B revenue / $0.22 non-GAAP EPS, market
+  watching 18A foundry yield (~85%, up from 65% last quarter) —
+  semis-adjacent to the NVDA holding, watch tomorrow's open. No
+  earnings on directly-held names today.
+- Extra-watch (live Alpaca/Robinhood quotes, vs yesterday's close):
+  BTC $64,774 (-1.62% today, holding above $64k despite the broad
+  risk-off tape); ETH $1,886.82 (-2.19% today, underperforming BTC);
+  SOL $76.13 (-2.17% today, holding the $76 area); NVDA $209.66
+  (-0.98% today, dragged by the AI-capex anxiety from Alphabet's
+  guidance but far calmer than GOOGL/TSLA's post-earnings moves);
+  ORCL $121.155 (-3.72% today, extending its slide — now -5.3% off
+  entry, worth a close watch into the close given it's the position
+  nearest the -7% hard bail).
+- Crypto sleeve: flat, regime confirmed BEAR again this run (no
+  change from 7/22's read).
+- Dashboard republished (local, gitignored) with fresh Alpaca
+  account/positions/orders.
+- Telegram: midday update sent (ALWAYS policy).
