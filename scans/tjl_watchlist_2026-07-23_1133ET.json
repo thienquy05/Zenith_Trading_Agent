@@ -1,0 +1,19 @@
+{
+  "scanned_at": "2026-07-23T11:33:22.125529-04:00",
+  "candidates_checked": 3,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "CPHI",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNXX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNDU",
+      "result": "fail_daily"
+    }
+  ]
+}
