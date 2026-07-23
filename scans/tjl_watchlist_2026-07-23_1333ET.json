@@ -1,0 +1,15 @@
+{
+  "scanned_at": "2026-07-23T13:33:40.014809-04:00",
+  "candidates_checked": 2,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "ZCMD",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "NOK",
+      "result": "fail_daily"
+    }
+  ]
+}

@@ -1280,3 +1280,18 @@ a new dated line.
 - Dashboard republished (local, gitignored) with fresh Alpaca
   account/positions/orders.
 - Telegram: midday update sent (ALWAYS policy).
+
+### 2026-07-23 13:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe ZCMD/NOK (today's fresh
+  `packet_2026-07-23.json`, first watchlist of the day — supersedes
+  midday's stale CPHI/SNXX/SNDU from the 7/22 packet). Both
+  `fail_daily`: ZCMD $1.78 ≤ prev high $11.60, NOK $9.91 ≤ prev high
+  $10.47. No PASS. Saved `scans/tjl_watchlist_2026-07-23_1333ET.json`.
+- §3b guardrail note (moot, no PASS to gate): **max-position lock
+  still binding** — 7 concurrent open (AAPL/NVDA/ORCL/VOO/BTC/ETH/SOL)
+  vs the §3 4-concurrent max, unchanged since 2026-07-18. No new
+  entry would be permitted this run regardless of scan results.
+- Hit set unchanged (empty → empty) — dashboard not republished this
+  run (keeping hourly watches cheap per policy).
+- No trade placed. Telegram: suppressed (quiet-run policy, no trade
+  and no emergency action needed).
