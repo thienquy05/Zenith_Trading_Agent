@@ -1395,3 +1395,26 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: universe INTC (today's premarket watchlist). Result: **fail_daily** — px $94.21 ≤ prev daily high $104.17. No PASS. Saved `scans/tjl_watchlist_2026-07-24_1432ET.json` (hit set unchanged vs prior runs — no dashboard republish needed).
 - Positions re-check: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL), all within stops, none near -7% (SOL worst at ~-2.6% total). Equity $99,996.75 vs last_equity $99,988.86 (+$7.89/+0.008%) — far inside -2% circuit breaker. Position lock still binding (6 open vs §3 cap of 4) — no new entry would be permitted this run regardless of scan result.
 - No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-07-24 16:00 ET — daily snapshot
+- Equity $99,996.51 | day P&L +$7.65 (+0.0077%) | cash $98,703.42
+- Open: AAPL 1@$310.47 (current $333.0972, uP&L +$22.6272/+7.29%), NVDA 1@$209.84 (current $206.9557, uP&L -$2.8843/-1.38%), VOO 1@$692.29 (current $678.77, uP&L -$13.52/-1.95%), BTC 0.000699945@$64,132.85 (current $64,175.9, uP&L +$0.03/+0.07%), ETH 0.010610407@$1,880.36 (current $1,856, uP&L -$0.26/-1.30%), SOL 0.130862025@$76.086 (current $73.741, uP&L -$0.31/-3.08%)
+- Trades today: 1 (ORCL stopped out 10:34 ET at $118.95 @ stop $118.97, qty 1, entry $127.93 → realized -$8.98 / -7.02%, tripping §3 hard -7% exit exactly as designed). Position count down to 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL) from 7 prior. Max-position lock still binding at 6/4.
+- Guardrail/breaker status:
+  - Day P&L +0.0077%, far inside -2% daily circuit breaker.
+  - Week P&L: from 2026-07-20 09:39 ET open equity $100,010.69 to now $99,996.51 = -$14.18 (-0.0142%), well inside -4% weekly breaker.
+  - Weekly new-entry cap: 0/5 used by agent (all new entry attempts blocked by position lock since 7/18). ORCL stop-out is a §3-mandated exit (hard -7% bail), not an agent entry.
+  - Tier-1 event blackout: none today (0 US high-impact events per today's 7 AM research; FOMC meets 7/28-29, five days out).
+  - Max-position lock: still binding at 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL) vs §3 4-concurrent max — freed one slot with ORCL's exit, but still 2 over cap. No new entries permitted until at least two more positions exit.
+  - No other rule violations. All stops in place and working (ORCL's exit proves the stop-loss infrastructure; other 6 remain protected).
+- **Robinhood real-account status** (EOD live pull):
+  - Individual (556092849): zero equity positions, $0.38 cash (unchanged).
+  - Roth IRA (829651439): VOO 0.183159 sh @ avg $689.29 (live ~$678.77 EOD, -0.08% today).
+  - Agentic (539785238): NVDA 0.358944 sh @ avg $195.10, ORCL 0.790482 sh @ avg $131.76, TSLA 0.002340 sh @ avg $427.35. Crypto estimate ~$32.88 (€18/€8/€4 BTC/ETH/SOL split, scaled).
+- **Extra-watch one-liners** (EOD):
+  - BTC $64,175.90 (Alpaca close), -1.27% today, holding above $64k support; still < SMA200 regime line (BEAR).
+  - ETH $1,856 (Alpaca close), -1.08% today, underperforming BTC on broad risk-off flow.
+  - SOL $73.741 (Alpaca close), -2.63% today, slipping below the $76 area watched this week.
+  - NVDA: Alpaca paper close $206.9557 (-0.86% today); Robinhood real 0.358944 sh performing similarly.
+  - ORCL: paper position exited at stop this morning (-7.02%). Robinhood real 0.790482 sh @ avg $131.76 (no live EOD pull yet, but intraday ranged $116–122 on Oracle's $6.99B DoD contract win partially offset by week's cloud-margin/downgrade slide and yesterday's -6% washout).
+- Lesson: discipline works. Market sold off broadly again (communications/discretionary weakness, oil surge >$100/bbl, Mideast escalation, lingering AI-capex anxiety from Alphabet). The ORCL position hit -7.02% at the stop and exited cleanly — exactly as designed. Position-count lock remains the binding constraint (6/7 slots filled, vs strategy max 4), but it forces patience: no regret on missing INTC's +9.8% move (data gap on mcap/RVOL, plus position lock would have vetoed it anyway per guardrails). All other 6 positions remain protected by stops, capturing the AAPL winner (+7.29%) and waiting for the net P&L to recover as losers work toward exits (VOO/NVDA/crypto). Trust the process — this is exactly how the discipline plays out when the market moves against 70% of an overfull portfolio.
