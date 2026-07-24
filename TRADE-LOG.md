@@ -1366,3 +1366,27 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: universe INTC (today's premarket watchlist). Result: **fail_daily** — px $95.25 ≤ prev daily high $104.17. No PASS; no entry regardless (position lock still binding, 6 open vs §3 cap 4).
 - Positions re-check: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL), all within stops, none near -7% (SOL worst at -2.6%). No emergency action needed.
 - No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-07-24 13:10 ET — Midday Scan
+- `positions`: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL) — ORCL is not among them; it stopped out this morning at -7.02% (already logged in the 10:34 ET Hourly TJL Watch entry).
+  - AAPL 1@$310.47, current $332.665, uP&L +$22.20/+7.15% (≈+2.12R, 1R=$10.47). Stop resting at breakeven $310.47 (raised there at a prior +2R crossing per earlier logs). Back past +2R again but not yet past +2.5R (~$336.65) — no further trail warranted this run.
+  - NVDA 1@$209.84, current $209.75, uP&L -$0.09/-0.04%. Stop $195.15. No action.
+  - VOO 1@$692.29, current $680.575, uP&L -$11.72/-1.69%. Stop $643.83. No action.
+  - BTC 0.000699945@$64,132.85, current $63,887.50, uP&L -$0.17/-0.38%. Stop_limit 59,643.60/59,345.40. No action.
+  - ETH 0.010610407@$1,880.36, current $1,853.60, uP&L -$0.28/-1.42%. Stop_limit 1,748.70/1,739.96. No action.
+  - SOL 0.130862025@$76.086, current $74.11, uP&L -$0.26/-2.60%. Stop_limit 70.76/70.4062. No action.
+  - `orders open` confirms all 6 stop/stop_limit orders still resting, none gapped through. No thesis breaks; no position at/below -7%.
+- Trailing-stop check: only AAPL is a winner past +2R; its stop is already at breakeven from a prior peak crossing and it hasn't reached the +2.5R further-trail threshold yet — no stop change this run.
+- `scan_tjl.py --no-telegram`: universe INTC (today's premarket watchlist). **fail_daily** — px $95.52 ≤ prev daily high $104.17. No PASS. Saved `scans/tjl_watchlist_2026-07-24_1310ET.json`.
+- `scan_crypto.py --no-telegram`: REGIME **BEAR** (BTC prior close $65,068.40 < daily SMA200 $72,559.27) — sleeve stands down, no entries checked. Saved `scans/crypto_tjl_2026-07-24_1710UTC.json`.
+- §3b guardrail note (moot, no PASS to gate either sleeve): position count 6 open vs the §3 4-concurrent max — still binding (one slot freed this morning by the ORCL stop-out, but still 2 over cap). No new entry would be permitted this run regardless of scan results. Day P&L +$11.67/+0.012% (equity $100,000.53 vs last_equity $99,988.86) and week-to-date -$10.16/-0.010% (from Monday 7/20 open equity $100,010.69 to today's $100,000.53) — both far inside the -2%/-4% circuit breakers. Weekly new-entry cap: 0/5 used by the agent.
+- Afternoon catalysts (ET): FOMC blackout remains in effect (7/18–30, ahead of the 7/28-29 meeting) — no Fed speakers today. No confirmed 1 PM ET Treasury auction found this search. No tier-1 US macro release found for this afternoon. No earnings on directly-held names (AAPL/NVDA/VOO) after today's close.
+- Market tone since the open: continuation of yesterday's selloff — Dow -1.0% (-506.93 pts) to 51,711.65, Nasdaq -2.2% (-553.21 pts) to 25,137.69, S&P 500 -1.2% (-90.66 pts) to 7,408.30 — communications/discretionary-led weakness on surging oil (Brent >$100/bbl), Mideast tension, and lingering AI-capex anxiety from Alphabet's raised 2026 capex guidance ($195-205B, up from $180-190B).
+- Extra-watch (live quotes this run):
+  - BTC $63,887.50 (Alpaca) — -1.62% today; opened near $65,048 and slid on higher Treasury yields tied to new tariff-driven inflation expectations pulling institutional flow from risk assets. Regime still BEAR (< SMA200).
+  - ETH $1,853.60 (Alpaca) — -1.94% today, underperforming BTC on the same risk-off flow.
+  - SOL $74.11 (Alpaca) — -2.60% today, extending the week's slide.
+  - NVDA $210.11 (Robinhood live, +0.65% today) — steadier than the broader tape; tangential positive catalyst: Amkor Technology (a packaging partner) up ~10% premarket on a new $1.5B NVDA semiconductor-packaging/test agreement.
+  - ORCL $118.495 (Robinhood live, -1.29% today) — no Alpaca paper position (stopped out this morning); Robinhood real shares held. Oracle secured a $6.99B, 10-year DoD contract (on-prem software across military branches/intel agencies) reported lifting shares premarket, but it hasn't offset the week's broader cloud-margin/downgrade-driven slide.
+- Dashboard republished (local, gitignored) with fresh Alpaca positions/account/orders + Robinhood live quotes (NVDA/ORCL) and portfolio value; full RSI/MA historicals recompute skipped this run (an equity-historicals call for VOO/NVDA/ORCL exceeded the tool output limit) — signal badges carry forward from the last successful compute, flagged as not refreshed this run.
+- Telegram: midday update sent (ALWAYS policy).
