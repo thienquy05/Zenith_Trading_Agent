@@ -1390,3 +1390,8 @@ a new dated line.
   - ORCL $118.495 (Robinhood live, -1.29% today) — no Alpaca paper position (stopped out this morning); Robinhood real shares held. Oracle secured a $6.99B, 10-year DoD contract (on-prem software across military branches/intel agencies) reported lifting shares premarket, but it hasn't offset the week's broader cloud-margin/downgrade-driven slide.
 - Dashboard republished (local, gitignored) with fresh Alpaca positions/account/orders + Robinhood live quotes (NVDA/ORCL) and portfolio value; full RSI/MA historicals recompute skipped this run (an equity-historicals call for VOO/NVDA/ORCL exceeded the tool output limit) — signal badges carry forward from the last successful compute, flagged as not refreshed this run.
 - Telegram: midday update sent (ALWAYS policy).
+
+### 2026-07-24 14:32 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe INTC (today's premarket watchlist). Result: **fail_daily** — px $94.21 ≤ prev daily high $104.17. No PASS. Saved `scans/tjl_watchlist_2026-07-24_1432ET.json` (hit set unchanged vs prior runs — no dashboard republish needed).
+- Positions re-check: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL), all within stops, none near -7% (SOL worst at ~-2.6% total). Equity $99,996.75 vs last_equity $99,988.86 (+$7.89/+0.008%) — far inside -2% circuit breaker. Position lock still binding (6 open vs §3 cap of 4) — no new entry would be permitted this run regardless of scan result.
+- No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
