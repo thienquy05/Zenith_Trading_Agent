@@ -1469,3 +1469,23 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: no candidates — today's watchlist (`scans/watchlist_2026-07-27.json`) still empty (zero qualifying gappers this morning). Saved `scans/tjl_watchlist_2026-07-27_1433ET.json`. No PASS, hit set unchanged (empty) — no dashboard republish.
 - Positions re-check: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL), all stop/stop_limit orders confirmed resting (`orders`), none triggered. NVDA worst at -6.46% (196.295 vs stop 195.15), still above the -7% hard-stop line, no action needed. Position lock still binding (6 open vs §3 cap of 4) — no new entry would be permitted this run regardless of scan result.
 - No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-07-27 16:00 ET — daily snapshot
+- Equity $99,991.94 | day P&L -$4.71 (-0.0047%) | cash $98,703.40
+- Open: AAPL 1@$310.47 (current $337.10, uP&L +$26.63/+8.58%), NVDA 1@$209.84 (current $196.48, uP&L -$13.36/-6.37%), VOO 1@$692.29 (current $679.11, uP&L -$13.18/-1.90%), BTC 0.000699945@$64,132.85 (current $65,024.92, uP&L +$0.62/+1.39%), ETH 0.010610407@$1,880.36 (current $1,944.80, uP&L +$0.68/+3.43%), SOL 0.130862025@$76.086 (current $75.56, uP&L -$0.07/-0.69%)
+- Trades today: 0 | notes:
+  - No new entries today — position lock still binding at 6 open vs strategy §3 4-concurrent max (held since 2026-07-18, freed one slot from ORCL's Friday stop-out on 7/24 but still 2 over cap), and today's premarket research found zero qualifying gappers to watchlist anyway (59 candidates screened, none cleared the day/swing/macro filters). Crypto sleeve regime-gated BEAR, no C-TJL entries checked.
+  - **All positions held their stops today**: all 6 stop/stop_limit orders confirmed resting and unfilled at close. NVDA worst performer at -6.37% (uP&L -$13.36), but well above the -7% hard-stop level ($195.15). AAPL +8.58% (1-day pop continues Friday's bounce); ETH +3.43% (crypto strength holding as Iran de-escalation relief sustains); BTC +1.39%, SOL -0.69% (mixed crypto close); VOO -1.90% (core tech holding down SPY components).
+  - **Robinhood real-account EOD live pull**:
+    - Individual (556092849): zero equity positions, $0.38 cash (unchanged).
+    - Roth IRA (829651439): VOO 0.183159 sh @ avg $689.29, live close $679.11 (-0.08% today, -$6.32 uP&L off the cost basis).
+    - Agentic (539785238): NVDA 0.358944 sh @ avg $195.10 (live ~$196.52, -5.00% today per last trade, -$0.51 uP&L), ORCL 0.790482 sh @ avg $131.76 (live ~$119.97, +4.34% today per last trade, -$9.35 uP&L total — the $6.99B DoD/Navy contract wins offset only part of the week's cloud-margin selloff), TSLA 0.002340 sh @ avg $427.35 (dust, -0.39% today), crypto portfolio $134.44 (est. per $18/$8/$4 BTC/ETH/SOL split, up from Friday's $131.76) + $100 pending deposit.
+    - Extra-watch EOD prices (all live as of 20:07 UTC / 4:07 PM ET): NVDA $196.52 (-5.00% today, -$0.32/sh from Friday close), ORCL $119.97 (+4.34% today, +$5.97/sh), BTC ~$65,024.92 (Alpaca paper position, -0.12% today), ETH ~$1,944.80 (Alpaca, +3.43% today), SOL ~$75.56 (Alpaca, -0.69% today).
+  - **Guardrail/breaker status**:
+    - Daily P&L -0.0047%, far inside -2% daily breaker.
+    - Weekly P&L (new week baseline 2026-07-27 open equity $100,004.42): now $99,991.94 = -$12.48 / -0.0125%, well inside -4% weekly breaker.
+    - Position lock: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL) vs §3 4-concurrent max — still binding, no new entries permitted.
+    - Weekly new-entry cap: 0/5 used by agent (all attempts blocked by position lock).
+    - **FOMC blackout window**: remains in effect 7/18-30 (rate decision Wed 7/29 2:00 PM ET) — no new entries permitted during windows anyway.
+    - No rule violations. All stops in place and working.
+  - **Lesson**: a flat Monday (zero new setups, zero new entries, zero trades) with the position lock binding is exactly when discipline shines. The position lock forces patience; market gave up the morning's +1.6% Nasdaq-100 futures gap and closed mixed (Dow +0.2%, S&P -0.3%, Nasdaq -0.6%) on Mag-7 earnings jitters (Meta/MSFT/AMZN/AAPL report this week), NVDA's $250B OpenAI financing-guarantee headline (balance-sheet-risk concerns), and a semiconductor selloff (AMD -7%, Teradyne -6%, VanEck Semi -3%+). The paper portfolio tracked this fairly well (AAPL still a winner thanks to Friday's bounce, NVDA took the heat but stayed above stop, VOO held). Real account gains on ORCL's $7B+ DoD contract wins partly offset NVDA weakness. Trust the guardrails — missing a setup beats taking a bad one.
