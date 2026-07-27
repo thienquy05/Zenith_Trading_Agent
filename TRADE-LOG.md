@@ -1418,3 +1418,21 @@ a new dated line.
   - NVDA: Alpaca paper close $206.9557 (-0.86% today); Robinhood real 0.358944 sh performing similarly.
   - ORCL: paper position exited at stop this morning (-7.02%). Robinhood real 0.790482 sh @ avg $131.76 (no live EOD pull yet, but intraday ranged $116–122 on Oracle's $6.99B DoD contract win partially offset by week's cloud-margin/downgrade slide and yesterday's -6% washout).
 - Lesson: discipline works. Market sold off broadly again (communications/discretionary weakness, oil surge >$100/bbl, Mideast escalation, lingering AI-capex anxiety from Alphabet). The ORCL position hit -7.02% at the stop and exited cleanly — exactly as designed. Position-count lock remains the binding constraint (6/7 slots filled, vs strategy max 4), but it forces patience: no regret on missing INTC's +9.8% move (data gap on mcap/RVOL, plus position lock would have vetoed it anyway per guardrails). All other 6 positions remain protected by stops, capturing the AAPL winner (+7.29%) and waiting for the net P&L to recover as losers work toward exits (VOO/NVDA/crypto). Trust the process — this is exactly how the discipline plays out when the market moves against 70% of an overfull portfolio.
+
+### 2026-07-27 09:41 ET — Market Open
+- `clock`: market open, next_close 2026-07-27T16:00:00-04:00 (regular Monday session, no holiday).
+- `positions` re-check: 6 open, unchanged, none gapped through a stop. AAPL $335.775 (+8.15%, stop $310.47), NVDA $204.12 (-2.73%, stop $195.15), VOO $684.56 (-1.12%, stop $643.83), BTC $65,423 (+2.01%, stop_limit 59,643.60/59,345.40), ETH $1,962.852 (+4.39%, stop_limit 1,748.70/1,739.96), SOL $77.107 (+1.34%, stop_limit 70.76/70.4062). `orders open` confirms all 6 stop/stop_limit orders still resting, none triggered.
+- §3b guardrail pre-check:
+  - Day circuit breaker: equity $100,004.42 vs last_equity $99,996.65 ≈ +$7.77 (+0.0078%), far inside -2%.
+  - **New week (Monday 7/27–7/31)**: weekly circuit breaker and weekly new-entry cap both reset today. New baseline: today's open equity $100,004.42. Weekly new-entry cap: 0/5 used.
+  - Tier-1 event blackout: none today (0 US high-impact events per today's 7 AM research; FOMC rate decision Wed 7/29 2:00 PM ET is two days out — will trigger a blackout as it approaches, not yet in effect).
+  - Earnings 24h no-entry: n/a, no planned trades today.
+  - **Max-position lock (binding)**: 6 concurrent open (AAPL/NVDA/VOO/BTC/ETH/SOL) vs the §3 4-concurrent max — pinned since 2026-07-18 (ORCL's Friday stop-out freed one slot from 7→6, still 2 over cap). Blocks any new agent entry today regardless of scan results.
+- **No entries**: standing aside — today's premarket research (`RESEARCH-LOG.md` 2026-07-27) found zero qualifying gappers (59 candidates screened, none cleared the filter — genuinely quiet tape, not a data-feed issue), and the max-position lock would veto any setup regardless (6/4 slots filled).
+- Crypto sleeve: flat, regime BEAR (BTC prior close $65,334.77 < daily SMA200 $72,133.39, per today's research) — no new entries checked, moot with the position lock binding.
+- Robinhood real-account pull (live, for dashboard + Telegram):
+  - Individual (556092849): zero equity positions, $0.38 cash (unchanged).
+  - Roth IRA (829651439): VOO 0.183159 sh @ avg $689.29, live $683.52 (+0.65% today), value $125.20.
+  - Agentic (539785238): NVDA 0.358944 sh @ avg $195.10, live $202.24 (-2.22% today); ORCL 0.790482 sh @ avg $131.76, live $120.93 (+5.17% today, extending Friday's $6.99B DoD-contract bounce); TSLA 0.002340 sh @ avg $427.35 (dust, +0.01% today); crypto_value $136.11 (est. $18/$8/$4 BTC/ETH/SOL split, scaled) + $100 pending deposit.
+- Dashboard republished (local, gitignored) with fresh Alpaca account/positions/orders + live Robinhood pull (3 accounts).
+- Telegram: open report sent (ALWAYS policy), including "no entries" reason and extra-watch one-liners.
