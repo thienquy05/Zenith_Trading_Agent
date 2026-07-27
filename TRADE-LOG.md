@@ -1464,3 +1464,8 @@ a new dated line.
   - ORCL $119.95 (Robinhood live, +4.31% today) — extending gains on the real $7B DoD + $6.99B Navy contract wins, partly offset by a Wisconsin data-center collateral-rule concern (~$7B+ posting requirement) and a new CLSA Hold initiation ($145 PT). No Alpaca paper position (stopped out Friday).
 - Dashboard republished (Artifact, `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`) with fresh Alpaca positions/account/orders + live Robinhood pull (3 accounts, all holdings); RSI/MA signal recompute skipped this run (token budget) and flagged as such on the dashboard — badges are neutral/hold placeholders, not a fresh RSI read.
 - Telegram: midday update sent (ALWAYS policy).
+
+### 2026-07-27 14:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: no candidates — today's watchlist (`scans/watchlist_2026-07-27.json`) still empty (zero qualifying gappers this morning). Saved `scans/tjl_watchlist_2026-07-27_1433ET.json`. No PASS, hit set unchanged (empty) — no dashboard republish.
+- Positions re-check: 6 open (AAPL/NVDA/VOO/BTC/ETH/SOL), all stop/stop_limit orders confirmed resting (`orders`), none triggered. NVDA worst at -6.46% (196.295 vs stop 195.15), still above the -7% hard-stop line, no action needed. Position lock still binding (6 open vs §3 cap of 4) — no new entry would be permitted this run regardless of scan result.
+- No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
