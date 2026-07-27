@@ -708,3 +708,48 @@ Append at the BOTTOM, one entry per pre-market run.
   frees up). Bigger picture: watching for the yfinance outage to
   resolve since it's now cost two real setups in two days, and
   watching ORCL's proximity to -7% given how close it came Wednesday.
+
+## 2026-07-27 — pre-market
+- Account: equity $100,008.07 | cash $98,703.40 | open positions: 6
+  total (down from 7 after ORCL's Friday -7.02% stop-out) — AAPL
+  +7.6% (stop at breakeven $310.47), NVDA -0.7%, VOO -1.0%, BTC +1.8%,
+  ETH +4.5% (best showing yet), SOL +0.3%. None near their stops.
+- **Guardrail flag (standing, improved but still active)**: position
+  count now 6 open vs the strategy's 4-concurrent max — ORCL's stop-out
+  Friday freed one slot (was 7 since 7/18), but still 2 over the cap.
+  No new agent entry permitted today regardless of scan results.
+- Macro/calendar: 0 US high-impact events today (ForexFactory live
+  fetch) — no §3b blackout window today. FOMC rate decision Wednesday
+  7/29 2:00 PM ET (Fed Chair Warsh presiding), two days out — will
+  trigger a blackout as it approaches. Four Mag-7 earnings this week:
+  Meta, Microsoft, Amazon, and AAPL (held here) Thursday 7/30 after
+  close — Tim Cook's final earnings call as CEO.
+- Sector momentum / market tone: **real Iran de-escalation** — US
+  suspended strikes for a 2nd straight night over the weekend, a
+  materially stronger signal than last Monday's failed ceasefire-hope
+  rally (which reversed within 24h). Oil tumbling on it: Brent -4.4%
+  to $87.64/bbl, WTI -4.9% to $84.91/bbl. Futures strongly positive
+  (Dow/S&P futures +0.8%, Nasdaq-100 +1.6%, Polymarket 88% odds of a
+  green S&P open). VIX eased to 17.66 live from Friday's 18.84. SPX
+  7,411.98 / NDX 28,128.34 / RUT 2,930.00 (Friday close, yfinance
+  blocked again). Zero gappers today (59 candidates screened, none
+  cleared the filter) — genuinely quiet, not a data-feed issue.
+- Crypto regime: BEAR (BTC prior close $65,334.77 < daily SMA200
+  $72,133.39) — sleeve stands down. BTC $65,166 (-0.3% vs today's
+  open), ETH $1,962 (+0.5%, continuing a strong stretch), SOL $76.70
+  (flat).
+- Extra-watch (BTC/ETH/SOL/NVDA/ORCL): NVDA $208.15 premarket (+0.6%),
+  no specific news. ORCL $117.88 premarket (+2.5%), continuing to
+  bounce on Friday's real, verified $6.99B 10-year DoD contract win
+  (on-prem software, military branches/intel agencies) — note the
+  Alpaca paper ORCL position was stopped out Friday morning at -7.02%
+  before this news broke; Robinhood real ORCL position still held.
+- Ideas (2-3): none. Zero gappers to screen, and even a clean setup
+  would be vetoed today by the position-count guardrail (6 open vs
+  4-max). No qualifying setups — standing aside on equities. Crypto
+  sleeve flat (bear regime, though ETH is showing real strength).
+- Watching but not trading: nothing flagged today (empty gapper set).
+  Bigger picture: watching the Iran de-escalation for durability (it
+  flipped fast last week), the approaching FOMC blackout window
+  (Wed 7/29), and AAPL's earnings Thursday (held position, CEO
+  transition context).
