@@ -753,3 +753,37 @@ Append at the BOTTOM, one entry per pre-market run.
   flipped fast last week), the approaching FOMC blackout window
   (Wed 7/29), and AAPL's earnings Thursday (held position, CEO
   transition context).
+
+## 2026-07-28 (Tuesday) — Pre-Market Research
+
+- **Account**: Equity $99,989.64, flat vs $100k baseline. 6 open
+  positions (AAPL, NVDA, VOO, BTC, ETH, SOL) — still 2 over the 4-max
+  cap, no new entries permitted.
+- **NVDA at/through stop**: current $194.85 (-7.14% unrealized) is below
+  the resting $195.15 stop order (id 327083b0, still "new" — stops don't
+  trigger premarket). Very likely fills at the open; will show in
+  TRADE-LOG.md via the 9:30 AM workflow.
+- **Macro/calendar**: 0 high-impact US events today — no §3b blackout.
+  FOMC's 2-day meeting begins today; the actual decision/statement/press
+  conference are all tomorrow (Wed 7/29, 2:00-2:30 PM ET) — narrow
+  ~1:30-2:15 PM ET blackout window tomorrow, not a multi-day window
+  (correcting an earlier overstated "7/18-7/30 blackout" log note).
+- **Sector momentum/market tone**: Risk-off on a China DUV lithography
+  breakthrough report (state-backed Chinese firm reportedly mass-
+  producing domestic DUV tools) — ASML -7%+, US premarket semis lower
+  (NVDA ~-5%, AMD ~-8%, Micron ~-6%), verified via CNBC/Yahoo
+  Finance/Investing.com. VIX 18.99, up from 17.66. Compounds pressure on
+  the already-struggling NVDA position (Monday's OpenAI-financing
+  selloff was the original driver).
+- **Crypto regime**: BEAR (BTC $63,701.95 prior close vs SMA200
+  $71,996.77) — sleeve stands down, no C-TJL entries.
+  `scans/crypto_tjl_2026-07-28_1115UTC.json`.
+- **Extra-watch**: no fresh company-specific headlines today for
+  BTC/ETH/SOL/ORCL beyond the semis-sector story above.
+- **Ideas**: none. Scan produced 1 gapper (DFNS, +8.68%, activist 13D
+  filing) but it fails both day and swing eligibility on data quality
+  (no mcap/RVOL, price below prior-day high, SMA200 mismatch on a thin
+  microcap) — correctly skipped. No qualifying setups today.
+- **Watching but not trading**: NVDA stop fill expected at the open;
+  tomorrow's FOMC decision and its narrow blackout window; AAPL earnings
+  Thursday 7/30 after close (2 days out, not yet in the no-entry window).
