@@ -1486,3 +1486,25 @@ a new dated line.
 - Positions re-check: 5 open (AAPL/VOO/BTC/ETH/SOL), all stop/stop_limit orders confirmed resting (`orders`), none triggered. Equity $99,993.57 vs last_equity $99,989.84 (+$3.73/+0.004%) — far inside -2% daily circuit breaker.
 - §3b guardrail note: max-position lock still binding — 5 open vs §3 4-concurrent max. No new entry would be permitted this run regardless of scan result. FOMC blackout remains in effect ahead of tomorrow's rate decision (2026-07-29 2:00 PM ET).
 - No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-07-28 13:12 ET — Midday Scan
+- `positions`: 5 open (AAPL/VOO/BTC/ETH/SOL) — unchanged since this morning's NVDA gap-through stop-out. `orders open` confirms all 5 stop/stop_limit orders resting, none triggered.
+  - **AAPL** 1@$310.47, current $339.30, uP&L +$28.83/+9.29% (≈+2.75R, 1R=$10.47). Past the **+2.5R further-trail gate** (~$336.65, crossed since the last run) — per §3's trailing-stop rule, canceled the resting breakeven stop (`f1aab1b7` @ $310.47) and placed a fresh 3%-trailing stop at **$329.10** (new order `dad988f8`, qty 1, GTC). Locks in ≈+1.78R minimum vs the 3R target ($341.88, price is ~96% of the way there).
+  - VOO 1@$692.29, current $681.50, uP&L -$10.79/-1.56%. Stop $643.83 (-7% hard bail). No action.
+  - BTC 0.000699945@$64,132.85, current $63,896.46, uP&L -$0.17/-0.37%. Stop_limit 59,643.60/59,345.40. No action.
+  - ETH 0.010610407@$1,880.36, current $1,919.40, uP&L +$0.41/+2.08%. Stop_limit 1,748.70/1,739.96. No action (not yet a system-tracked +2R winner under §2c's own rules; watching).
+  - SOL 0.130862025@$76.086, current $73.955, uP&L -$0.28/-2.80%. Stop_limit 70.76/70.4062. No action.
+  - No position at/below -7%; no thesis break requiring a sale this run.
+- `scan_tjl.py --no-telegram`: universe DFNS (today's watchlist still empty — zero qualifying gappers this morning). `fail_daily` — prev close $13.83 ≤ SMA200 $335.78. No PASS. Saved `scans/tjl_watchlist_2026-07-28_1311ET.json`. Hit set unchanged — dashboard republished anyway this run for the AAPL stop trail.
+- `scan_crypto.py --no-telegram`: REGIME **BEAR** (BTC $63,701.95 < daily SMA200 $71,996.77) — sleeve stands down, no entries checked. Saved `scans/crypto_tjl_2026-07-28_1711UTC.json`.
+- §3b guardrail note: equity $99,992.80 vs last_equity $99,989.84 (+$2.96/+0.003%) — far inside -2% daily circuit breaker. Week P&L (Monday 7/27 baseline equity $100,004.42): -$11.62/-0.012%, well inside -4% weekly breaker. Weekly new-entry cap: 0/5 used. **Max-position lock still binding** — 5 open vs §3 4-concurrent max (NVDA's stop-out this morning freed one slot, still 1 over cap). No new entries permitted regardless of scan results. FOMC blackout remains in effect through 7/30 (rate decision tomorrow, 2026-07-29 2:00 PM ET) — no Fed speakers today per the blackout.
+- Afternoon catalysts (ET): No Fed speakers today (blackout in effect ahead of tomorrow's 2:00 PM ET decision). No confirmed 1 PM ET Treasury auction found this search. No tier-1 US macro release found for this afternoon. No earnings on directly-held names (AAPL/VOO) after today's close — AAPL (the company) reports Thursday 7/30, unrelated to the AAPL paper position's own catalyst (a system-test TJL entry). Big Tech (MSFT/META/AMZN) earnings loom later this week; markets awaiting guidance ahead of tomorrow's FOMC decision.
+- Market tone since the open: mixed — Dow modestly higher, S&P roughly flat, tech/semis lagging. Nvidia's ~5% Monday selloff (record CDS spread on a reported ~$250B OpenAI financing-guarantee deal) continues to weigh on chip names (Micron, SK Hynix, SanDisk each down >5% at points this week); Nvidia ceded its spot as the world's most valuable company to Apple. Communication services/staples/discretionary outperforming; energy/tech/utilities lagging.
+- Extra-watch (live quotes this run):
+  - BTC $63,896.46 (Alpaca) — regime BEAR (< daily SMA200 $71,996.77), roughly flat/-0.4% vs entry.
+  - ETH $1,919.40 (Alpaca) — outperforming BTC, +2.1% vs entry.
+  - SOL $73.955 (Alpaca) — softer, -2.8% vs entry, tracking the broader crypto chop.
+  - NVDA $197.765 (Robinhood live, +0.64% today) — bouncing modestly off Monday's ~5% CDS/OpenAI-financing-fear selloff; Robinhood real 0.358944 sh, no Alpaca paper position (stopped out at the open today, -7.64%, gap-through, logged in the 10:35 ET hourly entry).
+  - ORCL $120.555 (Robinhood live, +0.55% today) — extending its bounce off 52-week lows on the real DoD/Navy contract wins, still down ~63% from September's peak on AI-capex spend fears (S&P downgraded to BBB- 7/9). Robinhood real 0.790482 sh @ avg $131.76; no Alpaca paper position (stopped out 7/25).
+- Dashboard republished (Artifact, `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`) with fresh Alpaca positions/account/orders (incl. the new AAPL trailed stop) + live Robinhood pull (3 accounts, all holdings); RSI/MA signal recompute skipped this run (token budget), badges/why carried forward and flagged as such on the dashboard.
+- Telegram: midday update sent (ALWAYS policy).
