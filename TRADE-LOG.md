@@ -1508,3 +1508,9 @@ a new dated line.
   - ORCL $120.555 (Robinhood live, +0.55% today) — extending its bounce off 52-week lows on the real DoD/Navy contract wins, still down ~63% from September's peak on AI-capex spend fears (S&P downgraded to BBB- 7/9). Robinhood real 0.790482 sh @ avg $131.76; no Alpaca paper position (stopped out 7/25).
 - Dashboard republished (Artifact, `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`) with fresh Alpaca positions/account/orders (incl. the new AAPL trailed stop) + live Robinhood pull (3 accounts, all holdings); RSI/MA signal recompute skipped this run (token budget), badges/why carried forward and flagged as such on the dashboard.
 - Telegram: midday update sent (ALWAYS policy).
+
+### 2026-07-28 13:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe DFNS (today's watchlist still empty — zero qualifying gappers this morning). `fail_daily` — prev close $13.83 ≤ SMA200 $335.78. No PASS. Saved `scans/tjl_watchlist_2026-07-28_1333ET.json`. Hit set unchanged (empty) — no dashboard republish needed.
+- Positions re-check: 5 open (AAPL/VOO/BTC/ETH/SOL), all stop/stop_limit orders confirmed resting (`orders open`), none triggered. Equity $99,992.43 vs last_equity $99,989.84 (+$2.59/+0.003%) — far inside -2% daily circuit breaker.
+- §3b guardrail note: max-position lock still binding — 5 open vs §3 4-concurrent max. No new entry would be permitted this run regardless of scan result. FOMC blackout remains in effect ahead of tomorrow's rate decision (2026-07-29 2:00 PM ET).
+- No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
