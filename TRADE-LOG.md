@@ -1476,3 +1476,13 @@ a new dated line.
 - Positions re-check: 5 open (AAPL/VOO/BTC/ETH/SOL), all remaining stop/stop_limit orders confirmed resting (`orders`), none triggered. Equity $99,987.73 vs last_equity $99,989.84 (-$2.11/-0.002%) — far inside -2% daily circuit breaker. Week P&L (Monday 7/27 baseline equity $100,004.42): -$16.69/-0.017%, well inside -4% weekly breaker.
 - §3b guardrail note: max-position lock still binding — 5 open vs §3 4-concurrent max (NVDA's stop-out freed one slot, 6→5, still 1 over cap). No new entry would be permitted this run regardless of scan result. FOMC blackout remains in effect (rate decision tomorrow, 2026-07-29 2:00 PM ET).
 - No trade placed by the agent this run. Telegram: sent — NVDA's gap-through stop fill is an urgent risk event per policy (already resolved, but flagged same-run since it wasn't caught earlier today).
+
+### 2026-07-28 11:33 ET — Hourly TJL Watch (logged retroactively)
+- `scan_tjl.py --no-telegram`: universe DFNS (today's watchlist still empty). `fail_daily` — prev close $13.83 ≤ SMA200 $335.78. No PASS. Saved `scans/tjl_watchlist_2026-07-28_1133ET.json`. Hit set unchanged — no dashboard republish. This run's log entry was missed at the time; recorded now since the scan JSON already exists on disk.
+- No trade placed. No Telegram (quiet-run policy).
+
+### 2026-07-28 12:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe DFNS (today's watchlist still empty — zero qualifying gappers this morning). `fail_daily` — prev close $13.83 ≤ SMA200 $335.78. No PASS. Saved `scans/tjl_watchlist_2026-07-28_1233ET.json`. Hit set unchanged (empty) — no dashboard republish needed.
+- Positions re-check: 5 open (AAPL/VOO/BTC/ETH/SOL), all stop/stop_limit orders confirmed resting (`orders`), none triggered. Equity $99,993.57 vs last_equity $99,989.84 (+$3.73/+0.004%) — far inside -2% daily circuit breaker.
+- §3b guardrail note: max-position lock still binding — 5 open vs §3 4-concurrent max. No new entry would be permitted this run regardless of scan result. FOMC blackout remains in effect ahead of tomorrow's rate decision (2026-07-29 2:00 PM ET).
+- No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
