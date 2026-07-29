@@ -1,0 +1,518 @@
+{
+  "generated_at": "2026-07-29T07:10:25.019664-04:00",
+  "candidate_source": "alpaca_screener_premarket",
+  "trading_day_note": "Wednesday 2026-07-29 07:10 ET; inside the 04:00-09:30 premarket window",
+  "scan_params": {
+    "gap_filter_abs_pct": 3.0,
+    "price_min": 3.0,
+    "top_n": 12,
+    "open_note": "before 09:30 ET the latest premarket price stands in for the official open in swing checks"
+  },
+  "criteria": {
+    "day_trading": "Trend Join Long selection: gap > 3% vs prev close, price > $3, market cap > $1B, premarket RVOL > 1.5, price above prior-day high, prev close above 200-day SMA. Execution per TRADING-STRATEGY.md 2b: trigger over PMH + prior HOD 10:00-15:30 ET, stop = signal bar low, 3R bracket, flat 15:55.",
+    "swing": "Gap >= 8%, price > $3, open above prior-day high, open above 200-day SMA, market cap >= $800M, and a real catalyst (earnings on gap day, or news with no earnings). Starter ideas only, swing management is still being built."
+  },
+  "market_snapshot": {
+    "S&P 500": {
+      "symbol": "^GSPC",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Dow": {
+      "symbol": "^DJI",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Nasdaq": {
+      "symbol": "^IXIC",
+      "error": "not enough history"
+    },
+    "Russell 2000": {
+      "symbol": "^RUT",
+      "error": "not enough history"
+    },
+    "VIX": {
+      "symbol": "^VIX",
+      "error": "not enough history"
+    },
+    "US 10Y": {
+      "symbol": "^TNX",
+      "error": "not enough history"
+    },
+    "US 3M": {
+      "symbol": "^IRX",
+      "error": "not enough history"
+    },
+    "WTI Oil": {
+      "symbol": "CL=F",
+      "error": "not enough history"
+    },
+    "Dollar (DXY)": {
+      "symbol": "DX-Y.NYB",
+      "error": "not enough history"
+    }
+  },
+  "econ_calendar": {
+    "source": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+    "filter": "country=USD, impact=High",
+    "today_date": "2026-07-29",
+    "tomorrow_date": "2026-07-30",
+    "today": [
+      {
+        "time_et": "2:00 PM",
+        "title": "Federal Funds Rate",
+        "forecast": "3.75%",
+        "previous": "3.75%"
+      },
+      {
+        "time_et": "2:00 PM",
+        "title": "FOMC Statement",
+        "forecast": "",
+        "previous": ""
+      },
+      {
+        "time_et": "2:30 PM",
+        "title": "FOMC Press Conference",
+        "forecast": "",
+        "previous": ""
+      }
+    ],
+    "tomorrow": [
+      {
+        "time_et": "8:30 AM",
+        "title": "Advance GDP q/q",
+        "forecast": "2.1%",
+        "previous": "2.0%"
+      },
+      {
+        "time_et": "8:30 AM",
+        "title": "Core PCE Price Index m/m",
+        "forecast": "0.2%",
+        "previous": "0.3%"
+      }
+    ],
+    "note": "live fetch"
+  },
+  "gappers": [
+    {
+      "rank": 1,
+      "symbol": "BEZ",
+      "name": null,
+      "price": 21,
+      "prev_close": 25.41,
+      "gap_pct": -17.36,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 27.87,
+      "prior_close": 25.41,
+      "avg_vol_20d": 11275,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 2,
+      "symbol": "BIYA",
+      "name": null,
+      "price": 7.03,
+      "prev_close": 6.43,
+      "gap_pct": 9.33,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 34.65,
+      "prior_day_high": 6.68,
+      "prior_close": 6.43,
+      "avg_vol_20d": 51144,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "12 Industrials Stocks Moving In Tuesday's Intraday Session",
+      "headlines": [
+        {
+          "title": "12 Industrials Stocks Moving In Tuesday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-28T17:06:13Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Tuesday's Pre-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-28T12:05:58Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "Why Celestica Shares Are Trading Higher By Around 5%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-07-28T09:01:54Z",
+          "n_symbols": 20
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Monday's After-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-27T21:06:16Z",
+          "n_symbols": 12
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 3,
+      "symbol": "INLF",
+      "name": null,
+      "price": 4.96,
+      "prev_close": 5.23,
+      "gap_pct": -5.16,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 1245.24,
+      "prior_day_high": 8.08,
+      "prior_close": 5.23,
+      "avg_vol_20d": 8613,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Why Bloom Energy Shares Are Trading Higher By 11%; Here Are 20 Stocks Moving Premarket",
+      "headlines": [
+        {
+          "title": "Why Bloom Energy Shares Are Trading Higher By 11%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-07-29T08:57:42Z",
+          "n_symbols": 20
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Tuesday's After-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-28T21:06:29Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Tuesday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-28T17:06:13Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "Dow Jumps 350 Points; Coca-Cola Shares Gain On Upbeat Earnings",
+          "source": "benzinga",
+          "published": "2026-07-28T13:50:43Z",
+          "n_symbols": 7
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 4,
+      "symbol": "EGG",
+      "name": null,
+      "price": 4.08,
+      "prev_close": 3.91,
+      "gap_pct": 4.35,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 5.88,
+      "prior_day_high": 6.95,
+      "prior_close": 3.91,
+      "avg_vol_20d": 3711,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Enigmatig Invests In Martial Arts Comedy KUNGFULAND, Backed By Singapore's Infocomm Media Development Authority",
+      "headlines": [
+        {
+          "title": "Enigmatig Invests In Martial Arts Comedy KUNGFULAND, Backed By Singapore's Infocomm Media Development Authority",
+          "source": "benzinga",
+          "published": "2026-07-21T05:29:39Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Tuesday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-28T17:06:13Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Monday's After-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-27T21:06:16Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Monday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-27T17:06:15Z",
+          "n_symbols": 12
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 5,
+      "symbol": "SNXX",
+      "name": null,
+      "price": 8.32,
+      "prev_close": 8.0,
+      "gap_pct": 4.07,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 9.51,
+      "prior_close": 8.0,
+      "avg_vol_20d": 731466,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    }
+  ],
+  "market_news": [
+    {
+      "title": "Medicare is about to change a drug program that held down the cost of premiums. Here\u2019s what to know.",
+      "summary": "Experts say this could mean that more seniors will switch to Medicare Advantage plans",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 11:06:00 GMT"
+    },
+    {
+      "title": "A profit squeeze is coming for tech. This manager is betting on these unglamorous stocks instead.",
+      "summary": "MFS Investment Management\u2019s chief global investment strategist, Robert Almeida says investors overfocus on the Federal Reserve, when their attention should be on a major shift in the capital cycle.",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 11:03:00 GMT"
+    },
+    {
+      "title": "The dollar\u2019s rally matters \u2014 but it still won\u2019t help Fed\u2019s Warsh win the inflation fight",
+      "summary": "A strong dollar is doing far less for the fight against inflation than might be expected.",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 11:00:00 GMT"
+    },
+    {
+      "title": "Oil is up 40% and tech is tumbling. Why it\u2019s time to go all-in on stocks, according to these bullish strategists.",
+      "summary": "Strategists at the bank, led by Max Kettner, are betting on equities as they have remained resilient despite geopolitical volatility and pullbacks in the technology sector.",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 10:51:00 GMT"
+    },
+    {
+      "title": "SK Hynix shares sent sprawling once more as earnings miss steepens decline",
+      "summary": "Weakness in SK Hynix shares can be attributed to excessive leverage by retail investors, fears of Chinese competition and a failure to live up to aggressive expectations but some analysts remain bullish.,",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 10:23:00 GMT"
+    },
+    {
+      "title": "\u2018I\u2019m in my peak earning years\u2019: I\u2019m working beyond 70. Will that help increase my Social Security?",
+      "summary": "\u201cI plan to retire at the end of my 70th year and transition to Medicare.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 10:15:00 GMT"
+    },
+    {
+      "title": "\u2018We already have wills\u2019: We\u2019re in our 60s with $1.5 million. How do we prevent family drama among our heirs?",
+      "summary": "\u201cI realize that probate can be lengthy, public and expensive.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 09:15:00 GMT"
+    },
+    {
+      "title": "Actress Elisha Cuthbert sells her West Hollywood home for $1.9 million after price cut",
+      "summary": "Hollywood actress Elisha Cuthbert has officially sold her lavish Los Angeles home for $1.93 million, days after the property was put back on the market with a significant discount.",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 08:59:00 GMT"
+    },
+    {
+      "title": "\u2018Time will tell whether that was a good bet\u2019: My adviser got me a full SpaceX IPO allocation. Was I lucky?",
+      "summary": "\u201cInvestors frequently receive only a small fraction of the shares they request \u2014 if they receive any at all.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 08:45:00 GMT"
+    },
+    {
+      "title": "Saudi Arabia has a new, and pricier, workaround to export its oil",
+      "summary": "Loadings at a Mediterranean port have picked up as Saudi Arabia races to offer its oil to buyers through a lengthier \u2014 and more expensive \u2014 backdoor.",
+      "source": "MarketWatch Top",
+      "published": "Wed, 29 Jul 2026 01:28:00 GMT"
+    },
+    {
+      "title": "Elon Musk in a post on X says some of his Trump posts \u2018went too far\u2019 and that he regrets them",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 11 Jun 2025 07:09:00 GMT"
+    },
+    {
+      "title": "Bank of England decision on Thursday will be at 12:02 p.m. local time instead of 12 p.m., due to VE Day\u2019s two minutes of silence",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 06 May 2025 11:59:00 GMT"
+    },
+    {
+      "title": "Swiss National Bank cuts interest rates by a half point to 0.5%",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Dollar jumps 0.5% to 0.8890 francs",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Germany flash manufacturing PMI rises to 4-month high of 43.2",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Germany flash services PMI falls to 9-month low of 49.4",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Powell says labor market not a source of significant inflation pressure",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:48:00 GMT"
+    },
+    {
+      "title": "Fed\u2019s Powell says rate cut \u2018on the table\u2019 as soon as September",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:41:00 GMT"
+    },
+    {
+      "title": "Final S&P U.S. manufacturing index is 52.2 in February vs. initial 51.5",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 01 Mar 2024 14:47:00 GMT"
+    },
+    {
+      "title": "Duolingo started at buy with $222 price target at Seaport",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 27 Feb 2024 12:40:00 GMT"
+    }
+  ],
+  "gaps_to_fill": [
+    "market-wide earnings calendar is only partial: next earnings dates come per gapper, there is no full day-by-day earnings list",
+    "intraday levels (VWAP/HOD/LOD/PMH) need intraday bars and are only available on the Alpaca path",
+    "premarket RVOL: yfinance reports about 0 premarket volume, so a true premarket RVOL needs a premarket feed (Alpaca supplies it here); on the keyless path full-day RVOL is the stand-in"
+  ]
+}
