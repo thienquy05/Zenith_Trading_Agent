@@ -1563,3 +1563,8 @@ a new dated line.
   - ORCL $118.73 (Robinhood live, -1.03% today vs prior close $119.96) — drifting lower with the broad tape, no material company-specific news found this run.
 - Dashboard republished (Artifact, `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`) with fresh Alpaca positions/account/orders (incl. AAPL's re-trailed stop) + live Robinhood NVDA/ORCL quotes; full 3-account Robinhood pull + RSI/MA signal recompute skipped this run (token budget), badges carried forward and flagged as such on the dashboard.
 - Telegram: midday update sent (ALWAYS policy).
+
+### 2026-07-29 13:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe BEZ/BIYA/INLF/EGG/SNXX (today's watchlist, no qualifying premarket gappers this morning). All 5 `fail_daily` (BEZ/SNXX insufficient data; BIYA px $5.67 ≤ prev high $6.68; INLF px $4.43 ≤ prev high $8.08; EGG px $3.86 ≤ prev high $6.95). No PASS. Saved `scans/tjl_watchlist_2026-07-29_1333ET.json`. Hit set unchanged (empty) — no dashboard republish.
+- Positions quick check: 5 open (AAPL/VOO/BTC/ETH/SOL), all well inside -7%, no gap-through, market open normally. §3b max-position lock still binding — 5 open vs §3 4-cap, no new entry permitted regardless of scan result. **FOMC blackout window (~1:30-2:45 PM ET) now active** at this run's 13:33 ET timestamp — decision at 2:00 PM ET — additional reason no new entries this run.
+- No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
