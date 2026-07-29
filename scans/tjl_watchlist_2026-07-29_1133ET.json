@@ -1,0 +1,27 @@
+{
+  "scanned_at": "2026-07-29T11:33:55.168110-04:00",
+  "candidates_checked": 5,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "BEZ",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "BIYA",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "INLF",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "EGG",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNXX",
+      "result": "fail_daily"
+    }
+  ]
+}
