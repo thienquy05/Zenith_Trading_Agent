@@ -787,3 +787,40 @@ Append at the BOTTOM, one entry per pre-market run.
 - **Watching but not trading**: NVDA stop fill expected at the open;
   tomorrow's FOMC decision and its narrow blackout window; AAPL earnings
   Thursday 7/30 after close (2 days out, not yet in the no-entry window).
+
+## 2026-07-29 (Wednesday) — Pre-Market Research
+
+- **Account**: Equity $99,996.23, flat vs $100k baseline. 5 open
+  positions (AAPL, VOO, BTC, ETH, SOL) — 1 over the 4-max cap. NVDA
+  gap-through stopped out yesterday at the open (-7.64%, $193.81 vs
+  $195.15 stop), freeing one slot from 6.
+- **Iran fired on US forces overnight**: IRGC ballistic missiles
+  targeted US bases in the Middle East ~5:45 PM ET 7/28, all
+  intercepted; US+Saudi responded with joint strikes on Iran-aligned
+  targets in Iraq. Reverses the weekend de-escalation. Oil surged (WTI
+  +4.6% to ~$82.66, Brent to $88+). Verified via CNN/Bloomberg/Al
+  Jazeera.
+- **FOMC decision today, 2:00 PM ET**: hold at 3.50-3.75% is consensus
+  (~62% odds), but Chair Warsh has been hawkish ("prices are too high")
+  with reduced forward guidance — ~19% odds of a surprise hike. §3b
+  blackout ~1:30-2:45 PM ET today. Tomorrow (7/30) brings GDP + Core
+  PCE at 8:30 AM ET, own blackout check needed.
+- **Sector momentum/market tone**: Semis still bleeding — SK Hynix
+  missed earnings again overnight, extending Mon/Tue's OpenAI-financing
+  + China DUV-lithography pressure. VIX 18.26, easing slightly from
+  18.99. Futures response to the Iran news was muted (SPX/NDX modestly
+  positive, Dow slightly negative) — markets reading it as contained.
+- **Crypto regime**: BEAR (BTC $63,846.55 prior close vs SMA200
+  $71,863.37) — sleeve stands down. `scans/crypto_tjl_2026-07-29_1110UTC.json`.
+- **Extra-watch**: ETH +4.4% today outperforming BTC (Morgan Stanley
+  rolling out low-cost ETH/SOL ETPs, structural tailwind). SOL +1.9%.
+  NVDA no paper position (stopped out yesterday); Microsoft earnings
+  today after close relevant as an AI-capex read-through. ORCL no fresh
+  headline, no paper position.
+- **Ideas**: none. Scan produced 5 gappers (BEZ, BIYA, INLF, EGG, SNXX)
+  — all thin microcaps, none clear day/swing eligibility, and none
+  carry a real company-specific catalyst (BIYA's is a generic
+  sector-movers list mention). No qualifying setups today.
+- **Watching but not trading**: FOMC decision + blackout window this
+  afternoon; AAPL's trailed stop ($329.10); tomorrow's GDP/PCE prints
+  and AAPL earnings after tomorrow's close.
