@@ -824,3 +824,36 @@ Append at the BOTTOM, one entry per pre-market run.
 - **Watching but not trading**: FOMC decision + blackout window this
   afternoon; AAPL's trailed stop ($329.10); tomorrow's GDP/PCE prints
   and AAPL earnings after tomorrow's close.
+
+## 2026-07-30 (Thursday) — Pre-Market Research
+
+- **Account**: Equity $99,983.25, flat vs $100k baseline. 5 open
+  positions (AAPL, VOO, BTC, ETH, SOL) — 1 over the 4-max cap.
+- **FOMC held** at 3.50-3.75% yesterday as expected. Meta -10%
+  after-close (EPS miss $6.18 vs $7.22 est despite revenue beat, weak
+  next-Q guidance) vs Microsoft +2% (solid cloud numbers) — real AI-spend
+  skepticism divergence.
+- **AAPL (held) reports today after close** — Tim Cook's final earnings
+  call as CEO (John Ternus takes over 9/1). Consensus ~$108.9B revenue
+  (+16% YoY), ~$1.89 EPS (+20% YoY). Key swing factor: gross margin
+  under memory-chip-shortage price pressure (estimates of the needed
+  price hike range ~$50-$270 per device). Flagging as event-risk for
+  the position, not a new-entry consideration.
+- **Macro/calendar**: GDP q/q (2.1% forecast) + Core PCE m/m (0.2%
+  forecast) at 8:30 AM ET today — tier-1, blackout ~8:00-8:45 AM ET.
+- **Sector momentum/market tone**: Risk-off continuing — SPX 7,316 (down
+  from Tue's 7,428), NDX 27,192 (down from 27,763), VIX 19.37. Iran-news
+  aftermath + FOMC-day caution + now Meta's miss all weighing.
+- **Crypto regime**: BEAR (BTC $63,901.24 prior close vs SMA200
+  $71,730.99) — sleeve stands down. `scans/crypto_tjl_2026-07-30_1109UTC.json`.
+- **Extra-watch**: ETH still outperforming BTC (Morgan Stanley ETP
+  tailwind). NVDA/ORCL no fresh headlines beyond ongoing semis-weakness
+  and AI-capex-spend-risk themes respectively; no paper positions in
+  either (both stopped out).
+- **Ideas**: none. Scan produced 4 gappers (DFNS +55.7%, AMIX +17.4%,
+  SNXX -5.7%, MUZ +4.1%) — DFNS and AMIX are textbook circuit-breaker
+  speculative pumps with no fundamental catalyst, correctly filtered by
+  the rules (fail mcap/RVOL/SMA200). No qualifying setups today.
+- **Watching but not trading**: GDP/PCE blackout this morning; AAPL's
+  earnings after close tonight and its post-earnings reaction tomorrow;
+  AAPL's trailed stop at $331.61.
