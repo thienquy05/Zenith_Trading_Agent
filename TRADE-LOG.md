@@ -1601,3 +1601,8 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: universe DFNS/AMIX/SNXX/MUZ (today's watchlist, packet_2026-07-30.json). All 4 `fail_daily` (DFNS prev close $52.75 ≤ SMA200 $325.53; AMIX px $3.75 ≤ prev high $7.13; SNXX/MUZ insufficient data). No PASS. Saved `scans/tjl_watchlist_2026-07-30_1033ET.json`. Hit set unchanged (empty) — no dashboard republish.
 - Positions quick check: 4 open (VOO/BTC/ETH/SOL) — exactly at §3 4-concurrent cap since AAPL's trailing-stop exit at this morning's open. No new entry permitted regardless of scan result (moot here, no PASS anyway).
 - No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-07-30 12:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe DFNS/AMIX/SNXX/MUZ (today's watchlist, packet_2026-07-30.json). All 4 `fail_daily` (DFNS prev close $52.75 ≤ SMA200 $325.53; AMIX px $3.75 ≤ prev high $7.13; SNXX/MUZ insufficient data). No PASS. Saved `scans/tjl_watchlist_2026-07-30_1233ET.json`. Hit set unchanged (empty) — no dashboard republish.
+- Positions quick check: 4 open (VOO/BTC/ETH/SOL) — VOO uP&L -$13.36/-1.93%, BTC +$0.47/+1.04%, ETH +$0.43/+2.14%, SOL -$0.17/-1.72% — none near -7%, no gap-through. Still exactly at §3 4-concurrent cap. §3b guardrails moot (no PASS to gate): no circuit breakers tripped, no blackout window active, weekly entry cap unaffected.
+- No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
