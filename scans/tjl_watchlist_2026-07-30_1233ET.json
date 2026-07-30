@@ -1,0 +1,23 @@
+{
+  "scanned_at": "2026-07-30T12:33:02.160272-04:00",
+  "candidates_checked": 4,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "DFNS",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "AMIX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNXX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "MUZ",
+      "result": "fail_daily"
+    }
+  ]
+}
