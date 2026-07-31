@@ -1,0 +1,47 @@
+{
+  "scanned_at": "2026-07-31T10:34:44.528217-04:00",
+  "candidates_checked": 10,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "AXTX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "AXTU",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "PN",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "IREX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "IRE",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "NUWE",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "IREG",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "AMZN",
+      "result": "fail_intraday"
+    },
+    {
+      "symbol": "SNDU",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNXX",
+      "result": "fail_daily"
+    }
+  ]
+}
