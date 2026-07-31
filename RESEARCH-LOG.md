@@ -857,3 +857,45 @@ Append at the BOTTOM, one entry per pre-market run.
 - **Watching but not trading**: GDP/PCE blackout this morning; AAPL's
   earnings after close tonight and its post-earnings reaction tomorrow;
   AAPL's trailed stop at $331.61.
+
+## 2026-07-31 (Friday) — Pre-Market Research
+
+- **Account**: Equity $99,988.52, flat vs $100k baseline. 4 open
+  positions (VOO, BTC, ETH, SOL) — exactly at the 4-max cap (AAPL's
+  trailing stop filled yesterday's open at $331.52, +6.78%/~+2.0R
+  realized, a winning trail exit).
+- **AAPL sells off >7% premarket despite beating** on revenue ($109.4B
+  vs $108.65B est.) and EPS ($2.02 vs $1.89 est.) — services miss
+  ($30.74B vs $31.22B est.), China weakness ($18.8B vs $19.5B est.),
+  weak guidance citing supply constraints. Classic sell-the-news after
+  ~25% YTD gains. No paper position remains — trail exit yesterday
+  happened to land before this drop (mechanical discipline, not
+  foresight).
+- **AMZN smashes estimates**, +8-12% premarket. EPS $5.75 vs $1.82 est.,
+  AWS +36.7% YoY (fastest in 18 quarters). Barclays + JPMorgan both
+  raised PT to $365. Shows up as an 8.27% gapper clearing every swing
+  check except market cap (yfinance data gap) — correctly not promoted
+  per the never-promote-unflagged rule, filed as a near-miss (same
+  pattern as NOK 7/23, INTC 7/24).
+- **Sector momentum/market tone**: this week's Big Tech pattern is now
+  clear — Microsoft and Amazon rallied hard on AI-infrastructure/cloud
+  strength; Meta and Apple both fell on consumer-demand/margin softness
+  even where Apple technically beat. SPX 7,437.63, NDX 28,106.35 (both
+  up on the week), VIX 16.88 (down sharply from Wed's 19.37) — net
+  risk-on tone into the weekend.
+- **Macro/calendar**: zero high-impact US events today or tomorrow — no
+  §3b blackout.
+- **Crypto regime**: BEAR (BTC $64,728.66 prior close vs SMA200
+  $71,600.27) — sleeve stands down. `scans/crypto_tjl_2026-07-31_1110UTC.json`.
+- **Extra-watch**: NVDA/ORCL no material new headlines beyond ongoing
+  themes (OpenAI financing-guarantee credit-risk chatter continues;
+  ORCL's Gemini partnership news from yesterday still the latest
+  driver). No paper positions in either.
+- **Ideas**: none. Scan produced 12 gappers, largest batch in weeks
+  (post-earnings dispersion) — AMZN is the one real-quality name but
+  blocked by a data gap per above; everything else is either a
+  speculative pump (NUWE, DFNS) or has no real catalyst. No qualifying
+  setups today.
+- **Watching but not trading**: how AAPL's and AMZN's post-earnings
+  moves settle through today's session; no specific blackout or
+  earnings risk items for Monday yet.

@@ -1,0 +1,832 @@
+{
+  "generated_at": "2026-07-31T07:10:25.542987-04:00",
+  "candidate_source": "alpaca_screener_premarket",
+  "trading_day_note": "Friday 2026-07-31 07:10 ET; inside the 04:00-09:30 premarket window",
+  "scan_params": {
+    "gap_filter_abs_pct": 3.0,
+    "price_min": 3.0,
+    "top_n": 12,
+    "open_note": "before 09:30 ET the latest premarket price stands in for the official open in swing checks"
+  },
+  "criteria": {
+    "day_trading": "Trend Join Long selection: gap > 3% vs prev close, price > $3, market cap > $1B, premarket RVOL > 1.5, price above prior-day high, prev close above 200-day SMA. Execution per TRADING-STRATEGY.md 2b: trigger over PMH + prior HOD 10:00-15:30 ET, stop = signal bar low, 3R bracket, flat 15:55.",
+    "swing": "Gap >= 8%, price > $3, open above prior-day high, open above 200-day SMA, market cap >= $800M, and a real catalyst (earnings on gap day, or news with no earnings). Starter ideas only, swing management is still being built."
+  },
+  "market_snapshot": {
+    "S&P 500": {
+      "symbol": "^GSPC",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Dow": {
+      "symbol": "^DJI",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Nasdaq": {
+      "symbol": "^IXIC",
+      "error": "not enough history"
+    },
+    "Russell 2000": {
+      "symbol": "^RUT",
+      "error": "not enough history"
+    },
+    "VIX": {
+      "symbol": "^VIX",
+      "error": "not enough history"
+    },
+    "US 10Y": {
+      "symbol": "^TNX",
+      "error": "not enough history"
+    },
+    "US 3M": {
+      "symbol": "^IRX",
+      "error": "not enough history"
+    },
+    "WTI Oil": {
+      "symbol": "CL=F",
+      "error": "not enough history"
+    },
+    "Dollar (DXY)": {
+      "symbol": "DX-Y.NYB",
+      "error": "not enough history"
+    }
+  },
+  "econ_calendar": {
+    "source": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+    "filter": "country=USD, impact=High",
+    "today_date": "2026-07-31",
+    "tomorrow_date": "2026-08-01",
+    "today": [],
+    "tomorrow": [],
+    "note": "live fetch"
+  },
+  "gappers": [
+    {
+      "rank": 1,
+      "symbol": "AXTX",
+      "name": null,
+      "price": 7.64,
+      "prev_close": 4.65,
+      "gap_pct": 64.3,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 4.91,
+      "prior_close": 4.65,
+      "avg_vol_20d": 33288,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 2,
+      "symbol": "AXTU",
+      "name": null,
+      "price": 3.91,
+      "prev_close": 2.5,
+      "gap_pct": 56.4,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 2.55,
+      "prior_close": 2.5,
+      "avg_vol_20d": 6866,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 3,
+      "symbol": "PN",
+      "name": null,
+      "price": 19.68,
+      "prev_close": 23.43,
+      "gap_pct": -16.01,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 9.69,
+      "prior_day_high": 23.85,
+      "prior_close": 23.43,
+      "avg_vol_20d": 5983,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Why Amazon Shares Are Trading Higher By 12%; Here Are 20 Stocks Moving Premarket",
+      "headlines": [
+        {
+          "title": "Why Amazon Shares Are Trading Higher By 12%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-07-31T08:50:05Z",
+          "n_symbols": 20
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Thursday's After-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-30T21:05:57Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Industrials Stocks Moving In Thursday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-30T17:05:48Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "Nasdaq Surges Over 600 Points; Microsoft Shares Jump After Upbeat Q4 Results",
+          "source": "benzinga",
+          "published": "2026-07-30T14:05:32Z",
+          "n_symbols": 7
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": true
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": true,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 4,
+      "symbol": "IREX",
+      "name": null,
+      "price": 14.91,
+      "prev_close": 13.25,
+      "gap_pct": 12.53,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 13.26,
+      "prior_close": 13.25,
+      "avg_vol_20d": 6520,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 5,
+      "symbol": "IRE",
+      "name": null,
+      "price": 10.49,
+      "prev_close": 9.4,
+      "gap_pct": 11.6,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 9.4,
+      "prior_close": 9.4,
+      "avg_vol_20d": 40603,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 6,
+      "symbol": "NUWE",
+      "name": null,
+      "price": 4.01,
+      "prev_close": 4.48,
+      "gap_pct": -10.49,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 55.08,
+      "prior_day_high": 6.24,
+      "prior_close": 4.48,
+      "avg_vol_20d": 14152,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Nuwellis Stock Explodes Thursday: What's Driving the Action?",
+      "headlines": [
+        {
+          "title": "Nuwellis Stock Explodes Thursday: What's Driving the Action?",
+          "source": "benzinga",
+          "published": "2026-07-30T20:01:42Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Why Amazon Shares Are Trading Higher By 12%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-07-31T08:50:05Z",
+          "n_symbols": 20
+        },
+        {
+          "title": "12 Health Care Stocks Moving In Thursday's After-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-30T21:05:57Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Health Care Stocks Moving In Thursday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-30T17:05:48Z",
+          "n_symbols": 12
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 7,
+      "symbol": "IREG",
+      "name": null,
+      "price": 8.11,
+      "prev_close": 7.34,
+      "gap_pct": 10.49,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 7.34,
+      "prior_close": 7.34,
+      "avg_vol_20d": 24869,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 8,
+      "symbol": "AMZN",
+      "name": null,
+      "price": 255.25,
+      "prev_close": 235.75,
+      "gap_pct": 8.27,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 234.74,
+      "prior_day_high": 239.81,
+      "prior_close": 235.75,
+      "avg_vol_20d": 1915160,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Barclays Maintains Overweight on Amazon.com, Raises Price Target to $365",
+      "headlines": [
+        {
+          "title": "Barclays Maintains Overweight on Amazon.com, Raises Price Target to $365",
+          "source": "benzinga",
+          "published": "2026-07-31T10:57:03Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "JP Morgan Maintains Overweight on Amazon.com, Raises Price Target to $365",
+          "source": "benzinga",
+          "published": "2026-07-31T10:48:37Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "NVIDIA Stock Is Still Up, But $250 Billion AI Risk Has Spooked The Debt Market",
+          "source": "benzinga",
+          "published": "2026-07-31T11:07:06Z",
+          "n_symbols": 14
+        },
+        {
+          "title": "SKHY Stock Jumps 6% In Friday Premarket After Shares Surged 30% to Hit First-Ever Daily Limit In South Korea (UPDATED)",
+          "source": "benzinga",
+          "published": "2026-07-31T10:26:48Z",
+          "n_symbols": 4
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": true
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": true,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 9,
+      "symbol": "SNDU",
+      "name": null,
+      "price": 17.64,
+      "prev_close": 16.45,
+      "gap_pct": 7.23,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 16.45,
+      "prior_close": 16.45,
+      "avg_vol_20d": 99896,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 10,
+      "symbol": "SNXX",
+      "name": null,
+      "price": 11.13,
+      "prev_close": 10.45,
+      "gap_pct": 6.51,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 10.5,
+      "prior_close": 10.45,
+      "avg_vol_20d": 828726,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 11,
+      "symbol": "SOXL",
+      "name": null,
+      "price": 119.42,
+      "prev_close": 115.01,
+      "gap_pct": 3.83,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 98.14,
+      "prior_day_high": 117.96,
+      "prior_close": 115.01,
+      "avg_vol_20d": 1161595,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "SOXX Falls Over 20% in the Last Month, but Chip ETF Trading Volume Quadruples Since January 2025",
+      "headlines": [
+        {
+          "title": "SOXX Falls Over 20% in the Last Month, but Chip ETF Trading Volume Quadruples Since January 2025",
+          "source": "benzinga",
+          "published": "2026-07-31T08:06:10Z",
+          "n_symbols": 4
+        },
+        {
+          "title": "Samsung Profits Surge 1300%; 30-Year Bond Yield Highest Since 2007; Momo's Favorite Semi ETF Loses 70%",
+          "source": "benzinga",
+          "published": "2026-07-30T19:35:14Z",
+          "n_symbols": 17
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": true
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": true,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 12,
+      "symbol": "DFNS",
+      "name": null,
+      "price": 81.7,
+      "prev_close": 84.77,
+      "gap_pct": -3.62,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 321.0,
+      "prior_day_high": 90.39,
+      "prior_close": 84.77,
+      "avg_vol_20d": 24120,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "T3 Defense Stock Continues Surge: What\u2019s Driving the Momentum?",
+      "headlines": [
+        {
+          "title": "T3 Defense Stock Continues Surge: What\u2019s Driving the Momentum?",
+          "source": "benzinga",
+          "published": "2026-07-30T15:47:34Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "12 Information Technology Stocks Moving In Thursday's After-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-30T21:05:57Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Information Technology Stocks Moving In Thursday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-07-30T17:05:48Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "12 Information Technology Stocks Moving In Thursday's Pre-Market Session",
+          "source": "benzinga",
+          "published": "2026-07-30T12:06:07Z",
+          "n_symbols": 12
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    }
+  ],
+  "market_news": [
+    {
+      "title": "Why fresh volatility means a \u2018valuation opportunity\u2019 is opening up in U.S. stocks",
+      "summary": "It\u2019s normal for equities to have a tough time around Federal Reserve transitions, says RBC.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 10:49:00 GMT"
+    },
+    {
+      "title": "\u2018Don\u2019t get suckered like I did\u2019: I paid $185 to the wrong passport website. Can I get my money back?",
+      "summary": "\u201cI will file a complaint with the Better Business Bureau.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 10:00:00 GMT"
+    },
+    {
+      "title": "I\u2019m 75 and afraid to let my retirement fund dip below $1 million. Am I being too aggressive?",
+      "summary": "Spending down assets can be unsettling after a lifetime of saving.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 10:00:00 GMT"
+    },
+    {
+      "title": "South Korea\u2019s chip giants just logged their biggest rally ever. What it means for the global AI trade.",
+      "summary": "The Kospi saw its best-ever day on Friday, as the index came roaring back thanks to historical jumps in its big tech names.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 09:48:00 GMT"
+    },
+    {
+      "title": "My friend and her husband own real estate. How can her children from a previous marriage get their fair share?",
+      "summary": "\u201cHer husband is open to a trust, but he wants to be the administrator.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 09:46:00 GMT"
+    },
+    {
+      "title": "If Social Security\u2019s funding crisis is the elephant in the room, this is the mouse everyone has overlooked. You have been warned.",
+      "summary": "\u201cDelaying Social Security until 70 results in an increased monthly payment \u2014 and that comes with proportionally higher cost-of-living adjustments.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 09:35:00 GMT"
+    },
+    {
+      "title": "Diane Keaton\u2019s stunning $23 million dream home in L.A. finally finds a buyer",
+      "summary": "The Los Angeles home that Diane Keaton spent years carefully transforming has come under offer\u2014nine months after the beloved \u201cAnnie Hall\u201d star died.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 08:59:00 GMT"
+    },
+    {
+      "title": "Corporate insiders are sending warning signals about the stock market",
+      "summary": "Corporate insiders haven\u2019t been this bearish in more than 20 years.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 00:31:00 GMT"
+    },
+    {
+      "title": "Empty seats? Concert giant Live Nation says ticket sales are actually at record levels.",
+      "summary": "In the wake of online chatter about high-profile tour cancellations, Ticketmaster\u2019s parent company said artists aren\u2019t ditching shows any more than usual.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 31 Jul 2026 00:14:00 GMT"
+    },
+    {
+      "title": "Jersey Mike\u2019s spent almost \u2018zero dollars\u2019 on digital marketing. That\u2019s now changing.",
+      "summary": "The CEO of the newly public sandwich chain says the company needs to be more proactive about reaching younger customers.",
+      "source": "MarketWatch Top",
+      "published": "Thu, 30 Jul 2026 22:24:00 GMT"
+    },
+    {
+      "title": "Elon Musk in a post on X says some of his Trump posts \u2018went too far\u2019 and that he regrets them",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 11 Jun 2025 07:09:00 GMT"
+    },
+    {
+      "title": "Bank of England decision on Thursday will be at 12:02 p.m. local time instead of 12 p.m., due to VE Day\u2019s two minutes of silence",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 06 May 2025 11:59:00 GMT"
+    },
+    {
+      "title": "Swiss National Bank cuts interest rates by a half point to 0.5%",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Dollar jumps 0.5% to 0.8890 francs",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Germany flash manufacturing PMI rises to 4-month high of 43.2",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Germany flash services PMI falls to 9-month low of 49.4",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Powell says labor market not a source of significant inflation pressure",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:48:00 GMT"
+    },
+    {
+      "title": "Fed\u2019s Powell says rate cut \u2018on the table\u2019 as soon as September",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:41:00 GMT"
+    },
+    {
+      "title": "Final S&P U.S. manufacturing index is 52.2 in February vs. initial 51.5",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 01 Mar 2024 14:47:00 GMT"
+    },
+    {
+      "title": "Duolingo started at buy with $222 price target at Seaport",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 27 Feb 2024 12:40:00 GMT"
+    }
+  ],
+  "gaps_to_fill": [
+    "market-wide earnings calendar is only partial: next earnings dates come per gapper, there is no full day-by-day earnings list",
+    "intraday levels (VWAP/HOD/LOD/PMH) need intraday bars and are only available on the Alpaca path",
+    "premarket RVOL: yfinance reports about 0 premarket volume, so a true premarket RVOL needs a premarket feed (Alpaca supplies it here); on the keyless path full-day RVOL is the stand-in"
+  ]
+}
