@@ -1,0 +1,20 @@
+{
+  "scanned_at": "2026-07-31T17:11:00.514360+00:00",
+  "universe": [
+    "BTC/USD",
+    "ETH/USD",
+    "SOL/USD",
+    "XRP/USD",
+    "DOGE/USD",
+    "LINK/USD",
+    "AVAX/USD",
+    "LTC/USD"
+  ],
+  "regime": {
+    "bull": false,
+    "btc_prev_close": 64728.6635,
+    "btc_daily_sma200": 71600.27
+  },
+  "results": [],
+  "note": "bear regime \u2014 sleeve flat, no signal checks run"
+}
