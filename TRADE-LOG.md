@@ -1636,3 +1636,31 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: universe AXTX/AXTU/PN/IREX/IRE/NUWE/IREG/AMZN/SNDU/SNXX (today's watchlist, packet_2026-07-31.json). All fail — AXTX/AXTU/IREX/IRE/IREG/SNDU/SNXX `fail_daily` (insufficient data); PN `fail_daily` (px $15.56 ≤ prev high $23.85); NUWE `fail_daily` (px $1.62 ≤ prev high $6.24); AMZN `fail_intraday` (px $270.90 ≤ HOD $272.04). No PASS. Saved `scans/tjl_watchlist_2026-07-31_1335ET.json`. Hit set unchanged from prior runs today — no dashboard republish.
 - Positions quick check: 4 open (VOO/BTC/ETH/SOL), equity $99,988.15 vs last_equity $99,985.67 (~flat) — far inside -2% daily circuit breaker. VOO uP&L -0.90%, BTC -1.88%, ETH -0.86%, SOL -3.73% — none near -7%, no gap-through (all four stops confirmed resting via `orders`). §3b max-position lock still binding — 4 open vs §3 4-cap, no new entry permitted regardless of scan result (moot here, no PASS anyway).
 - No trade placed. No Telegram (quiet-run policy — no trade, no emergency).
+### 2026-07-31 — daily snapshot (4:00 PM ET)
+- Equity $99,988.61 | day P&L +$1.99 (+0.002%) | cash $99,228.69
+- Open: VOO 1@$692.29 (uP&L -$5.74/-0.84%), BTC 0.0007@$64,132.85 (uP&L -$0.90/-2.00%), ETH 0.0106@$1,880.36 (uP&L -$0.14/-0.68%), SOL 0.1309@$76.09 (uP&L -$0.39/-3.88%)
+- Trades today: 0 | notes:
+  - No new entries placed today. Today's premarket research (`RESEARCH-LOG.md` 2026-07-31 entry) found zero qualifying setups — 10 gappers scanned (AXTX/AXTU/PN/IREX/IRE/NUWE/IREG/AMZN/SNDU/SNXX), all failed daily/intraday screens; crypto sleeve regime-gated BEAR (BTC $64,728.66 < daily SMA200 $71,600.27). Hourly TJL scans (10:34 ET, 13:35 ET) found no PASS candidates. No exits triggered — all 4 positions well inside their -7% hard-stop levels.
+  - **Positions (4 open, exactly at §3b max-4-concurrent cap since 2026-07-30 open)** — all stops/stop_limits confirmed resting via `orders`:
+    - **VOO** 1 sh @ $692.29 entry, now $686.549 (uP&L -$5.74, -0.84%), stop $643.83 (-7% hard-stop). No action.
+    - **BTC** 0.000699945 @ $64,132.85, now $62,848.41 (uP&L -$0.90, -2.00% vs entry), stop_limit 59,643.60/59,345.40 (stop at -7% off entry). Regime: BEAR (< daily SMA200 $71,600.27). No action.
+    - **ETH** 0.010610407 @ $1,880.36, now $1,867.53 (uP&L -$0.14, -0.68% vs entry), stop_limit 1,748.70/1,739.96. No action.
+    - **SOL** 0.130862025 @ $76.086, now $73.13 (uP&L -$0.39, -3.88% vs entry), stop_limit 70.76/70.4062. No action.
+  - No positions past +2R (all within -0.84% to -3.88%, no trailing-stop adjustments warranted).
+  - **Guardrail/breaker status**: day P&L +0.002%, far inside -2% daily / -4% weekly circuit breakers (no trip). Week P&L (Mon 7/27 baseline $100,004.42 → now $99,988.61) = -$15.81/-0.016%, well inside -4% weekly breaker. Weekly new-entry cap: 0/5 used (zero agent-driven entries this week; position count locked at max since 2026-07-30 open AAPL exit). No rule violations.
+- **Robinhood real-account holdings (live, 4:00 PM ET close)**:
+  - **Individual (556092849)**: $0 equity, $0 positions (liquidated earlier this week per prior logs).
+  - **Roth IRA (829651439)**: VOO 0.183159 sh @ avg $689.29 → current Robinhood $686.46 (close price) ≈ uP&L -$0.51 (-0.43%), core DCA holding, never trimmed.
+  - **Agentic (539785238)**: Total portfolio $305.29 (equity $175.36 + crypto $129.85 + cash $0.09).
+    - NVDA 0.358944 sh @ avg $195.10 → current $200.81 (+2.96% today), uP&L ~+$2.06.
+    - ORCL 0.790482 sh @ avg $131.76 → current $129.88 (+1.82% today), uP&L ~-$1.48.
+    - TSLA 0.002340 sh @ avg $427.35 (dust position, ~$0.95 value).
+    - Crypto: $129.85 est. (BTC/ETH/SOL $18/$8/$4 split; Alpaca live prices: BTC $62,848.41 -1.65% day move, ETH $1,867.53 -2.62%, SOL $73.13 -2.01%).
+- **Extra-watch one-liners (live, 4:00 PM ET close)**:
+  - **BTC** $62,848.41 (Alpaca paper, regime BEAR < SMA200 $71,600.27), -1.65% today (-0.90% unrealized on paper position). No new sleeve entry (bear gate blocks).
+  - **ETH** $1,867.53 (Alpaca paper, -2.62% today, -0.68% unrealized). No sleeve entry.
+  - **SOL** $73.13 (Alpaca paper, -2.01% today, -3.88% unrealized). No sleeve entry.
+  - **NVDA** $200.81 (Robinhood real), +2.96% today — part of the chip-sector rebound post-Amazon beat yesterday (AWS revenue beat, AMZN +10% premarket), riding the AI/capex recovery narrative (offset by ongoing OpenAI/Nvidia financing-guarantee concerns from earlier in the week). Robinhood real 0.358944 sh, no Alpaca paper position (stopped out 7/28 at $193.81, -7.64% gap-through).
+  - **ORCL** $129.88 (Robinhood real), +1.82% today — continuing this week's bounce off 52-week lows on defense/Navy contract wins ($7B DoD + $6.99B Navy), extended by Thursday's Google Cloud Gemini AI partnership announcement (Fusion Apps/NetSuite integration). Robinhood real 0.790482 sh, no Alpaca paper position (stopped out 7/25 midday at $118.95, -7.08% from entry).
+- **Dashboard republished** (Artifact, `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`) with final EOD Alpaca positions/account/orders + live Robinhood pull (all 3 accounts, holdings + crypto value); extra-watch quotes; RSI/MA signals carried forward from prior run (token budget skipped re-compute, flagged on dashboard).
+- **Lesson**: flat-to-down day (-0.002% account equity change, 2-3% down on individual long positions) on light volume into month-end. The guardrail discipline (max-4-position ceiling pinned since 7/30 AAPL trail exit, FOMC blackout earlier this week, crypto bear regime gate) kept the account from entering lower-quality setups during a consolidation pattern. No new agent-driven entries this entire week (0/5 weekly cap used). Quy's manual entries (7/16 batch of NVDA/ORCL/VOO equities + BTC/ETH/SOL crypto) remain the only new positions; all are stopped and monitored per guardrail discipline. Ready for August calendar: Jackson Hole economic symposium 8/22-24, then Fed blackout into the 9/17-18 FOMC meeting.
