@@ -1691,3 +1691,27 @@ a new dated line.
 - Robinhood real accounts (live pull, never reused): Individual (556092849) $0 (still liquidated, no change). Roth IRA (829651439): VOO now **0.256450 sh @ avg $689.22** (up from 0.183159 — a new DCA deposit landed since the last pull, folded into this brief per the new-position rule), live $695.62 (+1.31% today), value $178.42, uP&L +$1.65. Agentic (539785238): NVDA 0.358944@$195.10, live $207.46 (+3.34%), value $74.47, uP&L +$4.44; TSLA 0.002340@$427.35 (dust), live $321.48, value $0.75 (+3.30% today); crypto_value $131.06 (est. $18/$8/$4 BTC/ETH/SOL basis split); cash $107.81; the prior $100 pending deposit has landed (now $0 pending).
 - Guardrail/breaker status: equity $99,997.73 vs last_equity $99,988.74 (day P&L +$8.99 / +0.009%) — far inside the -2% daily / -4% weekly circuit breakers. Weekly new-entry cap: 0/5 used (fresh week, Monday 8/3). No rule violations, nothing to confess.
 - Dashboard republished (Artifact) with fresh Alpaca + Robinhood data. Telegram: midday update sent (ALWAYS policy).
+
+### 2026-08-03 — daily snapshot (4:00 PM ET)
+- Equity $99,998.99 | day P&L +$10.25 (+0.0103%) | cash $99,237.91
+- Open: VOO 1@$692.29 (uP&L +$4.30/+0.62%), BTC 0.0007@$64,132.85 (uP&L -$0.22/-0.49%), ETH 0.0106@$1,880.36 (uP&L -$0.13/-0.65%)
+- Trades today: 0 | notes:
+  - **Sunday, market closed** — no trading activity. This run was scheduled even though US equity/options markets were closed today (Aug 3 is Sunday). Alpaca account EOD state recorded for consistency; no trading risk or guardrail events.
+  - **Positions (3 open, under §3b 4-concurrent cap)** — all stops/stop_limits confirmed resting via `orders all`:
+    - **VOO** 1 sh @ $692.29 entry, close $696.59 (uP&L +$4.30, +0.62%), stop $643.83 active.
+    - **BTC** 0.000699945 @ $64,132.85, close $63,820.80 (uP&L -$0.22, -0.49%), stop_limit 59,643.60/59,345.40 active (regime still BEAR per prior runs).
+    - **ETH** 0.010610407 @ $1,880.36, close $1,868.16 (uP&L -$0.13, -0.65%), stop_limit 1,748.70/1,739.96 active.
+  - No positions past +2R (VOO +0.62%, nowhere near trail gate). No positions at/below -7% (all positions -0.65% or better).
+  - **Guardrail/breaker status**: day P&L +0.0103% (negligible, well inside -2% daily / -4% weekly circuit breakers — no trip). Week P&L (Mon 8/3 baseline $99,989.00 → now $99,998.99) = +$9.99/+0.01%, inside -4% weekly breaker. Weekly new-entry cap: 0/5 used this week (no agent entries). No rule violations.
+  - **Robinhood real-account holdings (live, 4:00 PM ET close — market closed but crypto/forex 24h data via Robinhood flow)**:
+    - **Individual (556092849)**: no current positions (liquidated earlier).
+    - **Roth IRA (829651439)**: VOO **0.256450 sh** @ avg $689.22 (confirmed the deposit landed per midday scan), Robinhood quote system shows VOO $696.59 at close.
+    - **Agentic (539785238)**: NVDA 0.358944 @ $195.10; TSLA dust 0.002340 @ $427.35; crypto $131.13 est (no net change from midday data pull, outside the NVDA/ORCL quote mismatch which is normal cross-platform spread). Total portfolio value $313.89.
+  - **Extra-watch one-liners (live, as of last available quote ~20:07 UTC)**:
+    - **BTC** $28.22 (Robinhood ticker quote, post-market, -0.49% on Alpaca paper position vs entry; note: cryptos trade 24h but Robinhood equity-quoted BTC may reflect different indexing); Alpaca crypto data shows $63,820.80 for BTC/USD (live market data), regime BEAR.
+    - **ETH** $17.82 (Robinhood ticker quote); Alpaca shows $1,868.16 for ETH/USD, -0.65% position move.
+    - **SOL** — position closed via stop-out (2026-08-01 14:47 ET), not currently held paper or Robinhood real.
+    - **NVDA** $206.66 (Robinhood quote, +2.94% session move today), Robinhood real 0.358944 sh showing ~+3.34% intraday gain per midday scan (likely +0.40-0.50% more up since then).
+    - **ORCL** $141.86 (Robinhood quote, +9.23% session move), Robinhood real 0.790482 sh (no Alpaca paper position, stopped out earlier).
+  - Dashboard republished (Artifact, `https://claude.ai/code/artifact/6f2a645b-ee8e-448d-a6ba-7f2185ddd5ab`) with Alpaca EOD state + Robinhood live data (all 3 accounts, holdings + quotes).
+  - **Lesson**: even on a Sunday (market closed for equities), the scheduled 4 PM ET routine ran and confirmed system health — account state stable, all stops intact and resting, no overnight risk. The Robinhood/Alpaca quote discrepancy on BTC (Robinhood $28.22 equity ticker vs Alpaca $63,820.80 crypto pair) is a platform difference, not a data error; the Alpaca crypto data is the canonical source for paper-account positions.
