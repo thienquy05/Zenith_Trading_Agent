@@ -5,6 +5,7 @@
   },
   "permissions": {
     "allow": [
+      "mcp__Robinhood__get_accounts",
       "mcp__Robinhood__get_portfolio",
       "mcp__Robinhood__get_equity_positions",
       "mcp__Robinhood__get_equity_orders",
@@ -16,6 +17,7 @@
       "mcp__Robinhood__get_equity_tax_lots",
       "mcp__Robinhood__get_equity_tradability",
       "mcp__Robinhood__get_index_quotes",
+      "mcp__Robinhood__get_index_historicals",
       "mcp__Robinhood__get_indexes",
       "mcp__Robinhood__get_option_chains",
       "mcp__Robinhood__get_option_positions",
@@ -23,6 +25,7 @@
       "mcp__Robinhood__get_option_quotes",
       "mcp__Robinhood__get_option_historicals",
       "mcp__Robinhood__get_option_instruments",
+      "mcp__Robinhood__get_option_level_upgrade_info",
       "mcp__Robinhood__get_option_watchlist",
       "mcp__Robinhood__get_watchlists",
       "mcp__Robinhood__get_watchlist_items",
