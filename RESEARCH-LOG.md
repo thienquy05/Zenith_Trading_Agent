@@ -899,3 +899,33 @@ Append at the BOTTOM, one entry per pre-market run.
 - **Watching but not trading**: how AAPL's and AMZN's post-earnings
   moves settle through today's session; no specific blackout or
   earnings risk items for Monday yet.
+
+## 2026-08-03 (Monday) — Pre-Market Research
+
+- **Account**: Equity $99,991.26, flat vs $100k baseline. 3 open
+  positions (VOO, BTC, ETH) — **under the 4-max cap for the first time
+  since 7/30**. SOL's resting stop filled over the weekend (crypto
+  trades 24/7): entry $76.086 -> exit $70.6967, -7.08% realized,
+  discovered retroactively this run and logged in TRADE-LOG.md (dated
+  2026-08-01) since no session ran over the weekend to catch it live.
+- **Macro**: real Iran de-escalation over the weekend — Trump called
+  off a planned strike in favor of diplomacy, oil fell to a 3-week low.
+  SPX 7,540.27 and NDX 28,361.11 both fresh highs for the period, VIX
+  16.24 (down further from Friday's 16.88).
+- **Macro/calendar**: ISM Manufacturing PMI at 10:00 AM ET today
+  (forecast 54.0) — tier-1, blackout ~9:30-10:15 AM ET. July NFP
+  releases Friday 8/7, 8:30 AM ET — major print, own blackout check
+  needed that morning.
+- **Crypto regime**: BEAR (BTC $63,511.33 prior close vs SMA200
+  $71,128.05) — sleeve stands down. `scans/crypto_tjl_2026-08-03_1110UTC.json`.
+- **Extra-watch**: NVDA/ORCL no fresh weekend headlines beyond ongoing
+  capex/margin/debt-load narrative (Oracle still guiding to $8.05
+  non-GAAP EPS FY27, +18% YoY, framing current margin compression as
+  temporary). No paper positions in either.
+- **Ideas**: none. Scan produced 1 gapper (FCUV +29.3%) — a textbook
+  unexplained speculative pump ("why is it soaring?"), correctly
+  filtered (fails mcap/RVOL/prior-high/SMA200). No qualifying setups
+  today.
+- **Watching but not trading**: ISM PMI blackout this morning; the
+  freed-up 4th position slot on later scans this week (hourly TJL,
+  midday) now that the count is 3/4; Friday's NFP print.
