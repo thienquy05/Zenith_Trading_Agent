@@ -1,0 +1,304 @@
+{
+  "generated_at": "2026-08-04T07:18:47.755861-04:00",
+  "candidate_source": "alpaca_screener_premarket",
+  "trading_day_note": "Tuesday 2026-08-04 07:18 ET; inside the 04:00-09:30 premarket window",
+  "scan_params": {
+    "gap_filter_abs_pct": 3.0,
+    "price_min": 3.0,
+    "top_n": 12,
+    "open_note": "before 09:30 ET the latest premarket price stands in for the official open in swing checks"
+  },
+  "criteria": {
+    "day_trading": "Trend Join Long selection: gap > 3% vs prev close, price > $3, market cap > $1B, premarket RVOL > 1.5, price above prior-day high, prev close above 200-day SMA. Execution per TRADING-STRATEGY.md 2b: trigger over PMH + prior HOD 10:00-15:30 ET, stop = signal bar low, 3R bracket, flat 15:55.",
+    "swing": "Gap >= 8%, price > $3, open above prior-day high, open above 200-day SMA, market cap >= $800M, and a real catalyst (earnings on gap day, or news with no earnings). Starter ideas only, swing management is still being built."
+  },
+  "market_snapshot": {
+    "S&P 500": {
+      "symbol": "^GSPC",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Dow": {
+      "symbol": "^DJI",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Nasdaq": {
+      "symbol": "^IXIC",
+      "error": "not enough history"
+    },
+    "Russell 2000": {
+      "symbol": "^RUT",
+      "error": "not enough history"
+    },
+    "VIX": {
+      "symbol": "^VIX",
+      "error": "not enough history"
+    },
+    "US 10Y": {
+      "symbol": "^TNX",
+      "error": "not enough history"
+    },
+    "US 3M": {
+      "symbol": "^IRX",
+      "error": "not enough history"
+    },
+    "WTI Oil": {
+      "symbol": "CL=F",
+      "error": "not enough history"
+    },
+    "Dollar (DXY)": {
+      "symbol": "DX-Y.NYB",
+      "error": "not enough history"
+    }
+  },
+  "econ_calendar": {
+    "source": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+    "filter": "country=USD, impact=High",
+    "today_date": "2026-08-04",
+    "tomorrow_date": "2026-08-05",
+    "today": [],
+    "tomorrow": [],
+    "note": "live fetch"
+  },
+  "gappers": [
+    {
+      "rank": 1,
+      "symbol": "TEUP",
+      "name": null,
+      "price": 3.5,
+      "prev_close": 2.59,
+      "gap_pct": 35.14,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": null,
+      "prior_day_high": 2.63,
+      "prior_close": 2.59,
+      "avg_vol_20d": 1857,
+      "next_earnings": null,
+      "catalyst_found": false,
+      "catalyst": null,
+      "headlines": [],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": true,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": false
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 2,
+      "symbol": "SNAP",
+      "name": null,
+      "price": 5.46,
+      "prev_close": 5.07,
+      "gap_pct": 7.69,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 6.15,
+      "prior_day_high": 5.08,
+      "prior_close": 5.07,
+      "avg_vol_20d": 2101586,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Barclays Maintains Overweight on Snap, Raises Price Target to $16",
+      "headlines": [
+        {
+          "title": "Barclays Maintains Overweight on Snap, Raises Price Target to $16",
+          "source": "benzinga",
+          "published": "2026-08-04T11:11:14Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Nearly 1 Billion People Now Use Snapchat Every Month",
+          "source": "benzinga",
+          "published": "2026-08-04T10:58:18Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Market-Moving News for August 4th",
+          "source": "benzinga",
+          "published": "2026-08-04T11:10:38Z",
+          "n_symbols": 3
+        },
+        {
+          "title": "Caterpillar, Pfizer and 3 Stocks to Watch Heading Into Tuesday",
+          "source": "benzinga",
+          "published": "2026-08-04T10:29:26Z",
+          "n_symbols": 5
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": true,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": true,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    }
+  ],
+  "market_news": [
+    {
+      "title": "\u2018I\u2019m easing into retirement\u2019: I\u2019m getting an $80,000 pension payout. Where can I invest it safely?",
+      "summary": "\u201cI expect to have several years before I take distributions from my 401(k) account.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 11:00:00 GMT"
+    },
+    {
+      "title": "The trade-off of graduating college early: No debt, but no job?",
+      "summary": "Students who graduate early still enter a tough job market. Here\u2019s how to make sure that fast-tracking school doesn\u2019t compromise your career.",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 11:00:00 GMT"
+    },
+    {
+      "title": "The stock market\u2019s brutal summer reset is finally over. Here is why Citadel Securities says it is time to buy again.",
+      "summary": "Citadel Securities strategist Scott Rubner said markets have gotten a \u201ctechnical reset\u201d and is ready to recommend buying stocks again.",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:59:00 GMT"
+    },
+    {
+      "title": "The Magnificent Seven companies just did something they haven\u2019t since ChatGPT was first released",
+      "summary": "The grouping of companies called the Magnificent Seven just did something that they haven\u2019t since the introduction of ChatGPT sent the market into an artificial intelligence-sparked frenzy.",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:43:00 GMT"
+    },
+    {
+      "title": "Oil prices rise after vessel reports being hit in Strait of Hormuz",
+      "summary": "The United Kingdom Maritime Trade Operations Center said a ship reported being struck by an \u201cunknown projectile\u201d in the waterway.",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:39:00 GMT"
+    },
+    {
+      "title": "\u2018My head hit the driver\u2019s window\u2019: A teenager T-boned our car. Will Medicare pay my hospital bills?",
+      "summary": "\u201cMy car was nearly 20 years old, and I only carried liability and uninsured motorist coverage, not collision coverage.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:30:00 GMT"
+    },
+    {
+      "title": "I got two email invitations from friends. Is this a phishing scam \u2014 or am I suddenly popular?",
+      "summary": "\u201cI was surprised \u2014 and flattered \u2014 to find myself on the guest list.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:30:00 GMT"
+    },
+    {
+      "title": "If I marry my girlfriend, 67, will she lose her Supplemental Security Income and divorced spouse benefits?",
+      "summary": "\u201cShe has been living with me for four years.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:15:00 GMT"
+    },
+    {
+      "title": "Should wealthier Americans forgo their Social Security benefits as a charitable gesture?",
+      "summary": "A reader writes: \u201cI will likely be in a position to decline my benefits.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 10:00:00 GMT"
+    },
+    {
+      "title": "AI displacement in the workplace is increasing \u2013 and affecting young people most",
+      "summary": "AI disruption is adding 15 basis points to the unemployment rate at present, says Morgan Stanley",
+      "source": "MarketWatch Top",
+      "published": "Tue, 04 Aug 2026 09:39:00 GMT"
+    },
+    {
+      "title": "Elon Musk in a post on X says some of his Trump posts \u2018went too far\u2019 and that he regrets them",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 11 Jun 2025 07:09:00 GMT"
+    },
+    {
+      "title": "Bank of England decision on Thursday will be at 12:02 p.m. local time instead of 12 p.m., due to VE Day\u2019s two minutes of silence",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 06 May 2025 11:59:00 GMT"
+    },
+    {
+      "title": "Swiss National Bank cuts interest rates by a half point to 0.5%",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Dollar jumps 0.5% to 0.8890 francs",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Germany flash manufacturing PMI rises to 4-month high of 43.2",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Germany flash services PMI falls to 9-month low of 49.4",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Powell says labor market not a source of significant inflation pressure",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:48:00 GMT"
+    },
+    {
+      "title": "Fed\u2019s Powell says rate cut \u2018on the table\u2019 as soon as September",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:41:00 GMT"
+    },
+    {
+      "title": "Final S&P U.S. manufacturing index is 52.2 in February vs. initial 51.5",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 01 Mar 2024 14:47:00 GMT"
+    },
+    {
+      "title": "Duolingo started at buy with $222 price target at Seaport",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 27 Feb 2024 12:40:00 GMT"
+    }
+  ],
+  "gaps_to_fill": [
+    "market-wide earnings calendar is only partial: next earnings dates come per gapper, there is no full day-by-day earnings list",
+    "intraday levels (VWAP/HOD/LOD/PMH) need intraday bars and are only available on the Alpaca path",
+    "premarket RVOL: yfinance reports about 0 premarket volume, so a true premarket RVOL needs a premarket feed (Alpaca supplies it here); on the keyless path full-day RVOL is the stand-in"
+  ]
+}

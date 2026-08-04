@@ -929,3 +929,33 @@ Append at the BOTTOM, one entry per pre-market run.
 - **Watching but not trading**: ISM PMI blackout this morning; the
   freed-up 4th position slot on later scans this week (hourly TJL,
   midday) now that the count is 3/4; Friday's NFP print.
+
+## 2026-08-04 (Tuesday) — Pre-Market Research
+
+- **Account**: Equity $100,000.12 — back to the $100k baseline exactly.
+  3 open positions (VOO, BTC, ETH) — still under the 4-max cap, real
+  capacity for a qualifying entry.
+- **Macro/calendar**: zero high-impact US events today or tomorrow — no
+  §3b blackout. July NFP remains the week's major event, Friday 8/7,
+  8:30 AM ET.
+- **Sector momentum/market tone**: indexes at fresh highs — SPX
+  7,600.50, NDX 28,776.80, VIX down to 15.62 (from Monday's 16.24).
+  ORCL (no paper position) up another 5-9% Monday on continued Google
+  Cloud Gemini partnership momentum + geopolitical calm tailwind. NVDA
+  (no paper position) +3% Monday, third straight up day, still
+  consolidating near $200-207 against the OpenAI financing-guarantee
+  overhang.
+- **Crypto regime**: BEAR (BTC $63,454.24 prior close vs SMA200
+  $70,967.40) — sleeve stands down. `scans/crypto_tjl_2026-08-04_1119UTC.json`.
+- **Extra-watch**: BTC/ETH roughly flat overnight. SOL no longer held
+  (weekend stop-out).
+- **Ideas**: none. Scan produced 2 gappers — SNAP (+7.69%, real
+  verified earnings beat: revenue +19% YoY, margin expansion, 8th
+  straight positive-FCF quarter, Barclays PT raised to $16) genuinely
+  fails swing eligibility (gap just under 8%, still below its 200-day
+  SMA — a real downtrend, not a data-gap artifact like recent
+  near-misses). TEUP (+35.1%) has no catalyst. No qualifying setups
+  today.
+- **Watching but not trading**: SNAP's post-earnings reaction through
+  the session; Friday's NFP print; NVDA's 8/26 earnings date noted for
+  the forward calendar.
