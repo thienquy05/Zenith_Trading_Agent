@@ -1720,3 +1720,8 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: universe TEUP/SNAP (today's premarket packet, packet_2026-08-04.json). Both fail — TEUP `fail_daily` (insufficient data); SNAP `fail_daily` (prev close $5.07 ≤ SMA200 $6.15). No PASS. Saved `scans/tjl_watchlist_2026-08-04_1233ET.json`. Hit set unchanged (empty) from the 10:34/11:33 ET runs today — no dashboard republish.
 - Positions quick check: 3 open (VOO/BTC/ETH), equity $100,009.89 vs last_equity $99,998.77 (+$11.12/+0.01%) — far inside -2% daily circuit breaker, well under §3 4-cap. VOO uP&L +2.18%, BTC -0.25%, ETH -0.55% — none near -7%, no emergency action needed.
 - No trade placed (no PASS, moot on guardrails). No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-08-04 13:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe TEUP/SNAP (today's premarket packet, packet_2026-08-04.json). Both fail — TEUP `fail_daily` (insufficient data); SNAP `fail_daily` (prev close $5.07 ≤ SMA200 $6.15). No PASS. Saved `scans/tjl_watchlist_2026-08-04_1333ET.json`. Hit set unchanged (empty) from the 12:33 ET run — no dashboard republish.
+- Positions quick check: 3 open (VOO/BTC/ETH), equity $100,011.51 vs last_equity $99,998.77 (+$12.74/+0.01%) — far inside -2% daily circuit breaker, well under §3 4-cap. VOO uP&L +2.41%, BTC -0.13%, ETH -0.76% — none near -7%, no gap-through (all three stops confirmed resting via `orders open`). No positions past +2R — no trailing-stop adjustments needed.
+- No trade placed (no PASS, moot on guardrails). No Telegram (quiet-run policy — no trade, no emergency).
