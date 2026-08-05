@@ -959,3 +959,35 @@ Append at the BOTTOM, one entry per pre-market run.
 - **Watching but not trading**: SNAP's post-earnings reaction through
   the session; Friday's NFP print; NVDA's 8/26 earnings date noted for
   the forward calendar.
+
+## 2026-08-05 (Wednesday) — Pre-Market Research (published late, ~3:20 PM ET, session was interrupted mid-run this morning)
+
+- **Note**: packet builder completed at 7:20 AM ET as scheduled, but
+  the session was interrupted before the report/logs were written.
+  Completing now, ~8 hours late. Today's intervening hourly TJL scans
+  fell back to yesterday's (8/4) TEUP/SNAP watchlist per designed
+  fallback behavior, since today's watchlist file didn't exist yet.
+- **Account**: Equity $100,013.13 (current, ~3:20 PM ET), modestly above
+  the $100k baseline. 3 open positions (VOO, BTC, ETH) — still under
+  the 4-max cap, all healthy through the session (VOO +2.5%, BTC +1.1%,
+  ETH +1.9%), no stop-outs today.
+- **Macro**: Treasury Secretary Bessent said a US-Iran deal to reopen
+  the Strait of Hormuz could land "today or tomorrow" — Iran and Oman
+  reportedly in final-stage talks. Real, multi-sourced (CNBC/Bloomberg/
+  Forbes) progress, though it follows a period this week where analysts
+  called the tanker-shipping threat the worst since the conflict began
+  (simultaneous Hormuz + Red Sea disruption). Not yet a signed deal.
+- **Macro/calendar**: zero high-impact US events today or tomorrow — no
+  §3b blackout. July NFP remains the week's major event, Friday 8/7.
+- **Sector momentum/market tone**: NVDA reportedly gained premarket on
+  a supply-chain partner's strong monthly sales report (no paper
+  position). Arista Networks +14% on a strong Q3 forecast — consistent
+  with the ongoing AI-infrastructure-spend-rewarded pattern.
+- **Crypto regime**: BEAR (BTC $64,062.79 prior close vs SMA200
+  $70,810.17) — sleeve stands down. `scans/crypto_tjl_2026-08-05_1120UTC.json`.
+- **Ideas**: none. Scan produced 4 gappers (AAOX, SPCX, SOXS, SNXX) —
+  SPCX (SpaceX) carries a real catalyst (Needham Buy reiteration, $250
+  PT) but is gapping down, disqualifying it outright. Others carry no
+  catalyst. No qualifying setups today.
+- **Watching but not trading**: Strait of Hormuz deal outcome (either
+  direction would be market-moving); Friday's NFP print.
