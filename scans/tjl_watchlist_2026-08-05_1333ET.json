@@ -1,0 +1,15 @@
+{
+  "scanned_at": "2026-08-05T13:33:30.079732-04:00",
+  "candidates_checked": 2,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "TEUP",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNAP",
+      "result": "fail_daily"
+    }
+  ]
+}
