@@ -991,3 +991,32 @@ Append at the BOTTOM, one entry per pre-market run.
   catalyst. No qualifying setups today.
 - **Watching but not trading**: Strait of Hormuz deal outcome (either
   direction would be market-moving); Friday's NFP print.
+
+## 2026-08-06 (Thursday) — Pre-Market Research (published late, ~3:20 PM ET, session interrupted mid-run again)
+
+- **Note**: same issue as yesterday — packet builder completed at 7:22
+  AM ET as scheduled, session interrupted before report/logs written.
+  Today's 9:30 AM Market Open run explicitly logged proceeding without
+  premarket research. Completing now, ~8 hours late.
+- **Account**: Equity $100,010.14 (current, ~3:20 PM ET), modestly above
+  the $100k baseline. 3 open positions (VOO, BTC, ETH) — still under
+  the 4-max cap, all healthy through the session (VOO +2.1%, BTC +0.3%,
+  ETH +1.3%), no stop-outs today.
+- **Macro**: Strait of Hormuz talks continuing — Iran/Oman in "final
+  stage" per multi-sourced reporting (NBC/CBS/CNN), but the emerging
+  framework is a narrower bilateral shipping-corridor mechanism, not a
+  full reopening as some earlier headlines implied. Genuine progress,
+  not yet resolved.
+- **Macro/calendar**: zero high-impact US events today — no §3b
+  blackout. **Tomorrow (Fri 8/7) is July NFP day**, 8:30 AM ET
+  (forecast +85K jobs, prior +57K; unemployment 4.2%) — narrow
+  blackout ~8:00-8:45 AM ET.
+- **Crypto regime**: BEAR (BTC $64,595.10 prior close vs SMA200
+  $70,657.63) — sleeve stands down. `scans/crypto_tjl_2026-08-06_1122UTC.json`.
+- **Ideas**: none. Scan produced 4 gappers (YXT, INLF, SNXX, ASTC), all
+  gapping DOWN — automatically disqualifying for both watchlists
+  regardless of catalyst quality. YXT/INLF are speculative
+  halt-reversal patterns; ASTC has a real but minor NASA-funding
+  headline. No qualifying setups today.
+- **Watching but not trading**: Friday's NFP print and its blackout
+  window; the actual text of any Hormuz agreement once it firms up.
