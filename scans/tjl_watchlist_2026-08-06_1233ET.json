@@ -1,0 +1,23 @@
+{
+  "scanned_at": "2026-08-06T12:33:59.507105-04:00",
+  "candidates_checked": 4,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "AAOX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SPCX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SOXS",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNXX",
+      "result": "fail_daily"
+    }
+  ]
+}
