@@ -1,0 +1,23 @@
+{
+  "scanned_at": "2026-08-07T10:33:44.016489-04:00",
+  "candidates_checked": 4,
+  "hits": [],
+  "all_results": [
+    {
+      "symbol": "YXT",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "INLF",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "SNXX",
+      "result": "fail_daily"
+    },
+    {
+      "symbol": "ASTC",
+      "result": "fail_daily"
+    }
+  ]
+}

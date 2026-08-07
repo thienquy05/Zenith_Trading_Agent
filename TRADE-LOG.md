@@ -1747,3 +1747,8 @@ a new dated line.
 - `scan_tjl.py --no-telegram`: universe AAOX/SPCX/SOXS/SNXX (no fresh packet for today yet, fell back to yesterday's `packet_2026-08-05.json`). All fail — AAOX/SPCX/SNXX `fail_daily` (insufficient data); SOXS `fail_daily` (px $42.54 ≤ prev high $45.53). No PASS. Saved `scans/tjl_watchlist_2026-08-06_1034ET.json`. First TJL run of the day — empty hit set, no dashboard republish.
 - Positions unchanged: 3 open (VOO/BTC/ETH), well under §3 4-cap, all stops confirmed resting via `orders open` (VOO $643.83; BTC stop_limit 59,643.60/59,345.40; ETH stop_limit 1,748.70/1,739.96). No gap-through, no emergency action needed.
 - No trade placed (no PASS, moot on guardrails). No Telegram (quiet-run policy — no trade, no emergency).
+
+### 2026-08-07 10:33 ET — Hourly TJL Watch
+- `scan_tjl.py --no-telegram`: universe YXT/INLF/SNXX/ASTC (no fresh packet for today yet, fell back to yesterday's `packet_2026-08-06.json`). All fail — YXT `fail_daily` (px $6.21 ≤ prev high $10.66); INLF `fail_daily` (px $5.42 ≤ prev high $5.73); SNXX `fail_daily` (insufficient data); ASTC `fail_daily` (px $9.23 ≤ prev high $9.69). No PASS. Saved `scans/tjl_watchlist_2026-08-07_1033ET.json`. First TJL run of the day — empty hit set, no dashboard republish.
+- Positions unchanged: 3 open (VOO/BTC/ETH), well under §3 4-cap. Equity $100,014.02 vs last_equity $100,009.49 (+$4.53/+0.005%) — negligible, far inside -2% daily breaker. VOO uP&L +2.58%, BTC +1.52%, ETH +2.25% — none near -7%, no gap-through. Weekly new-entry cap: 0/5 used this week (Monday 8/3 baseline).
+- No trade placed (no PASS, moot on guardrails). No Telegram (quiet-run policy — no trade, no emergency).
