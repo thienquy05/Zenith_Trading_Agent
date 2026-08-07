@@ -1020,3 +1020,36 @@ Append at the BOTTOM, one entry per pre-market run.
   headline. No qualifying setups today.
 - **Watching but not trading**: Friday's NFP print and its blackout
   window; the actual text of any Hormuz agreement once it firms up.
+
+## 2026-08-07 (Friday) — Pre-Market Research (published late, ~2:45 PM ET, third consecutive session interruption)
+
+- **Note**: third straight day this session was interrupted mid-run.
+  Packet builder completed 7:22 AM ET as scheduled; report completed
+  ~2:45 PM ET. Today's actual NFP release (8:30 AM ET) had already
+  happened by publish time — covered below with confirmed results.
+- **Account**: Equity $100,012.41 (current, ~2:45 PM ET), modestly above
+  the $100k baseline. 3 open positions (VOO, BTC, ETH) — still under
+  the 4-max cap, all healthy and green through the session (VOO +2.4%,
+  BTC +0.8%, ETH +1.5%), no stop-outs today.
+- **NFP — a real miss, bad-news-is-good-news reaction**: July payrolls
+  -23K (vs +85K forecast), -103K combined downward revision to prior
+  two months, unemployment 4.1% (participation fell to a 5-year low
+  61.4%), wages +3.2% YoY (softest since May 2021). Stocks rallied
+  (S&P +0.3%, Nasdaq +0.9%), yields fell, Sept Fed hike odds dropped
+  57%->44% on reduced hawkish pressure. Verified via Bloomberg/CNBC/
+  Yahoo/BLS.
+- **Strait of Hormuz**: Iran says a deal with Oman is "agreed in
+  principle" (Bloomberg 8/6) — 60-day ceasefire, no tolls, Iran
+  controls inbound/Oman controls outbound. Contingent on US lifting
+  its Iran port blockade; doesn't touch the nuclear-program dispute.
+  Real, multi-sourced progress, not a final resolution.
+- **Crypto regime**: BEAR (BTC $64,257.84 prior close vs SMA200
+  $70,510.81) — sleeve stands down. `scans/crypto_tjl_2026-08-07_1122UTC.json`.
+- **Ideas**: none. Scan produced 3 gappers (TTD, WYHG, CLRO) — TTD
+  (-21.95%) has a real earnings-miss catalyst but wrong direction for
+  either watchlist; WYHG is extreme circuit-breaker volatility with no
+  coherent story; CLRO has no real catalyst. No qualifying setups
+  today.
+- **Watching but not trading**: further Strait of Hormuz developments
+  over the weekend; next week's calendar (nothing specific identified
+  yet).

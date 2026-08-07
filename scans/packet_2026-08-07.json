@@ -1,0 +1,417 @@
+{
+  "generated_at": "2026-08-07T07:22:00.813303-04:00",
+  "candidate_source": "alpaca_screener_premarket",
+  "trading_day_note": "Friday 2026-08-07 07:22 ET; inside the 04:00-09:30 premarket window",
+  "scan_params": {
+    "gap_filter_abs_pct": 3.0,
+    "price_min": 3.0,
+    "top_n": 12,
+    "open_note": "before 09:30 ET the latest premarket price stands in for the official open in swing checks"
+  },
+  "criteria": {
+    "day_trading": "Trend Join Long selection: gap > 3% vs prev close, price > $3, market cap > $1B, premarket RVOL > 1.5, price above prior-day high, prev close above 200-day SMA. Execution per TRADING-STRATEGY.md 2b: trigger over PMH + prior HOD 10:00-15:30 ET, stop = signal bar low, 3R bracket, flat 15:55.",
+    "swing": "Gap >= 8%, price > $3, open above prior-day high, open above 200-day SMA, market cap >= $800M, and a real catalyst (earnings on gap day, or news with no earnings). Starter ideas only, swing management is still being built."
+  },
+  "market_snapshot": {
+    "S&P 500": {
+      "symbol": "^GSPC",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Dow": {
+      "symbol": "^DJI",
+      "error": "Failed to perform, curl: (35) Recv failure: Connection reset by peer. See https://curl.se/libcurl/c/libcurl-errors.html "
+    },
+    "Nasdaq": {
+      "symbol": "^IXIC",
+      "error": "not enough history"
+    },
+    "Russell 2000": {
+      "symbol": "^RUT",
+      "error": "not enough history"
+    },
+    "VIX": {
+      "symbol": "^VIX",
+      "error": "not enough history"
+    },
+    "US 10Y": {
+      "symbol": "^TNX",
+      "error": "not enough history"
+    },
+    "US 3M": {
+      "symbol": "^IRX",
+      "error": "not enough history"
+    },
+    "WTI Oil": {
+      "symbol": "CL=F",
+      "error": "not enough history"
+    },
+    "Dollar (DXY)": {
+      "symbol": "DX-Y.NYB",
+      "error": "not enough history"
+    }
+  },
+  "econ_calendar": {
+    "source": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+    "filter": "country=USD, impact=High",
+    "today_date": "2026-08-07",
+    "tomorrow_date": "2026-08-08",
+    "today": [
+      {
+        "time_et": "8:30 AM",
+        "title": "Average Hourly Earnings m/m",
+        "forecast": "0.3%",
+        "previous": "0.3%"
+      },
+      {
+        "time_et": "8:30 AM",
+        "title": "Non-Farm Employment Change",
+        "forecast": "85K",
+        "previous": "57K"
+      },
+      {
+        "time_et": "8:30 AM",
+        "title": "Unemployment Rate",
+        "forecast": "4.2%",
+        "previous": "4.2%"
+      }
+    ],
+    "tomorrow": [],
+    "note": "live fetch"
+  },
+  "gappers": [
+    {
+      "rank": 1,
+      "symbol": "TTD",
+      "name": null,
+      "price": 13.8,
+      "prev_close": 17.68,
+      "gap_pct": -21.95,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 28.64,
+      "prior_day_high": 18.98,
+      "prior_close": 17.68,
+      "avg_vol_20d": 794217,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Trade Desk Blames Weak Consumer Spending, Tariffs and Oil Prices for Slowing Growth",
+      "headlines": [
+        {
+          "title": "Trade Desk Blames Weak Consumer Spending, Tariffs and Oil Prices for Slowing Growth",
+          "source": "benzinga",
+          "published": "2026-08-07T11:14:40Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Stock Market Today: Dow Jones Futures Slip, S&P 500 Gains Ahead of July Jobs Report\u2014Atlassian, Trade Desk, Cloudflare in Focus",
+          "source": "benzinga",
+          "published": "2026-08-07T09:55:22Z",
+          "n_symbols": 8
+        },
+        {
+          "title": "Why Atlassian Shares Are Trading Higher By More Than 30%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-08-07T08:33:05Z",
+          "n_symbols": 20
+        },
+        {
+          "title": "Fluor, Cloudflare And 3 Stocks To Watch Heading Into Friday",
+          "source": "benzinga",
+          "published": "2026-08-07T06:55:42Z",
+          "n_symbols": 5
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": false
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": false,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 2,
+      "symbol": "WYHG",
+      "name": null,
+      "price": 9.16,
+      "prev_close": 9.92,
+      "gap_pct": -7.66,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 3.02,
+      "prior_day_high": 25.84,
+      "prior_close": 9.92,
+      "avg_vol_20d": 9813,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "Wing Yip Food Holdings Halted On Circuit Breaker To The Downside; Stock Now Up 299.95%",
+      "headlines": [
+        {
+          "title": "Wing Yip Food Holdings Halted On Circuit Breaker To The Downside; Stock Now Up 299.95%",
+          "source": "benzinga",
+          "published": "2026-08-06T19:34:51Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Wing Yip Food Holdings Group Shares Resume Trade",
+          "source": "benzinga",
+          "published": "2026-08-06T15:33:30Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Wing Yip Food Holdings Group Shares Halted On Circuit Breaker To The Upside, Stock Now Up 609.17%",
+          "source": "benzinga",
+          "published": "2026-08-06T15:29:47Z",
+          "n_symbols": 1
+        },
+        {
+          "title": "Why Atlassian Shares Are Trading Higher By More Than 30%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-08-07T08:33:05Z",
+          "n_symbols": 20
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": false,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": true
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": true,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    },
+    {
+      "rank": 3,
+      "symbol": "CLRO",
+      "name": null,
+      "price": 10.2,
+      "prev_close": 9.78,
+      "gap_pct": 4.29,
+      "market_cap": null,
+      "premarket_volume": 0,
+      "today_volume": null,
+      "rvol_premarket": null,
+      "rvol_fullday": null,
+      "vwap": null,
+      "premarket_high": null,
+      "hod": null,
+      "lod": null,
+      "today_open": null,
+      "sma200": 4.98,
+      "prior_day_high": 12.49,
+      "prior_close": 9.78,
+      "avg_vol_20d": 12689,
+      "next_earnings": null,
+      "catalyst_found": true,
+      "catalyst": "12 Information Technology Stocks Moving In Thursday's Intraday Session",
+      "headlines": [
+        {
+          "title": "12 Information Technology Stocks Moving In Thursday's Intraday Session",
+          "source": "benzinga",
+          "published": "2026-08-06T17:06:06Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "Nasdaq Down 50 Points; US Foods Posts Upbeat Earnings",
+          "source": "benzinga",
+          "published": "2026-08-06T13:43:04Z",
+          "n_symbols": 7
+        },
+        {
+          "title": "12 Information Technology Stocks Moving In Thursday's Pre-Market Session",
+          "source": "benzinga",
+          "published": "2026-08-06T12:06:00Z",
+          "n_symbols": 12
+        },
+        {
+          "title": "Why SiTime Shares Are Trading Higher By Over 30%; Here Are 20 Stocks Moving Premarket",
+          "source": "benzinga",
+          "published": "2026-08-06T08:55:12Z",
+          "n_symbols": 20
+        }
+      ],
+      "day_checks": {
+        "gap_gt_3": true,
+        "price_gt_3": true,
+        "mcap_gt_1b": false,
+        "rvol_gt_1.5": false,
+        "price_above_prior_high": false,
+        "prev_close_above_sma200": true
+      },
+      "day_eligible": false,
+      "swing_checks": {
+        "gap_ge_8": false,
+        "price_gt_3": true,
+        "open_above_prior_high": false,
+        "open_above_sma200": true,
+        "mcap_ge_800m": false,
+        "catalyst_found": true
+      },
+      "swing_eligible": false
+    }
+  ],
+  "market_news": [
+    {
+      "title": "Kevin O\u2019Leary, aka \u2018Mr. Wonderful,\u2019 on crypto, winning in AI and 3 things all business owners must know",
+      "summary": "What Kevin O\u2019Leary learned from Steve Jobs: You only need to get three things done every day. Just three.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 11:00:00 GMT"
+    },
+    {
+      "title": "Optical stocks have a China problem that most investors are missing",
+      "summary": "Beijing controls a chokepoint that Washington\u2019s own crackdown can\u2019t address.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 11:00:00 GMT"
+    },
+    {
+      "title": "How S&P 500 options action may help explain the rising volatility in memory stocks",
+      "summary": "Bullish derivative bets mesh with the buy-the-dip mentality, says IBKR\u2019s Sosnick.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 10:56:00 GMT"
+    },
+    {
+      "title": "There are good reasons why higher bond yields are here to stay, this strategist says",
+      "summary": "Investors are demanding higher rates when they buy long-duration bonds because there is less demand, higher supply and a hot mess of policy uncertainty, strategist explains",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 10:02:00 GMT"
+    },
+    {
+      "title": "My brother asked me to sign as his executor, but wouldn\u2019t let me read the document. Should I have refused?",
+      "summary": "\u201cI imagine scenarios like this happen more often than people realize.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 09:16:00 GMT"
+    },
+    {
+      "title": "Micron\u2019s stock falls but is spared the worst of the memory-chip selloff",
+      "summary": "Shares of Sandisk and Western Digital fell hard after investors were left unimpressed by those companies\u2019 earnings reports.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 02:35:00 GMT"
+    },
+    {
+      "title": "\u2018He\u2019s never been good with money\u2019: If I set up an annuity for my brother, 65, would it jeopardize his Supplemental Security Income?",
+      "summary": "\u201cI was shocked to learn that his monthly Social Security benefit will be only $700.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 02:15:00 GMT"
+    },
+    {
+      "title": "\u2018Her bank accounts were stripped bare by Medicaid\u2019: My late friend had $20,000 in credit-card debt. Will her life insurance pay for it?",
+      "summary": "\u201cShe left behind a 30-year-old son and 32-year-old daughter.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 02:00:00 GMT"
+    },
+    {
+      "title": "Social Security\u2019s funding crisis is the elephant in the room. But don\u2019t ignore the mouse.",
+      "summary": "No one knows what Congress will do if Social Security\u2019s trust fund were actually to be depleted.",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 00:31:00 GMT"
+    },
+    {
+      "title": "\u2018I\u2019m easing into retirement\u2019: I\u2019m getting an $80,000 pension payout. Where can I invest it safely?",
+      "summary": "\u201cI expect to have several years before I take distributions from my 401(k) account.\u201d",
+      "source": "MarketWatch Top",
+      "published": "Fri, 07 Aug 2026 00:00:00 GMT"
+    },
+    {
+      "title": "Elon Musk in a post on X says some of his Trump posts \u2018went too far\u2019 and that he regrets them",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 11 Jun 2025 07:09:00 GMT"
+    },
+    {
+      "title": "Bank of England decision on Thursday will be at 12:02 p.m. local time instead of 12 p.m., due to VE Day\u2019s two minutes of silence",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 06 May 2025 11:59:00 GMT"
+    },
+    {
+      "title": "Swiss National Bank cuts interest rates by a half point to 0.5%",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Dollar jumps 0.5% to 0.8890 francs",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Thu, 12 Dec 2024 08:32:00 GMT"
+    },
+    {
+      "title": "Germany flash manufacturing PMI rises to 4-month high of 43.2",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Germany flash services PMI falls to 9-month low of 49.4",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 22 Nov 2024 08:34:00 GMT"
+    },
+    {
+      "title": "Powell says labor market not a source of significant inflation pressure",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:48:00 GMT"
+    },
+    {
+      "title": "Fed\u2019s Powell says rate cut \u2018on the table\u2019 as soon as September",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Wed, 31 Jul 2024 18:41:00 GMT"
+    },
+    {
+      "title": "Final S&P U.S. manufacturing index is 52.2 in February vs. initial 51.5",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Fri, 01 Mar 2024 14:47:00 GMT"
+    },
+    {
+      "title": "Duolingo started at buy with $222 price target at Seaport",
+      "summary": "",
+      "source": "MarketWatch RealTime",
+      "published": "Tue, 27 Feb 2024 12:40:00 GMT"
+    }
+  ],
+  "gaps_to_fill": [
+    "market-wide earnings calendar is only partial: next earnings dates come per gapper, there is no full day-by-day earnings list",
+    "intraday levels (VWAP/HOD/LOD/PMH) need intraday bars and are only available on the Alpaca path",
+    "premarket RVOL: yfinance reports about 0 premarket volume, so a true premarket RVOL needs a premarket feed (Alpaca supplies it here); on the keyless path full-day RVOL is the stand-in"
+  ]
+}
